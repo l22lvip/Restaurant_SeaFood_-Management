@@ -1,0 +1,147 @@
+/* src/components/Header/Header.css */
+
+.header-container {
+  background-color: #01101f;
+  display: flex;
+  justify-content: space-between;
+  /* Corresponds to justify-between */
+  align-items: center;
+  /* Corresponds to items-center */
+  color: white;
+  /* Corresponds to text-white */
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Corresponds to gap-2 (1 unit = 0.25rem, so 2 units = 0.5rem) */
+}
+
+.logo-image {
+  width: 200px;
+  /* This overrides the h-8/w-8 if it's placed after it. You have an inline style of 50px so I kept that in mind */
+}
+
+.header-title {
+  font-size: 1.125rem;
+  /* Corresponds to text-lg (18px) */
+  font-weight: 600;
+  /* Corresponds to font-semihold (assuming this means semibold) */
+  color: #f5f5f5;
+  /* Corresponds to text-[#f5f5f5] */
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  /* Corresponds to items-center */
+  gap: 1rem;
+  /* Corresponds to gap-4 */
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  padding-left: 1.25rem;
+  /* (or 20px) */
+  padding-right: 1.25rem;
+  /* (or 20px) */
+  padding-top: 0.5rem;
+  /* (or 8px) */
+  padding-bottom: 0.5rem;
+  /* (or 8px) */
+  width: 300px;
+  /* Corresponds to w-full */
+}
+
+.search-input {
+  background-color: transparent;
+  /* Corresponds to bg-transparent */
+  color: white;
+  /* Corresponds to text-white */
+  outline: none;
+  /* Corresponds to outline-none */
+  border: none;
+}
+
+.search-icon {
+  color: #f5f5f5;
+  /* Corresponds to text-[#f5f5f5] */
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  /* Corresponds to items-center */
+  gap: 1rem;
+  /* Corresponds to gap-4 */
+  padding-right: 1.25rem;
+  /* Corresponds to pr-5 (20px) */
+  padding-left: 1.25rem;
+  /* Corresponds to pl-5 (20px) */  
+  background-color: #01101f;
+  /* Corresponds to bg-[#01101f] */
+  border-radius: 15px;
+  /* Corresponds to rounded-2xl */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification-section {
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.notification-icon {
+  color: #f5f5f5;
+  /* Corresponds to text-[#f5f5f5] */
+  font-size: 1.5rem;
+  /* Tức là 24px nếu 1rem = 16px */
+  line-height: 2rem;
+  /* Tức là 32px nếu 1rem = 16px */
+}
+
+.user-profile-section {
+  display: flex;
+  align-items: center;
+  /* Corresponds to items-center */
+  gap: 0.75rem;
+  /* Corresponds to gap-3 */
+  cursor: pointer;
+}
+
+.user-icon {
+  color: #f5f5f5;
+  /* Corresponds to text-[#f5f5f5] */
+  font-size: 2.25rem;
+  /* Which is 36px if 1rem = 16px */
+  line-height: 2.5rem;
+  /* Which is 40px if 1rem = 16px */
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  /* Corresponds to flex-col */
+  align-items: flex-start;
+  /* Corresponds to items-start */
+}
+
+.user-details h1 {
+  /* text-md */
+  font-size: 1rem;
+  /* Corresponds to text-md (16px) */
+  font-weight: 600;
+  /* Corresponds to font-semihold (assuming this means semibold) */
+  color: #f5f5f5;
+  /* Corresponds to text-[#f5f5f5] */
+}
+
+.user-details p {
+  /* text-sm */
+  font-size: 0.75rem;
+  /* Which is 12px if 1rem = 16px */
+  line-height: 1rem;
+  /* Which is 16px if 1rem = 16px */
+  color: #ababab;
+  /* Corresponds to text-[#b0b0b0] */
+}

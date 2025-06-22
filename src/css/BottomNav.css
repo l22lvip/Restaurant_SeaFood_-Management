@@ -1,0 +1,38 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #262626;
+  padding: 0.5rem;
+  height: 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-button {
+  color: #ababab;
+  background-color: transparent;
+  width: 200px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.nav-button p {
+  margin: 0;
+}
+
+.nav-button .icon {
+  margin-right: 0.5rem;
+}
+
+.nav-button.active {
+  color: #f5f5f5;
+  background-color: #343434;
+  border-radius: 20px;
+}
