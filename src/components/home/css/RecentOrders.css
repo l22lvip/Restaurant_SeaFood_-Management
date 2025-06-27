@@ -1,0 +1,82 @@
+.recent-orders-section {
+    /* px-8 mt-6 */
+    padding: 0 2rem;
+    
+}
+
+.recent-orders-header {
+    background-color: #1a1a1a;
+    width: 100%;
+    /* min-h-[450px] rounded-lg*/
+    min-height: 28.125rem;
+    /* Corresponds to min-h-[450px] */
+    border-radius: 0.5rem;
+    /* Corresponds to rounded-lg */
+}
+
+.recent-orders-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* px-6 py-4 */
+    padding: 10px 20px 10px 20px;
+    /* Corresponds to px-6 py-4 */
+}
+
+.recent-orders-title h1 {
+    color: #f5f5f5;
+    /* text-2xl font-semibold tracking-wide */
+    font-size: 1.5rem;
+    /* Corresponds to text-2xl */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    letter-spacing: 0.025em;
+    /* Corresponds to tracking-wide */
+}
+
+.recent-orders-title a {
+    color: #025cca;
+    /* text-sm font-semibold */
+    font-size: 14px;
+    /* Corresponds to text-sm */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+}
+
+.search-rencent-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    /* Corresponds to px-6 py-4 */
+    /* mx-6 */
+    margin: 0 20px;
+}
+
+.search-rencent-icon {
+    color: #f5f5f5;
+}
+
+.search-rencent-input {
+    flex: 1;
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+    border: none;
+    outline: none;
+}
+
+.order-list-section {
+    margin-top: 10px; 
+    /* Corresponds to mt-4 */
+    padding: 0 24px; 
+    /* Corresponds to px-6 */
+    overflow-y: scroll;
+    height: 300px;
+    scrollbar-width: none;
+}
+
+.order-list-section::-webkit-scrollbar {
+    display: none;
+}

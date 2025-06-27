@@ -7,10 +7,21 @@
 }
 
 .home-left {
-    flex-grow: 3;
-    background-color: red;  
+    flex:3;
 }
 .home-right {
-    flex-grow: 2;
+    flex: 2;
     background-color: blue;
 }
+
+.mini-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 2.5rem;
+    border-radius: 0.5rem;
+}
+
+
+
+

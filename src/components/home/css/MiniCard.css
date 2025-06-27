@@ -1,0 +1,64 @@
+.mini-card-section {
+    background-color: #1a1a1a ;
+    /* py-5 px-5 rounded-lg w-50% */
+    padding: 2rem 2.5rem;
+    border-radius: 0.5rem; 
+    width: 50%;
+    margin-right: 70px ;
+}
+
+.mini-card-title {
+    display: flex ;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.mini-card-title h1 {
+    color:#f5f5f5;
+    /* text-lg */
+    font-size: 1.125rem; /* Corresponds to text-lg */
+    /* font-semibold */
+    font-weight: 400;
+    /* tracking-wide */
+    letter-spacing: 0.025em; /* Corresponds to tracking-wide */
+}
+
+.mini-card-section button {
+    /* p-3 rounded-lg text-[#f5f5f5] text-2xl */
+    padding: 5px;
+    border-radius: 10px;
+    color: #f5f5f5;
+    /* text-2xl */
+    font-size: 1.5rem;
+    /* font-semibold */
+    font-weight: 100;
+}
+
+.button-total-earnings {
+    background-color: #02ca3a;
+}
+
+/* Specific styles for other categories */
+.button-other-category {
+    background-color: #f6b100;
+}
+
+
+
+.mini-card-number {
+    color: #f5f5f5;
+    font-size: 2rem;
+    /* font-bold */
+    font-weight: 600;
+    /* mt-5 */
+    margin-top: 5px; /* Corresponds to mt-5 */
+}
+
+.mini-card-footer {   
+    color : #f5f5f5;
+    font-size: 1.125rem;
+}
+.mini-card-footer span {   
+    color : #02ca3a;
+}
+

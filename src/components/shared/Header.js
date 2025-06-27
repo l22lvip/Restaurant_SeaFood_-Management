@@ -11,7 +11,7 @@ import '../../css/Header.css'
 
 const Header = () => {
     return (
-        <header className='header-container' style={{ backgroundColor: '#01101f', }}>
+        <div className='header-container'>
             {/* Logo  */}
             <div className='logo-section'>
                 <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
@@ -21,7 +21,7 @@ const Header = () => {
             {/* Search */}
             <div className='search-section'>
                 <FaSearch className='search-icon' />
-                <input
+                <input 
                     type='text'
                     className='search-input'
                     placeholder='Search...'
@@ -44,7 +44,7 @@ const Header = () => {
 
 
 
-        </header>
+        </div>
     )
 }
 

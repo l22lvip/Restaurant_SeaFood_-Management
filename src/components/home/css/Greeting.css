@@ -1,0 +1,51 @@
+.greetings {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding: 5px ;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #f5f5f5;
+  overflow: hidden;
+}
+
+.greetings-header {
+  max-width: 100%;
+  margin-bottom: 1rem;
+  margin-left: 10px;
+}
+
+.greetings-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.greetings-header p {
+  font-size: 14px;
+  color: #ababab;
+  line-height: 1.6;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.greetings-time {
+  margin-top: 20px;
+}
+
+.greetings-time h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.greetings-time p {
+  font-size: 0.875rem;
+  color: #cccccc;
+  margin: 0;
+}
+  

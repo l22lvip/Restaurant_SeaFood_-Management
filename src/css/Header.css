@@ -1,7 +1,7 @@
 /* src/components/Header/Header.css */
 
 .header-container {
-  background-color: #01101f;
+  background-color: #262626;
   display: flex;
   justify-content: space-between;
   /* Corresponds to justify-between */
@@ -77,7 +77,7 @@
   /* Corresponds to pr-5 (20px) */
   padding-left: 1.25rem;
   /* Corresponds to pl-5 (20px) */  
-  background-color: #01101f;
+  background-color: #262626;
   /* Corresponds to bg-[#01101f] */
   border-radius: 15px;
   /* Corresponds to rounded-2xl */
