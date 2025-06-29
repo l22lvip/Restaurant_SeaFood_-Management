@@ -6,6 +6,7 @@ import MiniCard from "../components/home/MiniCard";
 import { BsCashCoin } from "react-icons/bs";
 import { GrInProgress } from "react-icons/gr";
 import RecentOrders from "../components/home/RecentOrders";
+import PopularDishes from "../components/home/PopularDishes";
 
 const Home = () => {
   return (
@@ -30,7 +31,7 @@ const Home = () => {
       </Col>
 
       <Col className="home-right">
-        {/* Menu hoặc gì đó nhỏ */}
+        <PopularDishes /> 
       </Col>
     </Container>
 

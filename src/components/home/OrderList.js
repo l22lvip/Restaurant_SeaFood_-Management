@@ -15,7 +15,7 @@ const OrderList = () => {
                     <p>8 Items</p>
                 </Row>
 
-                <h3 className='order-list-2'>Table No: 3</h3>
+                <h4 className='order-list-2'>Table No: 3</h4>
 
                 <Row className='order-list-3'>
                     <p className='ready'><FaCheckDouble className='ready-icon' /> Ready</p>
