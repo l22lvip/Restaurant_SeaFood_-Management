@@ -151,18 +151,25 @@
     {
       "id": 1,
       "name": "Nhân Viên 1",
-      "role": "waiter"
+      "role": "waiter",
+      "phone": "0909090909",
+      "password": "123456"
     },
     {
       "id": 2,
-      "name": "Nhân Viên 2",
-      "role": "waiter"
+      "name": "Quản Lý 1",
+      "role": "admin",
+      "phone": "0909090909",
+      "password": "123456"
     },
     {
       "id": 3,
       "name": "Bếp Trưởng",
-      "role": "chef"
+      "role": "chef",
+      "phone": "0909090909",
+      "password": "123456"
     }
+    
   ],
 
   "earnings": {
