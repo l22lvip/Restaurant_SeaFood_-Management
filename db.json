@@ -1,31 +1,29 @@
 {
-
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Khai vị"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hải sản"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Món chính"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Tráng miệng"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Đồ uống"
     }
   ],
-
   "menuItems": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Gỏi cuốn tôm thịt",
       "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.",
       "price": 55000,
@@ -33,7 +31,7 @@
       "categoryId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
@@ -41,7 +39,7 @@
       "categoryId": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Tôm hùm nướng phô mai",
       "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
       "price": 750000,
@@ -49,7 +47,7 @@
       "categoryId": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Lẩu Thái hải sản",
       "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
       "price": 350000,
@@ -57,7 +55,7 @@
       "categoryId": 3
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Chè khúc bạch",
       "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
       "price": 35000,
@@ -65,7 +63,7 @@
       "categoryId": 4
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Nước chanh",
       "description": "Nước chanh tươi giải nhiệt.",
       "price": 25000,
@@ -73,10 +71,9 @@
       "categoryId": 5
     }
   ],
-
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "tableId": 3,
       "userId": 1,
       "items": [
@@ -96,7 +93,7 @@
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "tableId": 5,
       "userId": 2,
       "items": [
@@ -116,58 +113,60 @@
       "timestamp": "2025-06-28T14:35:00Z"
     }
   ],
-
   "tables": [
     {
-      "id": 1,
+      "id": "1",
       "status": "available",
       "capacity": 4
     },
     {
-      "id": 2,
+      "id": "2",
       "status": "available",
       "capacity": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "status": "occupied",
       "capacity": 4,
       "currentOrderId": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "status": "reserved",
       "capacity": 6
     },
     {
-      "id": 5,
+      "id": "5",
       "status": "occupied",
       "capacity": 2,
       "currentOrderId": 2
     }
   ],
-
   "users": [
     {
-      "id": 1,
       "name": "Nhân Viên 1",
-      "role": "waiter"
+      "phone": "0909090909",
+      "role": "waiter",
+      "password": "123456",
+      "id": "1"
     },
     {
-      "id": 2,
-      "name": "Nhân Viên 2",
-      "role": "waiter"
+      "id": "2",
+      "name": "Quản Lý 1",
+      "role": "admin",
+      "phone": "0909090909",
+      "password": "123456"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Bếp Trưởng",
-      "role": "chef"
+      "role": "chef",
+      "phone": "0909090909",
+      "password": "123456"
     }
   ],
-
   "earnings": {
     "today": 1200000,
     "yesterday": 1135000
   }
-  
 }

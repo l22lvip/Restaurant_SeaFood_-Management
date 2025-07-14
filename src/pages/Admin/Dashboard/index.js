@@ -1,17 +1,18 @@
 import React from "react";
 import "../css/Home.css"; // Assuming you have a CSS file for styling
-import Greetings from "../components/home/Greetings";
+import Greetings from "../../../components/home/Greetings";
 import { Col, Container, Row } from "react-bootstrap";
-import MiniCard from "../components/home/MiniCard";
+import MiniCard from "../../../components/home/MiniCard";
 import { BsCashCoin } from "react-icons/bs";
 import { GrInProgress } from "react-icons/gr";
-import RecentOrders from "../components/home/RecentOrders";
-import PopularDishes from "../components/home/PopularDishes";
+import RecentOrders from "../../../components/home/RecentOrders";
+import PopularDishes from "../../../components/home/PopularDishes";
 
 const Home = () => {
   return (
     <Container className="home-container">
       <Col className="home-left">
+        
         <Row className="greeting-section">
           {/* Greetings Section */}
           <Greetings />
