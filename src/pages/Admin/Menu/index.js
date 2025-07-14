@@ -1,70 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container, Row, Col, Table, Button, Form, Card, Modal, InputGroup
 } from 'react-bootstrap';
+import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-const categories = [
-  { id: '1', name: 'Khai vị' },
-  { id: '2', name: 'Hải sản' },
-  { id: '3', name: 'Món chính' },
-  { id: '4', name: 'Tráng miệng' },
-  { id: '5', name: 'Đồ uống' }
-];
-
-const initialMenuItems = [
-  {
-    id: '1',
-    name: 'Gỏi cuốn tôm thịt',
-    description: 'Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.',
-    price: 55000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Gỏi+Cuốn',
-    categoryId: '1'
-  },
-  {
-    id: '2',
-    name: 'Cua sốt me',
-    description: 'Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.',
-    price: 450000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Cua+Sốt+Me',
-    categoryId: '2'
-  },
-  {
-    id: '3',
-    name: 'Tôm hùm nướng phô mai',
-    description: 'Tôm hùm baby nướng với phô mai mozzarella béo ngậy.',
-    price: 750000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Tôm+Hùm',
-    categoryId: '2'
-  },
-  {
-    id: '4',
-    name: 'Lẩu Thái hải sản',
-    description: 'Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.',
-    price: 350000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Lẩu+Thái',
-    categoryId: '3'
-  },
-  {
-    id: '5',
-    name: 'Chè khúc bạch',
-    description: 'Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.',
-    price: 35000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Chè',
-    categoryId: '4'
-  },
-  {
-    id: '6',
-    name: 'Nước chanh',
-    description: 'Nước chanh tươi giải nhiệt.',
-    price: 25000,
-    imageUrl: 'https://placehold.co/600x400/333333/FFFFFF?text=Nước+Chanh',
-    categoryId: '5'
-  }
-];
+const API_URL = 'http://localhost:9999/menuItems';
+const CATEGORY_URL = 'http://localhost:9999/categories';
 
 const MenuManagement = () => {
-  const [menuItems, setMenuItems] = useState(initialMenuItems);
+  const [menuItems, setMenuItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState('add');
@@ -76,6 +22,30 @@ const MenuManagement = () => {
     imageUrl: '',
     categoryId: ''
   });
+
+  // Fetch data
+  const fetchMenuItems = async () => {
+    try {
+      const res = await axios.get(API_URL);
+      setMenuItems(res.data);
+    } catch (err) {
+      console.error('Error fetching menu items:', err);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(CATEGORY_URL);
+      setCategories(res.data);
+    } catch (err) {
+      console.error('Error fetching categories:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchMenuItems();
+    fetchCategories();
+  }, []);
 
   const handleShow = (mode, item = null) => {
     setModalMode(mode);
@@ -99,26 +69,42 @@ const MenuManagement = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm('Are you sure?')) {
-      setMenuItems(prev => prev.filter(item => item.id !== id));
+      try {
+        await axios.delete(`${API_URL}/${id}`);
+        fetchMenuItems();
+      } catch (err) {
+        console.error('Delete failed:', err);
+      }
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (modalMode === 'add') {
-      setMenuItems(prev => [...prev, { ...formData, id: Date.now().toString() }]);
-    } else {
-      setMenuItems(prev =>
-        prev.map(item => (item.id === formData.id ? formData : item))
-      );
+    const data = {
+      name: formData.name,
+      description: formData.description,
+      price: Number(formData.price),
+      imageUrl: formData.imageUrl,
+      categoryId: Number(formData.categoryId)
+    };
+
+    try {
+      if (modalMode === 'add') {
+        await axios.post(API_URL, data);
+      } else {
+        await axios.put(`${API_URL}/${formData.id}`, data);
+      }
+      fetchMenuItems();
+      handleClose();
+    } catch (err) {
+      console.error('Submit failed:', err);
     }
-    handleClose();
   };
 
   const filteredItems = selectedCategory
-    ? menuItems.filter(item => item.categoryId === selectedCategory)
+    ? menuItems.filter(item => item.categoryId === Number(selectedCategory))
     : menuItems;
 
   return (
@@ -140,8 +126,8 @@ const MenuManagement = () => {
         {categories.map(cat => (
           <Button
             key={cat.id}
-            variant={selectedCategory === cat.id ? 'primary' : 'outline-primary'}
-            onClick={() => setSelectedCategory(cat.id)}
+            variant={selectedCategory === String(cat.id) ? 'primary' : 'outline-primary'}
+            onClick={() => setSelectedCategory(String(cat.id))}
           >
             {cat.name}
           </Button>
@@ -171,7 +157,7 @@ const MenuManagement = () => {
         ))}
       </Row>
 
-      {/* Modal Thêm/Sửa */}
+      {/* Modal */}
       <Modal show={showModal} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>
