@@ -144,11 +144,11 @@
   ],
   "users": [
     {
+      "id": "1",
       "name": "Nhân Viên 1",
       "phone": "0909090909",
       "role": "waiter",
-      "password": "123456",
-      "id": "1"
+      "password": "123456"
     },
     {
       "id": "2",

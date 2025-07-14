@@ -6,6 +6,7 @@ import ClientLayout from './components/shared/ClientLayout';
 import AdminLayout from './components/shared/AdminLayout';
 import Employees from './pages/Admin/Employees';
 import Dashboard from './pages/Admin/Dashboard';
+import Menu from './pages/Admin/Menu';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           </Route>
 
           {/* Layout riêng cho admin */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/staff" element={<AdminLayout />}>
             {/* quản lý nhân viên */}
             <Route path="employees" element={<Employees />} />
             
@@ -33,6 +34,9 @@ function App() {
 
             {/* kho  */}
             {/* <Route path="inventory" element={<div>Inventory Page</div>} /> */}
+
+            {/* menu  */}
+            <Route path="menu" element={<Menu />} />
           </Route>
         </Routes>
       </Router>

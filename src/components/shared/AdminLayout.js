@@ -7,6 +7,7 @@ const AdminLayout = () => {
     <>
       <Header />
       <Outlet />
+      <div className='my-5'></div>
       <BottomNav />
     </>
   );
