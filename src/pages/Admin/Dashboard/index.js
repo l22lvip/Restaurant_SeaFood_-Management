@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Home.css"; // Assuming you have a CSS file for styling
+import "../../../css/Home.css"; // Assuming you have a CSS file for styling
 import Greetings from "../../../components/home/Greetings";
 import { Col, Container, Row } from "react-bootstrap";
 import MiniCard from "../../../components/home/MiniCard";
@@ -8,7 +8,7 @@ import { GrInProgress } from "react-icons/gr";
 import RecentOrders from "../../../components/home/RecentOrders";
 import PopularDishes from "../../../components/home/PopularDishes";
 
-const Home = () => {
+const Dashboard = () => {
   return (
     <Container className="home-container">
       <Col className="home-left">
@@ -39,5 +39,5 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default Dashboard;
 

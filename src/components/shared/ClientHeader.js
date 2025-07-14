@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 const ClientHeader = () => {
     const navigate = useNavigate();
     return (
-        <Navbar expand="lg" className="fixed-top bg-white">
+        <Navbar expand="lg" className="fixed-top bg-white border-bottom shadow-sm">
             <Container>
                 <Navbar.Brand href="#home" className="fw-bold">
-                    Yummy<span className="text-danger">.</span>
+                    Harbor Fresh<span className="text-danger">.</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">
                     <RiMenu3Line className="fs-2" />

@@ -253,8 +253,8 @@ const HomePage = () => {
           </Row>
           <hr className="my-4" />
           <div className="text-center">
-            <p className="mb-1">© Copyright Yummy. All Rights Reserved</p>
-            <p className="text-muted">Designed by BootstrapMade</p>
+            <p className="mb-1">© Copyright Harbor Fresh. All Rights Reserved</p>
+            {/* <p className="text-muted">Designed by </p> */}
           </div>
         </Container>
       </footer>

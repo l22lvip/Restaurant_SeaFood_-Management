@@ -21,6 +21,7 @@ const LoginPage = () => {
       setError('Please fill in all fields');
       return;
     }
+    navigate('/admin/dashboard');
 
     // Fake login logic - replace with actual API call
     if (phone === 'admin@example.com' && password === 'admin123') {
@@ -36,9 +37,9 @@ const LoginPage = () => {
         <Col md={6} lg={5}>
           <Card className="shadow-lg">
             <Card.Body>
-              <h3 className="text-center mb-4">Login to Yummy</h3>
+              <h3 className="text-center mb-4">Login to Harbor Fresh</h3>
               {error && <Alert variant="danger">{error}</Alert>}
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form noValidate onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formLogin">
                   <Form.Label>Phone Number</Form.Label>
                   <Form.Control
@@ -75,10 +76,6 @@ const LoginPage = () => {
                   </Button>
                 </div>
               </Form>
-
-              <p className="mt-3 text-center text-muted">
-                Don't have an account? <span className='text-danger ' role='button' onClick={() => navigate('/register')}>Sign up</span>
-              </p>
             </Card.Body>
           </Card>
         </Col>

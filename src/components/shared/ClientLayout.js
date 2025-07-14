@@ -7,7 +7,10 @@ const ClientLayout = () => {
     <>
        {/* Navigation */}
       <ClientHeader></ClientHeader>
+      <div className="mt-5">
       <Outlet />
+
+      </div>
     </>
   );
 };

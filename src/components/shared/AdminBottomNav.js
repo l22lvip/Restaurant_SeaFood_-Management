@@ -17,38 +17,38 @@ const BottomNav = () => {
   return (
     <div className="bottom-nav">
       <button
-        className={`nav-button ${isActive('/') ? 'active' : ''}`}
-        onClick={() => navigate('/')}
+        className={`nav-button ${isActive('/admin/') ? 'active' : ''}`}
+        onClick={() => navigate('/admin/')}
       >
         <FaHome className="icon" size={20} />
         <p>Home</p>
       </button>
       <button
-        className={`nav-button ${isActive('/orders') ? 'active' : ''}`}
-        onClick={() => navigate('/orders')}
+        className={`nav-button ${isActive('/admin/orders') ? 'active' : ''}`}
+        onClick={() => navigate('/admin/orders')}
       >
         <MdOutlineReorder className="icon" size={20} />
         <p>Orders</p>
       </button>
       <button
-        className={`nav-button ${isActive('/tables') ? 'active' : ''}`}
-        onClick={() => navigate('/tables')}
+        className={`nav-button ${isActive('/admin/tables') ? 'active' : ''}`}
+        onClick={() => navigate('/admin/tables')}
       >
         <MdTableBar className="icon" size={20} />
         <p>Tables</p>
       </button>
       {/* {isAdmin ? ( */}
         <button
-          className={`nav-button ${isActive('/employees') ? 'active' : ''}`}
-          onClick={() => navigate('/employees')}
+          className={`nav-button ${isActive('/admin/employees') ? 'active' : ''}`}
+          onClick={() => navigate('/admin/employees')}
         >
           <FaUsers className="icon" size={20} />
           <p>Employees</p>
         </button>
       {/* ) : ( */}
         <button
-          className={`nav-button ${isActive('/more') ? 'active' : ''}`}
-          onClick={() => navigate('/more')}
+          className={`nav-button ${isActive('/admin/more') ? 'active' : ''}`}
+          onClick={() => navigate('/admin/more')}
         >
           <CiCircleMore className="icon" size={20} />
           <p>More</p>
