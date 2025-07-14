@@ -67,7 +67,12 @@ const EmployeeManagement = () => {
             if (modalMode === 'add') {
                 await axios.post('http://localhost:9999/users', formData);
             } else {
-                await axios.put(`http://localhost:9999/users/${selectedEmployee.id}`, formData);
+                let updatedData = { ...formData };
+                if (!formData.password) {
+                    // Nếu không nhập password thì lấy lại password cũ
+                    updatedData.password = selectedEmployee.password;
+                }
+                await axios.put(`http://localhost:9999/users/${selectedEmployee.id}`, updatedData);
             }
             fetchEmployees();
             handleClose();
