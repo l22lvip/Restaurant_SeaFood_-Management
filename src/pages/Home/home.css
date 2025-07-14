@@ -1,0 +1,29 @@
+.rotating-image {
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Bạn có thể điều chỉnh giá trị này theo ý muốn */
+  }
+  100% {
+    transform: translateY(0); /* Bạn có thể điều chỉnh giá trị này theo ý muốn */
+  }
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.card {
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.swiper-slide {
+  padding: 15px;
+}

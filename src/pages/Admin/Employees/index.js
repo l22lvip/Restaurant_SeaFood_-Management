@@ -3,7 +3,7 @@ import { Container, Table, Button, Modal, Form, Row, Col } from 'react-bootstrap
 import { FaEdit, FaTrash, FaUserPlus } from 'react-icons/fa';
 import axios from 'axios';
 
-const EmployeeManagement = () => {
+const Employees = () => {
     const [employees, setEmployees] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalMode, setModalMode] = useState('add');
@@ -222,4 +222,4 @@ const EmployeeManagement = () => {
     );
 };
 
-export default EmployeeManagement;
+export default Employees;
