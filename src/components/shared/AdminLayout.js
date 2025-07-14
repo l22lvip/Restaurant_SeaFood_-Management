@@ -1,5 +1,5 @@
-import Header from './Header';
-import BottomNav from './BottomNav';
+import Header from './AdminHeader';
+import BottomNav from './AdminBottomNav';
 import { Outlet } from 'react-router-dom';
 
 const AdminLayout = () => {

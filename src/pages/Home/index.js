@@ -5,6 +5,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaEnvel
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
 import { chef1, chef2, chef3, event1, event2, event3, menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6, reservation } from '../../assets';
+import ClientHeader from '../../components/shared/ClientHeader';
 
 
 const contactItems = [
@@ -55,29 +56,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* Navigation */}
-      <Navbar expand="lg" className="fixed-top bg-white">
-        <Container>
-          <Navbar.Brand href="#home" className="fw-bold">
-            Yummy<span className="text-danger">.</span>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav">
-            <RiMenu3Line className="fs-2" />
-          </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto gap-3 align-items-center">
-              {['Home', 'Menu', 'Chefs', 'Contact'].map((link) => (
-                <Nav.Link key={link} href={`#${link.toLowerCase()}`}>
-                  {link}
-                </Nav.Link>
-              ))}
-              <Button variant="danger" className="rounded-5 ms-2">
-                Book a Table
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+
 
       {/* HomePage Section */}
       <section id="home" className="bg-light pt-5">
@@ -100,10 +79,6 @@ const HomePage = () => {
                 <Button variant="danger" className="rounded-5">
                   Book a Table
                 </Button>
-                <Button variant="link" className="text-danger d-flex align-items-center gap-1">
-                  <RiPlayCircleLine className="fs-2" />
-                  Watch Video
-                </Button>
               </div>
             </Col>
           </Row>
@@ -118,10 +93,10 @@ const HomePage = () => {
         <Container>
           <div className="text-center mb-5">
             <p className="text-uppercase text-secondary">Our Menu</p>
-            <h2 className="mb-4">Check Our Yummy Menu</h2>
+            <h2 className="mb-4">Check Our Menu</h2>
           </div>
           <div className="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-            {['Starter', 'Breakfast', 'Lunch', 'Dinner'].map((category) => (
+            {['Fish', 'Shrimp', 'Crab', 'Lobster'].map((category) => (
               <Button
                 key={category}
                 variant="outline-danger"
@@ -232,7 +207,9 @@ const HomePage = () => {
             </h2>
           </div>
 
-          <iframe /* Giữ nguyên iframe */ className="w-100 rounded" />
+          <iframe title='map'
+            src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d3409.267232491751!2d105.5251515!3d21.0130276!3m2!1i1024!2i768!4f13.1!2m1!1sdh%20fpt!5e1!3m2!1svi!2s!4v1752520937392!5m2!1svi!2s"
+            height="500" className='w-100' style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
           <Row className="g-4 mt-4">
             {contactItems.map((item) => (
@@ -273,7 +250,6 @@ const HomePage = () => {
                 </div>
               </div>
             </Col>
-            {/* ... Các cột khác tương tự */}
           </Row>
           <hr className="my-4" />
           <div className="text-center">
