@@ -23,6 +23,7 @@ const CreateBill = () => {
   const [description, setDescription] = useState('');
   const [tableId, setTableId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Cash');
+  
   const [maxId, setId] = useState(0);
   const [update, setUpdate] = useState(false);
 
@@ -169,6 +170,16 @@ const CreateBill = () => {
                     <option value="Card">Thẻ</option>
                   </Form.Select>
                 </Form.Group>
+                {paymentMethod === 'QR' && (
+                  <div style={{marginTop: 16, textAlign: 'center'}}>
+                    <img
+                      src={require('../assets/images/qr.png')}
+                      alt="QR code demo"
+                      style={{ width: 180, height: 180, borderRadius: 16, boxShadow: '0 4px 16px rgba(0,0,0,0.10)', border: '2px solid #e3e3e3', background: '#fff', objectFit: 'cover', display: 'inline-block' }}
+                    />
+                    <div style={{fontSize: 14, color: '#888', marginTop: 8}}>Quét mã QR để thanh toán</div>
+                  </div>
+                )}
               </Col>
             </Row>
             <Button variant="primary" className="mt-4 w-100" onClick={handleCreateBill}>

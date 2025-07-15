@@ -1,23 +1,23 @@
 {
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Khai vị"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hải sản"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Món chính"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Tráng miệng"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Đồ uống"
     }
   ],
@@ -31,7 +31,7 @@
       "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
@@ -39,7 +39,7 @@
       "categoryId": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Tôm hùm nướng phô mai",
       "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
       "price": 750000,
@@ -47,7 +47,7 @@
       "categoryId": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Lẩu Thái hải sản",
       "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
       "price": 350000,
@@ -55,7 +55,7 @@
       "categoryId": 3
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Chè khúc bạch",
       "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
       "price": 35000,
@@ -63,7 +63,7 @@
       "categoryId": 4
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Nước chanh",
       "description": "Nước chanh tươi giải nhiệt.",
       "price": 25000,
@@ -73,7 +73,7 @@
   ],
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "tableId": 3,
       "userId": 1,
       "items": [
@@ -93,7 +93,7 @@
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "tableId": 5,
       "userId": 2,
       "items": [
@@ -115,28 +115,28 @@
   ],
   "tables": [
     {
-      "id": 1,
+      "id": "1",
       "status": "available",
       "capacity": 4
     },
     {
-      "id": 2,
+      "id": "2",
       "status": "available",
       "capacity": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "status": "occupied",
       "capacity": 4,
       "currentOrderId": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "status": "reserved",
       "capacity": 6
     },
     {
-      "id": 5,
+      "id": "5",
       "status": "occupied",
       "capacity": 2,
       "currentOrderId": 2
@@ -144,7 +144,7 @@
   ],
   "customers": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Khách Hàng 1",
       "phone": "0123456789",
       "email": "khachhang1@example.com"
@@ -152,7 +152,7 @@
   ],
   "bills": [
     {
-      "id": 1,
+      "id": "1",
       "orderId": 1,
       "tableId": 3,
       "userId": 1,
@@ -163,7 +163,7 @@
       "paidAt": "2025-06-28T15:05:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "orderId": 2,
       "tableId": 5,
       "userId": 2,
@@ -174,7 +174,7 @@
       "paidAt": "2025-06-28T15:12:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "orderId": 3,
       "tableId": 1,
       "userId": 1,
@@ -185,7 +185,7 @@
       "paidAt": "2025-06-28T16:22:00Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "orderId": 4,
       "tableId": 2,
       "userId": 2,
@@ -196,7 +196,7 @@
       "paidAt": null
     },
     {
-      "id": 5,
+      "id": "5",
       "orderId": 5,
       "tableId": 4,
       "userId": 1,
@@ -207,7 +207,7 @@
       "paidAt": "2025-06-28T17:35:00Z"
     },
     {
-      "id": 6,
+      "id": "6",
       "orderId": null,
       "tableId": 2,
       "total": 123123,
@@ -215,6 +215,16 @@
       "status": "Pending",
       "createdAt": "2025-07-15T04:30:07.013Z",
       "paidAt": "2025-07-15T04:30:07.013Z"
+    },
+    {
+      "id": "61",
+      "orderId": null,
+      "tableId": 3,
+      "total": 200000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T10:43:01.632Z",
+      "paidAt": "2025-07-15T10:43:01.632Z"
     }
   ],
   "earnings": {
@@ -225,36 +235,42 @@
     {
       "date": "2024-06-28",
       "amount": 2000000,
-      "note": "Nhập rau củ"
+      "note": "Nhập rau củ",
+      "id": "dbbf"
     },
     {
       "date": "2024-06-27",
       "amount": 1500000,
-      "note": "Nhập hải sản"
+      "note": "Nhập hải sản",
+      "id": "8d8f"
     }
   ],
   "monthlyRevenue": [
     {
       "month": 6,
       "year": 2024,
-      "total": 12000000
+      "total": 12000000,
+      "id": "255c"
     },
     {
       "month": 5,
       "year": 2024,
-      "total": 10500000
+      "total": 10500000,
+      "id": "74dc"
     }
   ],
   "monthlyInterest": [
     {
       "month": 6,
       "year": 2024,
-      "interest": 8.5
+      "interest": 8.5,
+      "id": "9a64"
     },
     {
       "month": 5,
       "year": 2024,
-      "interest": 7.8
+      "interest": 7.8,
+      "id": "d112"
     }
   ],
   "revenues": [
@@ -269,7 +285,8 @@
       "peakHours": [
         "12:00-13:00",
         "18:00-19:00"
-      ]
+      ],
+      "id": "dfbc"
     },
     {
       "date": "2024-06-27",
@@ -282,7 +299,8 @@
       "peakHours": [
         "11:00-12:00",
         "19:00-20:00"
-      ]
+      ],
+      "id": "9734"
     }
   ],
   "expenses": [
@@ -292,7 +310,8 @@
       "electricity": 300000,
       "salary": 1000000,
       "other": 100000,
-      "note": "Sửa chữa nhỏ"
+      "note": "Sửa chữa nhỏ",
+      "id": "fe11"
     },
     {
       "date": "2024-06-27",
@@ -300,17 +319,20 @@
       "electricity": 250000,
       "salary": 1000000,
       "other": 50000,
-      "note": ""
+      "note": "",
+      "id": "0073"
     }
   ],
   "profits": [
     {
       "date": "2024-06-28",
-      "profit": 1600000
+      "profit": 1600000,
+      "id": "fc38"
     },
     {
       "date": "2024-06-27",
-      "profit": 1400000
+      "profit": 1400000,
+      "id": "9e3e"
     }
   ]
 }
