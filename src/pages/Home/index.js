@@ -237,18 +237,7 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="bg-dark text-white py-5">
         <Container>
-          <Row className="g-4">
-            {/* Các cột footer */}
-            <Col md={3}>
-              <div className="d-flex align-items-start gap-2">
-                <FaMapMarkerAlt className="mt-1" />
-                <div>
-                  <h6>Address</h6>
-                  <p className="text-white">Hà Nội<br />Đại học FPT</p>
-                </div>
-              </div>
-            </Col>
-          </Row>
+
           <hr className="my-4" />
           <div className="text-center">
             <p className="mb-1">© Copyright Harbor Fresh. All Rights Reserved</p>

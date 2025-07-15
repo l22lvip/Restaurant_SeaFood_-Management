@@ -1,0 +1,135 @@
+/* Tổng thể container */
+.bill-manager-container {
+  background: #fff;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #111;
+}
+
+/* Card - dùng chung */
+.bill-card,
+.bill-form-card {
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.bill-card:hover,
+.bill-form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Tiêu đề form */
+.form-title {
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Form group spacing */
+.bill-form-row .form-group {
+  margin-bottom: 1rem;
+}
+
+/* Label và input */
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  color: #222;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #f3f4f6;
+  border-color: #2563eb;
+  color: #222;
+  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.15);
+}
+
+/* Table header */
+table thead {
+  background-color: #f3f4f6;
+  padding: 14px;
+  font-weight: 600;
+  color: #222;
+  border-bottom: 2px solid #e5e7eb;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Table body */
+table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s;
+}
+
+table tbody tr:hover {
+  background-color: #f3f4f6;
+}
+
+table td {
+  padding: 12px;
+  font-size: 14px;
+  color: #222;
+  text-align: center;
+}
+
+/* Badge trạng thái */
+.badge.bg-success {
+  background-color: #22c55e !important;
+  color: #fff;
+}
+
+.badge.bg-warning {
+  background-color: #facc15 !important;
+  color: #222 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #e5e7eb !important;
+  color: #222;
+}
+
+.badge.bg-success,
+.badge.bg-warning,
+.badge.bg-secondary {
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+/* Nút tạo hóa đơn */
+button.btn-primary {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 16px;
+  transition: 0.2s ease;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #0891b2);
+}
+
+/* Responsive bảng */
+@media (max-width: 768px) {
+  table th,
+  table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}

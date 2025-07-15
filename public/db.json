@@ -89,7 +89,7 @@
         }
       ],
       "total": 500000,
-      "status": "Completed",
+      "status": "In Progress",
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
@@ -109,53 +109,8 @@
         }
       ],
       "total": 460000,
-      "status": "Canceled",
-      "timestamp": "2025-06-28T14:35:00Z"
-    },
-    {
-      "id": "3",
-      "tableId": 2,
-      "userId": 2,
-      "items": [
-        {
-          "menuItemId": 1,
-          "quantity": 1,
-          "price": 55005
-        }
-      ],
       "status": "Ready",
-      "timestamp": "2025-07-15T12:36:10.825Z",
-      "total": 55005
-    },
-    {
-      "id": "4",
-      "tableId": 2,
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": 6,
-          "quantity": 3,
-          "price": 25000
-        },
-        {
-          "menuItemId": 1,
-          "quantity": 1,
-          "price": 55005
-        },
-        {
-          "menuItemId": 4,
-          "quantity": 1,
-          "price": 350000
-        },
-        {
-          "menuItemId": 2,
-          "quantity": 1,
-          "price": 450000
-        }
-      ],
-      "status": "In Progress",
-      "timestamp": "2025-07-15T23:27:11.945Z",
-      "total": 930005
+      "timestamp": "2025-06-28T14:35:00Z"
     }
   ],
   "tables": [
@@ -187,27 +142,89 @@
       "currentOrderId": 2
     }
   ],
-  "users": [
+  "customers": [
     {
       "id": "1",
-      "name": "Nhân Viên 1",
-      "phone": "0909090907",
-      "role": "waiter",
-      "password": "123456"
+      "name": "Khách Hàng 1",
+      "phone": "0123456789",
+      "email": "khachhang1@example.com"
+    }
+  ],
+  "bills": [
+    {
+      "id": "1",
+      "orderId": 1,
+      "tableId": 3,
+      "userId": 1,
+      "total": 500000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:00:00Z",
+      "paidAt": "2025-06-28T15:05:00Z"
     },
     {
       "id": "2",
-      "name": "Quản Lý 1",
-      "role": "Quản lý",
-      "phone": "0999999999",
-      "password": "123456"
+      "orderId": 2,
+      "tableId": 5,
+      "userId": 2,
+      "total": 460000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:10:00Z",
+      "paidAt": "2025-06-28T15:12:00Z"
     },
     {
       "id": "3",
-      "name": "Bếp Trưởng",
-      "role": "chef",
-      "phone": "0909090908",
-      "password": "123456"
+      "orderId": 3,
+      "tableId": 1,
+      "userId": 1,
+      "total": 220000,
+      "paymentMethod": "Card",
+      "status": "Pending",
+      "createdAt": "2025-06-28T16:20:00Z",
+      "paidAt": "2025-06-28T16:22:00Z"
+    },
+    {
+      "id": "4",
+      "orderId": 4,
+      "tableId": 2,
+      "userId": 2,
+      "total": 175000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:00:00Z",
+      "paidAt": null
+    },
+    {
+      "id": "5",
+      "orderId": 5,
+      "tableId": 4,
+      "userId": 1,
+      "total": 385000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:30:00Z",
+      "paidAt": "2025-06-28T17:35:00Z"
+    },
+    {
+      "id": "6",
+      "orderId": null,
+      "tableId": 2,
+      "total": 123123,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T04:30:07.013Z",
+      "paidAt": "2025-07-15T04:30:07.013Z"
+    },
+    {
+      "id": "61",
+      "orderId": null,
+      "tableId": 3,
+      "total": 200000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T10:43:01.632Z",
+      "paidAt": "2025-07-15T10:43:01.632Z"
     }
   ],
   "earnings": {
@@ -219,27 +236,70 @@
       "date": "2024-06-28",
       "amount": 2000000,
       "note": "Nhập rau củ",
-      "id": "2faa"
+      "id": "dbbf"
     },
     {
       "date": "2024-06-27",
       "amount": 1500000,
       "note": "Nhập hải sản",
-      "id": "f5b3"
+      "id": "8d8f"
     }
   ],
   "monthlyRevenue": [
     {
+      "month": 7,
+      "year": 2025,
+      "totalRevenue": 135000000,
+      "totalExpenses": 92000000,
+      "profit": 43000000,
+      "interestRate": 46.7,
+      "orders": 485,
+      "total": 135000000,
+      "id": "jul2025"
+    },
+    {
+      "month": 6,
+      "year": 2025,
+      "totalRevenue": 125000000,
+      "totalExpenses": 85000000,
+      "profit": 40000000,
+      "interestRate": 47.1,
+      "orders": 450,
+      "total": 125000000,
+      "id": "jun2025"
+    },
+    {
+      "month": 5,
+      "year": 2025,
+      "totalRevenue": 118000000,
+      "totalExpenses": 82000000,
+      "profit": 36000000,
+      "interestRate": 43.9,
+      "orders": 420,
+      "total": 118000000,
+      "id": "may2025"
+    },
+    {
       "month": 6,
       "year": 2024,
       "total": 12000000,
-      "id": "fccf"
+      "totalRevenue": 12000000,
+      "totalExpenses": 8000000,
+      "profit": 4000000,
+      "interestRate": 50.0,
+      "orders": 120,
+      "id": "255c"
     },
     {
       "month": 5,
       "year": 2024,
       "total": 10500000,
-      "id": "b672"
+      "totalRevenue": 10500000,
+      "totalExpenses": 7000000,
+      "profit": 3500000,
+      "interestRate": 50.0,
+      "orders": 105,
+      "id": "74dc"
     }
   ],
   "monthlyInterest": [
@@ -247,13 +307,13 @@
       "month": 6,
       "year": 2024,
       "interest": 8.5,
-      "id": "8401"
+      "id": "9a64"
     },
     {
       "month": 5,
       "year": 2024,
       "interest": 7.8,
-      "id": "e219"
+      "id": "d112"
     }
   ],
   "revenues": [
@@ -269,7 +329,7 @@
         "12:00-13:00",
         "18:00-19:00"
       ],
-      "id": "dafc"
+      "id": "dfbc"
     },
     {
       "date": "2024-06-27",
@@ -283,7 +343,7 @@
         "11:00-12:00",
         "19:00-20:00"
       ],
-      "id": "3c57"
+      "id": "9734"
     }
   ],
   "expenses": [
@@ -294,7 +354,7 @@
       "salary": 1000000,
       "other": 100000,
       "note": "Sửa chữa nhỏ",
-      "id": "22f0"
+      "id": "fe11"
     },
     {
       "date": "2024-06-27",
@@ -303,19 +363,103 @@
       "salary": 1000000,
       "other": 50000,
       "note": "",
-      "id": "86ef"
+      "id": "0073"
     }
   ],
   "profits": [
     {
       "date": "2024-06-28",
       "profit": 1600000,
-      "id": "92f7"
+      "id": "fc38"
     },
     {
       "date": "2024-06-27",
       "profit": 1400000,
-      "id": "05e5"
+      "id": "9e3e"
+    }
+  ],
+  "importCosts": [
+    {
+      "id": 1,
+      "date": "2025-07-16",
+      "amount": 2500000,
+      "description": "Tôm hùm Alaska",
+      "supplier": "Nhà cung cấp A"
+    },
+    {
+      "id": 2,
+      "date": "2025-07-15",
+      "amount": 1800000,
+      "description": "Cua hoàng đế",
+      "supplier": "Nhà cung cấp B"
+    },
+    {
+      "id": 3,
+      "date": "2025-07-14",
+      "amount": 3200000,
+      "description": "Cá hồi Na Uy",
+      "supplier": "Nhà cung cấp C"
+    },
+    {
+      "id": 4,
+      "date": "2025-07-13",
+      "amount": 1500000,
+      "description": "Tôm càng xanh",
+      "supplier": "Nhà cung cấp D"
+    },
+    {
+      "id": 5,
+      "date": "2025-07-12",
+      "amount": 2800000,
+      "description": "Cá ngừ đại dương",
+      "supplier": "Nhà cung cấp E"
+    }
+  ],
+  "dailyRevenues": [
+    {
+      "date": "2025-07-16",
+      "totalSales": 4800000,
+      "totalOrders": 20,
+      "expenses": 3000000,
+      "profit": 1800000,
+      "topDishes": ["Tôm hùm nướng phô mai", "Cua hoàng đế hấp"],
+      "peakHours": ["19:00-21:00", "12:00-13:30"]
+    },
+    {
+      "date": "2025-07-15",
+      "totalSales": 4500000,
+      "totalOrders": 18,
+      "expenses": 2800000,
+      "profit": 1700000,
+      "topDishes": ["Tôm hùm nướng", "Cua hoàng đế hấp"],
+      "peakHours": ["19:00-21:00"]
+    },
+    {
+      "date": "2025-07-14",
+      "totalSales": 3800000,
+      "totalOrders": 15,
+      "expenses": 2400000,
+      "profit": 1400000,
+      "topDishes": ["Cá hồi nướng", "Tôm càng xanh"],
+      "peakHours": ["18:30-20:30"]
+    },
+    {
+      "date": "2025-07-13",
+      "totalSales": 4200000,
+      "totalOrders": 17,
+      "expenses": 2600000,
+      "profit": 1600000,
+      "topDishes": ["Cua sốt me", "Tôm hùm nướng"],
+      "peakHours": ["19:15-21:15"]
+    },
+    {
+      "date": "2025-07-12",
+      "totalSales": 3900000,
+      "totalOrders": 16,
+      "expenses": 2500000,
+      "profit": 1400000,
+      "topDishes": ["Cá ngừ nướng", "Tôm hùm phô mai"],
+      "peakHours": ["18:45-20:45"]
     }
   ]
 }

@@ -1,0 +1,281 @@
+.revenue-container {
+  padding: 24px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.revenue-header {
+  margin-bottom: 2rem;
+}
+
+.revenue-main-title {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.revenue-title {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.revenue-nav {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.revenue-nav-link {
+  color: #6c757d !important;
+  border-radius: 8px !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px !important;
+}
+
+.revenue-nav-link:hover {
+  background: #f8f9fa !important;
+  color: #495057 !important;
+  transform: translateY(-2px);
+}
+
+.revenue-nav-link.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.add-revenue-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.add-revenue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.revenue-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.revenue-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.revenue-table {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.revenue-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.revenue-table thead th {
+  border: none;
+  padding: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.revenue-table tbody td {
+  padding: 14px 16px;
+  border-color: #e9ecef;
+  vertical-align: middle;
+}
+
+.revenue-table tbody tr:hover {
+  background: #f8f9fa;
+  transition: background 0.2s ease;
+}
+
+.summary-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card .card-body {
+  padding: 1.5rem;
+}
+
+.summary-card h5 {
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-card h3,
+.summary-card h4 {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.interest-card {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+  transition: all 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(40, 167, 69, 0.4);
+}
+
+.interest-card .card-body h5 {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+}
+
+.interest-card .card-body h2 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.revenue-summary {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.revenue-modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.revenue-modal-header .btn-close {
+  filter: invert(1);
+}
+
+.revenue-modal-body {
+  padding: 2rem;
+}
+
+.revenue-modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 1rem 2rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .revenue-container {
+    padding: 16px;
+  }
+  
+  .revenue-main-title {
+    font-size: 2rem;
+  }
+  
+  .revenue-nav {
+    flex-direction: column;
+  }
+  
+  .revenue-nav-link {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  
+  .summary-card .card-body {
+    padding: 1rem;
+  }
+  
+  .interest-card .card-body h2 {
+    font-size: 2rem;
+  }
+  
+  .revenue-table {
+    font-size: 0.875rem;
+  }
+  
+  .revenue-table thead th,
+  .revenue-table tbody td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .revenue-main-title {
+    font-size: 1.5rem;
+  }
+  
+  .add-revenue-btn {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+  
+  .revenue-modal-body {
+    padding: 1rem;
+  }
+}

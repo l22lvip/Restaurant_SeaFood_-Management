@@ -1,9 +1,10 @@
 import React from 'react';
-import { FaUserCog, FaUserShield } from 'react-icons/fa';
+import { FaUserCog, FaUserShield, FaMoneyBillWave } from 'react-icons/fa';
 import { MdBarChart } from 'react-icons/md';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../css/BottomNav.css';
 import { useState } from 'react'
+import { RiRestaurant2Fill } from 'react-icons/ri';
 const AdminBottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,29 +58,29 @@ const AdminBottomNav = () => {
         <FaUserCog className="icon" size={28} style={{ marginBottom: 2 }} />
         <span style={{ fontSize: 14 }}>Quản lý tài khoản</span>
       </button>
-      {/* Phân quyền tài khoản */}
+
+      {/* Quản lý Menu */}
       <button
-        className={`nav-button${isActive('/admin/roles') ? ' active' : ''}`}
-        onClick={() => navigate('/admin/roles')}
+        className={`nav-button${isActive('/admin/menu') ? ' active' : ''}`}
+        onClick={() => navigate('/admin/menu')}
         style={{
-          background: isActive('/admin/roles') ? '#dc3545' : 'transparent',
-          color: isActive('/admin/roles') ? '#fff' : '#dc3545',
+          background: isActive('/admin/menu') ? '#dc3545' : 'transparent',
+          color: isActive('/admin/menu') ? '#fff' : '#dc3545',
           border: 'none',
           borderRadius: 18,
           padding: '0.5rem 1.2rem',
           fontWeight: 600,
           fontSize: 16,
-          boxShadow: isActive('/admin/roles') ? '0 2px 12px rgba(220,53,69,0.12)' : 'none',
+          boxShadow: isActive('/admin/menu') ? '0 2px 12px rgba(220,53,69,0.12)' : 'none',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           transition: 'all 0.18s',
         }}
       >
-        <FaUserShield className="icon" size={28} style={{ marginBottom: 2 }} />
-        <span style={{ fontSize: 14 }}>Phân quyền tài khoản</span>
+        <RiRestaurant2Fill className="icon" size={28} style={{ marginBottom: 2 }} />
+        <span style={{ fontSize: 14 }}>Quản lý thực đơn</span>
       </button>
-      {/* Xem thống kê doanh thu, báo cáo */}
       <button
         className={`nav-button${isActive('/admin/dashboard') ? ' active' : ''}`}
         onClick={() => navigate('/admin/dashboard')}
@@ -100,6 +101,29 @@ const AdminBottomNav = () => {
       >
         <MdBarChart className="icon" size={28} style={{ marginBottom: 2 }} />
         <span style={{ fontSize: 14 }}>Thống kê & Báo cáo</span>
+      </button>
+
+      {/* Quản lý Doanh thu */}
+      <button
+        className={`nav-button${isActive('/admin/revenue') ? ' active' : ''}`}
+        onClick={() => navigate('/admin/revenue')}
+        style={{
+          background: isActive('/admin/revenue') ? '#dc3545' : 'transparent',
+          color: isActive('/admin/revenue') ? '#fff' : '#dc3545',
+          border: 'none',
+          borderRadius: 18,
+          padding: '0.5rem 1.2rem',
+          fontWeight: 600,
+          fontSize: 16,
+          boxShadow: isActive('/admin/revenue') ? '0 2px 12px rgba(220,53,69,0.12)' : 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          transition: 'all 0.18s',
+        }}
+      >
+        <FaMoneyBillWave className="icon" size={28} style={{ marginBottom: 2 }} />
+        <span style={{ fontSize: 14 }}>Quản lý Doanh thu</span>
       </button>
     </div>
   );
