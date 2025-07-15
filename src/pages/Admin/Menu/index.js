@@ -23,15 +23,31 @@ const MenuManagement = () => {
     categoryId: ''
   });
 
-  // Fetch data
+  const [searchTerm, setSearchTerm] = useState('');
+
   const fetchMenuItems = async () => {
     try {
-      const res = await axios.get(API_URL);
-      setMenuItems(res.data);
+      let url = API_URL;
+      if (selectedCategory) {
+        url += `?categoryId=${selectedCategory}`;
+      }
+
+      const res = await axios.get(url);
+      let items = res.data;
+
+      if (searchTerm.trim() !== '') {
+        const lowerSearch = searchTerm.toLowerCase();
+        items = items.filter(item =>
+          item.name.toLowerCase().includes(lowerSearch)
+        );
+      }
+
+      setMenuItems(items);
     } catch (err) {
       console.error('Error fetching menu items:', err);
     }
   };
+
 
   const fetchCategories = async () => {
     try {
@@ -43,9 +59,19 @@ const MenuManagement = () => {
   };
 
   useEffect(() => {
-    fetchMenuItems();
     fetchCategories();
   }, []);
+
+  console.log("menuItems", menuItems)
+
+  useEffect(() => {
+    fetchMenuItems();
+
+
+  }, [searchTerm, selectedCategory]);
+
+
+
 
   const handleShow = (mode, item = null) => {
     setModalMode(mode);
@@ -103,9 +129,6 @@ const MenuManagement = () => {
     }
   };
 
-  const filteredItems = selectedCategory
-    ? menuItems.filter(item => item.categoryId === Number(selectedCategory))
-    : menuItems;
 
   return (
     <Container className="py-4">
@@ -115,27 +138,44 @@ const MenuManagement = () => {
           + Add Menu Item
         </Button>
       </div>
+      <InputGroup className="mb-3" style={{ maxWidth: '300px' }}>
+        <InputGroup.Text>🔍</InputGroup.Text>
+        <Form.Control
+          type="text"
+          placeholder="Search by name..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </InputGroup>
+
 
       <div className="mb-4 d-flex gap-2 flex-wrap">
         <Button
           variant={!selectedCategory ? 'primary' : 'outline-primary'}
-          onClick={() => setSelectedCategory('')}
+          onClick={() => {
+            setSelectedCategory('');
+          }}
         >
           All
         </Button>
-        {categories.map(cat => (
+        {categories?.map(cat => (
           <Button
             key={cat.id}
             variant={selectedCategory === String(cat.id) ? 'primary' : 'outline-primary'}
-            onClick={() => setSelectedCategory(String(cat.id))}
+            onClick={() => {
+              setSelectedCategory(String(cat.id));
+            }}
           >
             {cat.name}
           </Button>
         ))}
       </div>
 
+
       <Row className="g-4">
-        {filteredItems.map(item => (
+        {menuItems?.map(item => (
           <Col lg={4} md={6} key={item.id}>
             <Card className="h-100 shadow-sm">
               <Card.Img src={item.imageUrl} alt={item.name} />
@@ -157,8 +197,11 @@ const MenuManagement = () => {
         ))}
       </Row>
 
+
       {/* Modal */}
-      <Modal show={showModal} onHide={handleClose} size="lg" centered>
+      <Modal
+        style={{ backdropFilter: 'blur(2px)' }}
+        show={showModal} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>
             {modalMode === 'add' ? 'Add New Menu Item' : 'Edit Menu Item'}
@@ -184,6 +227,7 @@ const MenuManagement = () => {
                   <Form.Control
                     type="number"
                     name="price"
+                    min={0}
                     value={formData.price}
                     onChange={handleChange}
                     required
@@ -220,7 +264,7 @@ const MenuManagement = () => {
                 required
               >
                 <option value="">-- Select Category --</option>
-                {categories.map(cat => (
+                {categories?.map(cat => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
                   </option>

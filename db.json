@@ -27,7 +27,7 @@
       "name": "Gỏi cuốn tôm thịt",
       "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.",
       "price": 55000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
       "categoryId": 1
     },
     {
@@ -35,7 +35,7 @@
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Cua+Sốt+Me",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Cua+Sốt+Me",
       "categoryId": 2
     },
     {
@@ -43,7 +43,7 @@
       "name": "Tôm hùm nướng phô mai",
       "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
       "price": 750000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Tôm+Hùm",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Tôm+Hùm",
       "categoryId": 2
     },
     {
@@ -51,7 +51,7 @@
       "name": "Lẩu Thái hải sản",
       "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
       "price": 350000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Lẩu+Thái",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Lẩu+Thái",
       "categoryId": 3
     },
     {
@@ -59,7 +59,7 @@
       "name": "Chè khúc bạch",
       "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
       "price": 35000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Chè",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Chè",
       "categoryId": 4
     },
     {
@@ -67,7 +67,7 @@
       "name": "Nước chanh",
       "description": "Nước chanh tươi giải nhiệt.",
       "price": 25000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Nước+Chanh",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Nước+Chanh",
       "categoryId": 5
     }
   ],
@@ -146,21 +146,21 @@
     {
       "id": "1",
       "name": "Nhân Viên 1",
-      "phone": "0909090909",
-      "role": "waiter",
+      "phone": "0123456789",
+      "role": "Bồi bàn",
       "password": "123456"
     },
     {
       "id": "2",
       "name": "Quản Lý 1",
-      "role": "admin",
-      "phone": "0909090909",
+      "role": "Quản lý",
+      "phone": "0999999999",
       "password": "123456"
     },
     {
       "id": "3",
       "name": "Bếp Trưởng",
-      "role": "chef",
+      "role": "Đầu Bếp",
       "phone": "0909090909",
       "password": "123456"
     }

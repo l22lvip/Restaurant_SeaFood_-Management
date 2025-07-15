@@ -1,35 +1,50 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({ phone: '', password: '' });
-  const [validated, setValidated] = useState(false);
-  const [error, setError] = useState('');
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({ phone: '', password: '' })
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setValidated(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
 
-    const { phone, password } = formData;
+    const { phone, password } = formData
     if (!phone || !password) {
-      setError('Please fill in all fields');
-      return;
+      setError('Vui lòng nhập đầy đủ thông tin')
+      return
     }
-    navigate('/admin/dashboard');
 
-    // Fake login logic - replace with actual API call
-    if (phone === 'admin@example.com' && password === 'admin123') {
-      navigate('/');
-    } else {
-      setError('Invalid phone or password');
+    try {
+      const res = await axios.get(`http://localhost:9999/users`, {
+        params: { phone, password }
+      })
+
+      const user = res.data[0]
+
+      if (!user) {
+        setError('Số điện thoại hoặc mật khẩu không chính xác')
+        return
+      }
+
+      localStorage.setItem('user', JSON.stringify(user))
+
+      if (user) {
+        navigate('/staff')
+      }
+
+    } catch (err) {
+      console.error(err)
+      setError('Đã xảy ra lỗi, vui lòng thử lại sau')
     }
-  };
+  }
 
   return (
     <Container className="d-flex align-items-center justify-content-center min-vh-100">
@@ -37,42 +52,36 @@ const LoginPage = () => {
         <Col md={6} lg={5}>
           <Card className="shadow-lg">
             <Card.Body>
-              <h3 className="text-center mb-4">Login to Harbor Fresh</h3>
+              <h3 className="text-center mb-4">Đăng nhập vào Harbor Fresh</h3>
               {error && <Alert variant="danger">{error}</Alert>}
-              <Form noValidate onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formLogin">
-                  <Form.Label>Phone Number</Form.Label>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Số điện thoại</Form.Label>
                   <Form.Control
-                    required
                     type="text"
                     name="phone"
-                    placeholder="Enter phone number"
+                    placeholder="Nhập số điện thoại"
                     value={formData.phone}
                     onChange={handleChange}
+                    required
                   />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid phone number.
-                  </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Password</Form.Label>
+                <Form.Group className="mb-3">
+                  <Form.Label>Mật khẩu</Form.Label>
                   <Form.Control
-                    required
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     value={formData.password}
                     onChange={handleChange}
+                    required
                   />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter your password.
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <div className="d-grid gap-2">
                   <Button variant="danger" type="submit" className="rounded-pill">
-                    Login
+                    Đăng nhập
                   </Button>
                 </div>
               </Form>
@@ -81,7 +90,7 @@ const LoginPage = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Navbar, Nav, Form } from 'react-bootstrap';
-import { RiMenu3Line, RiPlayCircleLine } from 'react-icons/ri';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaEnvelope, FaPhone, FaShare } from 'react-icons/fa';
+import { useState } from 'react';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaShare } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
-import { chef1, chef2, chef3, event1, event2, event3, menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6, reservation } from '../../assets';
-import ClientHeader from '../../components/shared/ClientHeader';
+import { chef1, chef2, chef3, menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6, reservation } from '../../assets';
 
 
 const contactItems = [

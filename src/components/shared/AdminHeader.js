@@ -13,6 +13,8 @@ import dayjs from 'dayjs'
 const Header = () => {
     const [currentTime, setCurrentTime] = useState(dayjs());
 
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(dayjs());
@@ -39,8 +41,8 @@ const Header = () => {
                 <div className='user-profile-section'>
                     <FaUserCircle className='user-icon' />
                     <div className='user-details'>
-                        <h1>Nhan Vien 1</h1>
-                        <p>User</p>
+                        <h1 className='mb-0'>{user?.name}</h1>
+                        <p  className='mb-0'>{user?.role[0].toUpperCase() + user?.role.slice(1)}</p>
                     </div>
                 </div>
             </div>
