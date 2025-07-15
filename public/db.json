@@ -1,0 +1,291 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Khai vị"
+    },
+    {
+      "id": "2",
+      "name": "Hải sản"
+    },
+    {
+      "id": "3",
+      "name": "Món chính"
+    },
+    {
+      "id": "4",
+      "name": "Tráng miệng"
+    },
+    {
+      "id": "5",
+      "name": "Đồ uống"
+    }
+  ],
+  "menuItems": [
+    {
+      "name": "Gỏi cuốn tôm thịt",
+      "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.",
+      "price": 55005,
+      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
+      "categoryId": 1,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Cua sốt me",
+      "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
+      "price": 450000,
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Cua+Sốt+Me",
+      "categoryId": 2
+    },
+    {
+      "id": "3",
+      "name": "Tôm hùm nướng phô mai",
+      "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
+      "price": 750000,
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Tôm+Hùm",
+      "categoryId": 2
+    },
+    {
+      "id": "4",
+      "name": "Lẩu Thái hải sản",
+      "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
+      "price": 350000,
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Lẩu+Thái",
+      "categoryId": 3
+    },
+    {
+      "id": "5",
+      "name": "Chè khúc bạch",
+      "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
+      "price": 35000,
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Chè",
+      "categoryId": 4
+    },
+    {
+      "id": "6",
+      "name": "Nước chanh",
+      "description": "Nước chanh tươi giải nhiệt.",
+      "price": 25000,
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Nước+Chanh",
+      "categoryId": 5
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "tableId": 3,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 2,
+          "quantity": 1,
+          "price": 450000
+        },
+        {
+          "menuItemId": 6,
+          "quantity": 2,
+          "price": 25000
+        }
+      ],
+      "total": 500000,
+      "status": "Completed",
+      "timestamp": "2025-06-28T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "tableId": 5,
+      "userId": 2,
+      "items": [
+        {
+          "menuItemId": 4,
+          "quantity": 1,
+          "price": 350000
+        },
+        {
+          "menuItemId": 1,
+          "quantity": 2,
+          "price": 55000
+        }
+      ],
+      "total": 460000,
+      "status": "Canceled",
+      "timestamp": "2025-06-28T14:35:00Z"
+    },
+    {
+      "id": "3",
+      "tableId": 2,
+      "userId": 2,
+      "items": [
+        {
+          "menuItemId": 1,
+          "quantity": 1,
+          "price": 55005
+        }
+      ],
+      "status": "Ready",
+      "timestamp": "2025-07-15T12:36:10.825Z",
+      "total": 55005
+    }
+  ],
+  "tables": [
+    {
+      "id": "1",
+      "status": "available",
+      "capacity": 4
+    },
+    {
+      "id": "2",
+      "status": "available",
+      "capacity": 2
+    },
+    {
+      "id": "3",
+      "status": "occupied",
+      "capacity": 4,
+      "currentOrderId": 1
+    },
+    {
+      "id": "4",
+      "status": "reserved",
+      "capacity": 6
+    },
+    {
+      "id": "5",
+      "status": "occupied",
+      "capacity": 2,
+      "currentOrderId": 2
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Nhân Viên 1",
+      "phone": "0909090907",
+      "role": "waiter",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "name": "Quản Lý 1",
+      "role": "Quản lý",
+      "phone": "0999999999",
+      "password": "123456"
+    },
+    {
+      "id": "3",
+      "name": "Bếp Trưởng",
+      "role": "chef",
+      "phone": "0909090908",
+      "password": "123456"
+    }
+  ],
+  "earnings": {
+    "today": 1200000,
+    "yesterday": 1135000
+  },
+  "importHistory": [
+    {
+      "date": "2024-06-28",
+      "amount": 2000000,
+      "note": "Nhập rau củ",
+      "id": "2faa"
+    },
+    {
+      "date": "2024-06-27",
+      "amount": 1500000,
+      "note": "Nhập hải sản",
+      "id": "f5b3"
+    }
+  ],
+  "monthlyRevenue": [
+    {
+      "month": 6,
+      "year": 2024,
+      "total": 12000000,
+      "id": "fccf"
+    },
+    {
+      "month": 5,
+      "year": 2024,
+      "total": 10500000,
+      "id": "b672"
+    }
+  ],
+  "monthlyInterest": [
+    {
+      "month": 6,
+      "year": 2024,
+      "interest": 8.5,
+      "id": "8401"
+    },
+    {
+      "month": 5,
+      "year": 2024,
+      "interest": 7.8,
+      "id": "e219"
+    }
+  ],
+  "revenues": [
+    {
+      "date": "2024-06-28",
+      "totalSales": 5000000,
+      "totalOrders": 25,
+      "topDishes": [
+        "Cua sốt me",
+        "Tôm hùm nướng phô mai"
+      ],
+      "peakHours": [
+        "12:00-13:00",
+        "18:00-19:00"
+      ],
+      "id": "dafc"
+    },
+    {
+      "date": "2024-06-27",
+      "totalSales": 4200000,
+      "totalOrders": 20,
+      "topDishes": [
+        "Gỏi cuốn tôm thịt",
+        "Lẩu Thái hải sản"
+      ],
+      "peakHours": [
+        "11:00-12:00",
+        "19:00-20:00"
+      ],
+      "id": "3c57"
+    }
+  ],
+  "expenses": [
+    {
+      "date": "2024-06-28",
+      "importCost": 2000000,
+      "electricity": 300000,
+      "salary": 1000000,
+      "other": 100000,
+      "note": "Sửa chữa nhỏ",
+      "id": "22f0"
+    },
+    {
+      "date": "2024-06-27",
+      "importCost": 1500000,
+      "electricity": 250000,
+      "salary": 1000000,
+      "other": 50000,
+      "note": "",
+      "id": "86ef"
+    }
+  ],
+  "profits": [
+    {
+      "date": "2024-06-28",
+      "profit": 1600000,
+      "id": "92f7"
+    },
+    {
+      "date": "2024-06-27",
+      "profit": 1400000,
+      "id": "05e5"
+    }
+  ]
+}
