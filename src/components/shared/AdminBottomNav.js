@@ -4,15 +4,21 @@ import { FaHome, FaUsers } from 'react-icons/fa'
 import { MdOutlineReorder, MdRestaurantMenu, MdTableBar } from 'react-icons/md'
 import { useNavigate, useLocation } from 'react-router-dom'
 import '../../css/BottomNav.css' // Assuming you have a CSS file for styling
+import { BiLogOut } from 'react-icons/bi'
 
 const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isAdmin = localStorage.getItem('userRole') === 'admin'; // Check if user is admin
+  const user = JSON.parse(localStorage.getItem('user')) || {};
 
   const isActive = (path) => {
     return location.pathname === path;
   };
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  }
+  const [isHoverButton, setIsHoverButton] = useState(false)
 
   return (
     <div className="bottom-nav">
@@ -38,28 +44,37 @@ const BottomNav = () => {
         <p>Tables</p>
       </button>
       {/* {isAdmin ? ( */}
-        <button
-          className={`nav-button ${isActive('/staff/employees') ? 'active' : ''}`}
-          onClick={() => navigate('/staff/employees')}
-        >
-          <FaUsers className="icon" size={20} />
-          <p>Employees</p>
-        </button>
-        <button
-          className={`nav-button ${isActive('/staff/menu') ? 'active' : ''}`}
-          onClick={() => navigate('/staff/menu')}
-        >
-          <MdRestaurantMenu  className="icon" size={20} />
-          <p>Menu</p>
-        </button>
+      <button
+        className={`nav-button ${isActive('/staff/employees') ? 'active' : ''}`}
+        onClick={() => navigate('/staff/employees')}
+      >
+        <FaUsers className="icon" size={20} />
+        <p>Employees</p>
+      </button>
+      <button
+        className={`nav-button ${isActive('/staff/menu') ? 'active' : ''}`}
+        onClick={() => navigate('/staff/menu')}
+      >
+        <MdRestaurantMenu className="icon" size={20} />
+        <p>Menu</p>
+      </button>
       {/* ) : ( */}
-        <button
-          className={`nav-button ${isActive('/staff/more') ? 'active' : ''}`}
-          onClick={() => navigate('/staff/more')}
-        >
-          <CiCircleMore className="icon" size={20} />
-          <p>More</p>
-        </button>
+      <button
+        className={`nav-button ${isHoverButton ? 'active' : ''}`}
+        onMouseEnter={() => {
+          setIsHoverButton(true)
+        }}
+        onMouseLeave={() => {
+          setIsHoverButton(false)
+        }}
+        onClick={() => {
+          navigate('/login')
+          handleLogout()
+        }}
+      >
+        <BiLogOut className="icon" size={20} />
+        <p>Log out</p>
+      </button>
       {/* )} */}
     </div>
   )
