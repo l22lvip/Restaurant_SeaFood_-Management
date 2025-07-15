@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 
 const API_URL = 'http://localhost:9999/users';
 
-const Profile = ({ userId = 1 }) => { // bạn có thể thay userId = auth.user.id nếu có auth
+const Profile = ({ userId = 1 }) => { 
+
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +16,8 @@ const Profile = ({ userId = 1 }) => { // bạn có thể thay userId = auth.user
     avatarFile: null,
   });
   const [loading, setLoading] = useState(false);
+
+  
 
   const fetchUser = async () => {
     try {

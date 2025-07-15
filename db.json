@@ -145,19 +145,19 @@
   "users": [
     {
       "id": "1",
-      "name": "Nhân Viên 1",
+      "name": "Nhân Viên",
       "phone": "0123456789",
       "role": "Bồi bàn",
-      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Nhân+Viên+1",
+      "imageUrl": "https://i.ibb.co/MkSt3y04/791bc90a86eb.jpg",
       "password": "123456"
     },
     {
-      "id": "2",
       "name": "Quản Lý 1",
-      "role": "Quản lý",
       "phone": "0999999999",
-      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Quản+Lý+1",
-      "password": "123456"
+      "role": "Quản lý",
+      "password": "123456",
+      "imageUrl": "https://i.ibb.co/rK61cyS4/92e639cf34fd.jpg",
+      "id": "2"
     },
     {
       "id": "3",

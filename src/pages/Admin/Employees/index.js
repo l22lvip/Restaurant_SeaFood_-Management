@@ -110,6 +110,15 @@ const EmployeeManagement = () => {
         imageUrl,
       };
 
+      const findUserWithPhone = allEmployees.find(emp => emp.phone === formData.phone);
+
+      if (findUserWithPhone && findUserWithPhone.password !== formData.password) {
+        toast.error('Số điện thoại đã được sử dụng bởi nhân viên khác');
+        setLoading(false);
+        handleClose()
+        return;
+      }
+
       if (modalMode === 'add') {
         await axios.post(API_URL, submitData);
       } else {
@@ -282,19 +291,21 @@ const EmployeeManagement = () => {
                   </Form.Select>
                 </Form.Group>
               </Col>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Mật khẩu</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    required={modalMode === 'add'}
-                    placeholder={modalMode === 'edit' ? 'Leave blank to keep current password' : ''}
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
-                </Form.Group>
-              </Col>
+              {modalMode !== 'edit' && (
+                <Col md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Mật khẩu</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      required={modalMode === 'add'}
+                      // placeholder={modalMode === 'edit' ? 'Leave blank to keep current password' : ''}
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              )}
             </Row>
 
             <div className="d-flex justify-content-end gap-2">
