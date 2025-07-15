@@ -1,24 +1,16 @@
-// Header.js
 import React, { useEffect, useState } from 'react'
-import { FaSearch } from 'react-icons/fa'
-import { FaUserCircle } from 'react-icons/fa'
-import { FaBell } from 'react-icons/fa'
-import logo from '../../assets/images/logo.png'
-import logo2 from '../../assets/images/logo-Trongsuot.png'
-import logo3 from '../../assets/images/logo-Photoroom.jpg'
+import { FaUserCircle, FaBell } from 'react-icons/fa'
 import logo4 from '../../assets/images/logo4-done.png'
 import '../../css/Header.css'
 import dayjs from 'dayjs'
 
-const Header = () => {
+const StaffHeader = () => {
     const [currentTime, setCurrentTime] = useState(dayjs());
-
-    const user = JSON.parse(localStorage.getItem('user')) || {};
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(dayjs());
-        }, 1000); // update mỗi giây
+        }, 1000);
         return () => clearInterval(interval);
     }, []);
     return (
@@ -38,7 +30,7 @@ const Header = () => {
             {/* Logo  */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                 <img src={logo4} alt='restro logo' style={{ width: 48, height: 48, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
-                <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, letterSpacing: 1, color: '#dc3545' }}>Harbor Fresh</h1>
+                <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0, letterSpacing: 1, color: '#dc3545' }}>Harbor Staff</h1>
             </div>
             {/* Time */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -49,12 +41,12 @@ const Header = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <FaUserCircle style={{ fontSize: 36, color: '#dc3545' }} />
                 <div style={{ lineHeight: 1.1 }}>
-                    <h2 style={{ fontSize: 18, fontWeight: 600, margin: 0, color: '#222' }}>Nhan Vien 1</h2>
-                    <p style={{ fontSize: 14, color: '#888', margin: 0 }}>User</p>
+                    <h2 style={{ fontSize: 18, fontWeight: 600, margin: 0, color: '#222' }}>Staff Member</h2>
+                    <p style={{ fontSize: 14, color: '#888', margin: 0 }}>Staff</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Header
+export default StaffHeader 

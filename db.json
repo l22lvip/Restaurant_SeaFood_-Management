@@ -23,12 +23,12 @@
   ],
   "menuItems": [
     {
-      "id": "1",
       "name": "Gỏi cuốn tôm thịt",
       "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.",
-      "price": 55000,
-      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
-      "categoryId": 1
+      "price": 55005,
+      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
+      "categoryId": 1,
+      "id": "1"
     },
     {
       "id": "2",
@@ -146,8 +146,8 @@
     {
       "id": "1",
       "name": "Nhân Viên 1",
-      "phone": "0123456789",
-      "role": "Bồi bàn",
+      "phone": "0909090907",
+      "role": "waiter",
       "password": "123456"
     },
     {
@@ -160,13 +160,93 @@
     {
       "id": "3",
       "name": "Bếp Trưởng",
-      "role": "Đầu Bếp",
-      "phone": "0909090909",
+      "role": "chef",
+      "phone": "0909090908",
       "password": "123456"
     }
   ],
   "earnings": {
     "today": 1200000,
     "yesterday": 1135000
-  }
+  },
+  "importHistory": [
+    {
+      "date": "2024-06-28",
+      "amount": 2000000,
+      "note": "Nhập rau củ"
+    },
+    {
+      "date": "2024-06-27",
+      "amount": 1500000,
+      "note": "Nhập hải sản"
+    }
+  ],
+  "monthlyRevenue": [
+    {
+      "month": 6,
+      "year": 2024,
+      "total": 12000000
+    },
+    {
+      "month": 5,
+      "year": 2024,
+      "total": 10500000
+    }
+  ],
+  "monthlyInterest": [
+    {
+      "month": 6,
+      "year": 2024,
+      "interest": 8.5
+    },
+    {
+      "month": 5,
+      "year": 2024,
+      "interest": 7.8
+    }
+  ],
+  "revenues": [
+    {
+      "date": "2024-06-28",
+      "totalSales": 5000000,
+      "totalOrders": 25,
+      "topDishes": ["Cua sốt me", "Tôm hùm nướng phô mai"],
+      "peakHours": ["12:00-13:00", "18:00-19:00"]
+    },
+    {
+      "date": "2024-06-27",
+      "totalSales": 4200000,
+      "totalOrders": 20,
+      "topDishes": ["Gỏi cuốn tôm thịt", "Lẩu Thái hải sản"],
+      "peakHours": ["11:00-12:00", "19:00-20:00"]
+    }
+  ],
+  "expenses": [
+    {
+      "date": "2024-06-28",
+      "importCost": 2000000,
+      "electricity": 300000,
+      "salary": 1000000,
+      "other": 100000,
+      "note": "Sửa chữa nhỏ"
+    },
+    {
+      "date": "2024-06-27",
+      "importCost": 1500000,
+      "electricity": 250000,
+      "salary": 1000000,
+      "other": 50000,
+      "note": ""
+    }
+  ],
+  "profits": [
+    {
+      "date": "2024-06-28",
+      "profit": 1600000
+    },
+    {
+      "date": "2024-06-27",
+      "profit": 1400000
+    }
+  ]
 }

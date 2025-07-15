@@ -5,11 +5,10 @@ import ClientHeader from './ClientHeader';
 const ClientLayout = () => {
   return (
     <>
-       {/* Navigation */}
-      <ClientHeader></ClientHeader>
+      {/* Navigation */}
+      <ClientHeader />
       <div className="mt-5">
-      <Outlet />
-
+        <Outlet />
       </div>
     </>
   );

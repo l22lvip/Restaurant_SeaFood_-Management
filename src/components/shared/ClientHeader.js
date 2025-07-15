@@ -8,7 +8,7 @@ const ClientHeader = () => {
     return (
         <Navbar expand="lg" className="fixed-top bg-white border-bottom shadow-sm">
             <Container>
-                <Navbar.Brand href="#home" className="fw-bold">
+                <Navbar.Brand href="home" className="fw-bold">
                     Harbor Fresh<span className="text-danger">.</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -16,8 +16,8 @@ const ClientHeader = () => {
                 </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto gap-3 align-items-center">
-                        {['Trang chủ', 'Menu', 'Đầu bếp', 'Liên hệ'].map((link) => (
-                            <Nav.Link  key={link} href={`/${link.toLowerCase()}`}>
+                        {['Home', 'Menu', 'Chefs', 'Contact'].map((link) => (
+                            <Nav.Link key={link} href={`/${link.toLowerCase()}`}>
                                 {link}
                             </Nav.Link>
                         ))}
