@@ -5,7 +5,7 @@
   right: 0;
   background-color: #262626;
   padding: 0.5rem;
-  height: 4rem;
+  height: 3.5rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,6 +13,7 @@
 
 .nav-button {
   color: #ababab;
+  max-height: 100%;
   background-color: transparent;
   width: 200px;
   border: none;
