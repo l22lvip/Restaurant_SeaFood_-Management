@@ -7,8 +7,6 @@ import {
 import { FaUserPlus, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 
 import { toast } from 'react-toastify';
-import { VscLoading } from 'react-icons/vsc';
-
 
 const API_URL = 'http://localhost:9999/users';
 
@@ -160,13 +158,13 @@ const EmployeeManagement = () => {
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-        <h2 className="mb-0">Employee Management</h2>
+        <h2 className="mb-0">Quản lý tài khoản</h2>
 
         <InputGroup style={{ maxWidth: '300px' }}>
           <InputGroup.Text><FaSearch /></InputGroup.Text>
           <Form.Control
             type="text"
-            placeholder="Search by name or phone"
+            placeholder="Tìm kiếm theo tên hoặc số điện thoại"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -226,10 +224,11 @@ const EmployeeManagement = () => {
       </Table>
 
       {/* Modal */}
-      <Modal show={showModal} onHide={handleClose} size="lg" centered>
+      <Modal show={showModal} onHide={handleClose} size="lg" centered
+      style={{ backdropFilter: 'blur(2px)' }}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {modalMode === 'add' ? 'Thêm nhân viên mới' : 'Chỉnh sửa nhân viên'}
+            {modalMode === 'add' ? 'Thêm nhân viên mới' : 'Chỉnh sửa tài khoản'}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
