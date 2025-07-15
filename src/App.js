@@ -1,14 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/shared/Header';
-import BottomNav from './components/shared/BottomNav';
-import EmployeeManagement from './pages/Admin/Employees';
 import Login from './pages/Login';
 import Orders from './pages/Orders';
 import Home from './pages/Home';
 import ClientLayout from './components/shared/ClientLayout';
 import AdminLayout from './components/shared/AdminLayout';
 import Employees from './pages/Admin/Employees';
-import Register from './pages/Register';
+import Dashboard from './pages/Admin/Dashboard';
+import Menu from './pages/Admin/Menu';
 
 function App() {
   return (
@@ -19,13 +17,26 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/book" element={<div>Book a Table Page</div>} />
+            <Route path="/menu" element={<div>Menu Page</div>} />
           </Route>
 
           {/* Layout riêng cho admin */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/staff" element={<AdminLayout />}>
+            {/* quản lý nhân viên */}
             <Route path="employees" element={<Employees />} />
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
+            
+            {/* thống kê */}
+            <Route path="dashboard" element={<Dashboard />} />
+            
+            {/* đặt bàn */}
+            {/* <Route path="orders" element={<Orders />} /> */}
+
+            {/* kho  */}
+            {/* <Route path="inventory" element={<div>Inventory Page</div>} /> */}
+
+            {/* menu  */}
+            <Route path="menu" element={<Menu />} />
           </Route>
         </Routes>
       </Router>

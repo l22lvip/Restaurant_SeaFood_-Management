@@ -1,12 +1,16 @@
-import Header from './Header';
-import BottomNav from './BottomNav';
+import Header from './AdminHeader';
+import BottomNav from './AdminBottomNav';
 import { Outlet } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 
 const AdminLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <PrivateRoute >
+        <Outlet />
+      </PrivateRoute>
+      <div className='my-5'></div>
       <BottomNav />
     </>
   );

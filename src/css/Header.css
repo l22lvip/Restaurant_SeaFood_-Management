@@ -25,6 +25,7 @@
 
 .header-title {
   font-size: 1.125rem;
+  margin: 0;
   /* Corresponds to text-lg (18px) */
   font-weight: 600;
   /* Corresponds to font-semihold (assuming this means semibold) */
@@ -48,8 +49,6 @@
   /* (or 8px) */
   padding-bottom: 0.5rem;
   /* (or 8px) */
-  width: 300px;
-  /* Corresponds to w-full */
 }
 
 .search-input {
