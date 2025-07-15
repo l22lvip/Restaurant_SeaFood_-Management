@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
-  Container, Row, Col, Table, Button, Modal, Form, InputGroup, Pagination
+  Container, Row, Col, Table, Button, Modal, Form, InputGroup
 } from 'react-bootstrap';
 import { FaUserPlus, FaEdit, FaTrash, FaSearch } from 'react-icons/fa';
 
 const API_URL = 'http://localhost:9999/users';
 
 const EmployeeManagement = () => {
-  const [employees, setEmployees] = useState([]);
+  const [allEmployees, setAllEmployees] = useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState('add');
   const [formData, setFormData] = useState({ name: '', phone: '', role: '', password: '' });
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 10;
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get(API_URL, {
-        params: {
-          _page: currentPage,
-          _limit: itemsPerPage,
-          q: searchTerm
-        }
-      });
-      setEmployees(response.data);
-      const total = parseInt(response.headers['x-total-count'], 10);
-      setTotalPages(Math.ceil(total / itemsPerPage));
+      const response = await axios.get(API_URL);
+      setAllEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees:', error);
     }
@@ -36,7 +26,16 @@ const EmployeeManagement = () => {
 
   useEffect(() => {
     fetchEmployees();
-  }, [currentPage, searchTerm]);
+  }, []);
+
+  useEffect(() => {
+    const lowerSearch = searchTerm.toLowerCase();
+    const filtered = allEmployees.filter(emp =>
+      emp.name.toLowerCase().includes(lowerSearch) ||
+      emp.phone.toLowerCase().includes(lowerSearch)
+    );
+    setFilteredEmployees(filtered);
+  }, [searchTerm, allEmployees]);
 
   const handleShow = (mode, employee = null) => {
     setModalMode(mode);
@@ -87,10 +86,7 @@ const EmployeeManagement = () => {
             type="text"
             placeholder="Search by name or phone"
             value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setCurrentPage(1);
-            }}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </InputGroup>
 
@@ -110,12 +106,12 @@ const EmployeeManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {employees.length === 0 ? (
+          {filteredEmployees.length === 0 ? (
             <tr>
               <td colSpan={4} className="text-center text-muted">No employees found</td>
             </tr>
           ) : (
-            employees.map(employee => (
+            filteredEmployees.map(employee => (
               <tr key={employee.id}>
                 <td>{employee.name}</td>
                 <td className="text-capitalize">{employee.role}</td>
@@ -142,29 +138,6 @@ const EmployeeManagement = () => {
           )}
         </tbody>
       </Table>
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <Pagination className="justify-content-center">
-          <Pagination.Prev
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-          />
-          {[...Array(totalPages)].map((_, idx) => (
-            <Pagination.Item
-              key={idx + 1}
-              active={currentPage === idx + 1}
-              onClick={() => setCurrentPage(idx + 1)}
-            >
-              {idx + 1}
-            </Pagination.Item>
-          ))}
-          <Pagination.Next
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-          />
-        </Pagination>
-      )}
 
       {/* Modal */}
       <Modal show={showModal} onHide={handleClose} size="lg" centered backdrop="static">
@@ -213,9 +186,9 @@ const EmployeeManagement = () => {
                     onChange={handleChange}
                   >
                     <option value="">-- Select Role --</option>
-                    <option value="waiter">Waiter</option>
-                    <option value="chef">Chef</option>
-                    <option value="admin">Admin</option>
+                    <option value="Bồi bàn">Waiter</option>
+                    <option value="Đầu Bếp">Chef</option>
+                    <option value="Quản lý">Admin</option>
                   </Form.Select>
                 </Form.Group>
               </Col>

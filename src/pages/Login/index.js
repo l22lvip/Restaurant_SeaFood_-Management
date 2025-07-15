@@ -12,16 +12,16 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { phone, password } = formData;
+    const { phone, password } = formData
     if (!phone || !password) {
-      setError('Please fill in all fields');
-      return;
+      setError('Vui lòng nhập đầy đủ thông tin')
+      return
     }
     toast.success('Login successful! Redirecting to dashboard...');
     navigate('/staff');
@@ -32,7 +32,7 @@ const LoginPage = () => {
     } else {
       setError('Invalid phone or password');
     }
-  };
+  }
 
   return (
     <div style={{
@@ -116,4 +116,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LoginPage

@@ -11,6 +11,11 @@ const AdminBottomNav = () => {
   const isActive = (path) => {
     return location.pathname === path;
   };
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  }
+  const [isHoverButton, setIsHoverButton] = useState(false)
 
   return (
     <div style={{

@@ -13,6 +13,8 @@ import dayjs from 'dayjs'
 const Header = () => {
     const [currentTime, setCurrentTime] = useState(dayjs());
 
+    const user = JSON.parse(localStorage.getItem('user')) || {};
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(dayjs());
