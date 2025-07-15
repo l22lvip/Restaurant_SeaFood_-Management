@@ -1,0 +1,278 @@
+/* Tổng thể container - Dark */
+.bill-manager-container {
+  background: #1f1f1f; /* Màu nền tối */
+  min-height: 100vh;
+  padding-bottom: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #f9fafb; /* Chữ sáng */
+}
+
+/* Card */
+.bill-card {
+  border-radius: 12px;
+  background: #1f2937; /* Màu nền card tối */
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.bill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Header bảng */
+table thead {
+  background-color: #374151;
+}
+
+table thead th {
+  padding: 14px;
+  font-weight: 600;
+  color: #d1d5db;
+  border-bottom: 2px solid #4b5563;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Dòng nội dung */
+table tbody tr {
+  border-bottom: 1px solid #374151;
+  transition: background 0.2s;
+}
+
+table tbody tr:hover {
+  background-color: #2d3748;
+}
+
+/* Cột */
+table td {
+  padding: 12px;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+table td.text-center {
+  text-align: center;
+}
+
+table td.text-end {
+  text-align: right;
+  font-weight: 600;
+  color: #60a5fa; /* màu xanh dịu */
+}
+
+/* Trạng thái */
+.badge.bg-success {
+  background-color: #10b981 !important; /* Xanh lá mềm */
+  color: #fff;
+}
+
+.badge.bg-warning {
+  background-color: #f59e0b !important;
+  color: #000;
+}
+
+.badge.bg-secondary {
+  background-color: #6b7280 !important;
+  color: #fff;
+}
+
+/* Nút tạo hóa đơn */
+button.btn-primary {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 16px;
+  transition: 0.2s ease;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #0891b2);
+}
+
+/* Responsive bảng */
+@media (max-width: 768px) {
+  table th, table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+/* Label và input */
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #e5e7eb;
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  background-color: #111827;
+  border: 1px solid #374151;
+  color: #f9fafb;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #1f2937;
+  border-color: #3b82f6;
+  color: #f9fafb;
+  box-shadow: 0 0 0 0.15rem rgba(59, 130, 246, 0.25);
+}
+
+/* Tổng thể container - Dark */
+.bill-manager-container {
+  background: #1a1a1a; /* nền chính tối hơn */
+  min-height: 100vh;
+  padding-bottom: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #f3f4f6;
+}
+
+/* Card Form và Table */
+.bill-form-card,
+.bill-card {
+  border-radius: 12px;
+  background: #2a2a2e; /* màu nền card tối hơn để phân biệt với nền container */
+  border: 1px solid #3c3f46; /* viền sáng nhẹ tạo khung */
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 2px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Hover card */
+.bill-card:hover, .bill-form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+}
+
+/* Title form */
+.form-title {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Form group spacing */
+.bill-form-row .form-group {
+  margin-bottom: 1rem;
+}
+
+/* Label và input */
+.form-label {
+  color: #f9fafb;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-control,
+.form-select {
+  background-color: #111827;
+  border: 1px solid #3f3f46;
+  color: #f9fafb;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #1f2937;
+  border-color: #3b82f6;
+  color: #f9fafb;
+  box-shadow: 0 0 0 0.15rem rgba(59, 130, 246, 0.25);
+}
+
+/* Table */
+.table-light {
+  background-color: #374151 !important;
+  color: #e5e7eb;
+}
+
+table thead th {
+  text-align: center;
+  border-bottom: 2px solid #4b5563;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #3a3a3a;
+  transition: background 0.2s;
+}
+
+table tbody tr:hover {
+  background-color: #2d3748;
+}
+
+table td {
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+table td.text-end {
+  font-weight: 600;
+  color: #60a5fa;
+}
+
+/* Badge trạng thái */
+.badge.bg-success {
+  background-color: #22c55e !important;
+  color: #fff;
+}
+
+.badge.bg-warning {
+  background-color: #facc15 !important;
+  color: #1a1a1a;
+}
+
+.badge.bg-secondary {
+  background-color: #6b7280 !important;
+  color: #fff;
+}
+
+/* Nút tạo hóa đơn */
+button.btn-primary {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 16px;
+  transition: 0.2s ease;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background: linear-gradient(to right, #2563eb, #0891b2);
+}
+
+/* Responsive bảng */
+@media (max-width: 768px) {
+  table th, table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.badge.bg-success {
+  background-color: #10b981 !important;
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.badge.bg-warning {
+  background-color: #f59e0b !important;
+  color: #fff !important;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.badge.bg-secondary {
+  background-color: #6b7280 !important;
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+

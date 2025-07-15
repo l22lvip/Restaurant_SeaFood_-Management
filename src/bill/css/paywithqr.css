@@ -1,0 +1,113 @@
+.qr-container {
+  max-width: 420px;
+  margin: 48px auto;
+  padding: 32px 28px 28px 28px;
+  background: linear-gradient(135deg, #f8fafc 60%, #e3f6fc 100%);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+  border: 1.5px solid #e3e3e3;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  position: relative;
+}
+
+.qr-image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.qr-image-box img {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1/1;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+  border: 2.5px solid #e3e3e3;
+  background: #fff;
+  object-fit: cover;
+  display: block;
+}
+.qr-container h2 {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 18px;
+  color: #1a3c5a;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.qr-container label {
+  display: block;
+  margin-bottom: 7px;
+  color: #2d5c7f;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+
+.qr-container input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1.5px solid #b5c9d6;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fafdff;
+}
+
+.qr-container input[type="text"]:focus {
+  border-color: #1a8cff;
+  outline: none;
+  box-shadow: 0 0 0 2px #cce6ff;
+}
+
+
+.qr-container button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #28a745 60%, #1a8cff 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(40,167,69,0.08);
+  margin-top: 2px;
+}
+
+.qr-container button:hover {
+  background: linear-gradient(90deg, #218838 60%, #007bff 100%);
+  box-shadow: 0 4px 16px rgba(26,140,255,0.10);
+}
+
+.payment-success {
+  margin-top: 22px;
+  padding: 14px 10px;
+  background: linear-gradient(90deg, #d4edda 80%, #e3fcec 100%);
+  color: #155724;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  border: 1.5px solid #c3e6cb;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(40,167,69,0.07);
+}
+
+.payment-error {
+  margin-top: 18px;
+  padding: 12px 10px;
+  background: linear-gradient(90deg, #ffeaea 80%, #fff6f6 100%);
+  color: #b71c1c;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  border: 1.5px solid #f5c6cb;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(183,28,28,0.07);
+}

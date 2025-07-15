@@ -9,6 +9,9 @@ import ClientLayout from './components/shared/ClientLayout';
 import AdminLayout from './components/shared/AdminLayout';
 import Employees from './pages/Admin/Employees';
 import Register from './pages/Register';
+import CreateBill from './bill/CreateBill';
+import PayWithQR from './bill/PayWithQr';
+
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/create-bill" element={<CreateBill />} />
+          <Route path="/pay-qr" element={<PayWithQR />} />
           </Route>
 
           {/* Layout riêng cho admin */}
