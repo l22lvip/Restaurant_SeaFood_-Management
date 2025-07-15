@@ -126,6 +126,36 @@
       "status": "Ready",
       "timestamp": "2025-07-15T12:36:10.825Z",
       "total": 55005
+    },
+    {
+      "id": "4",
+      "tableId": 2,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 6,
+          "quantity": 3,
+          "price": 25000
+        },
+        {
+          "menuItemId": 1,
+          "quantity": 1,
+          "price": 55005
+        },
+        {
+          "menuItemId": 4,
+          "quantity": 1,
+          "price": 350000
+        },
+        {
+          "menuItemId": 2,
+          "quantity": 1,
+          "price": 450000
+        }
+      ],
+      "status": "In Progress",
+      "timestamp": "2025-07-15T23:27:11.945Z",
+      "total": 930005
     }
   ],
   "tables": [

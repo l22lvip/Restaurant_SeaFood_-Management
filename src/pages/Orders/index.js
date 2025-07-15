@@ -18,9 +18,11 @@ export default function Orders() {
     status: 'In Progress',
     timestamp: new Date().toISOString(),
   });
-  const [selectedMenuItemId, setSelectedMenuItemId] = useState('');
+  const [selectedMenuItemId, setSelectedMenuItemId] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-
+  const [searchText, setSearchText] = useState("");
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [statusFilter, setStatusFilter] = useState({});
 
   useEffect(() => {
     axios.get("http://localhost:9999/orders")
@@ -147,7 +149,6 @@ export default function Orders() {
       items: [...prev.items, newItem]
     }));
 
-    // Reset lựa chọn
     setSelectedMenuItemId('');
     setSelectedQuantity(1);
   };
@@ -162,103 +163,188 @@ export default function Orders() {
     }
   };
 
+  const getFilteredAndSortedOrders = () => {
+    let result = [...orders];
+
+    // Filter by status
+    const hasAnyStatusFilter = Object.values(statusFilter).some(v => v);
+    if (hasAnyStatusFilter) {
+      result = result.filter(order => statusFilter[order.status]);
+    }
+
+    // Search
+    if (searchText.trim() !== "") {
+      const lowerSearch = searchText.toLowerCase();
+      result = result.filter(order => {
+        const userName = users.find(u => u.id == order.userId)?.name?.toLowerCase() || "";
+        const orderTime = new Date(order.timestamp).toLocaleString("vi-VN", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        return (
+          userName.includes(lowerSearch) ||
+          orderTime.includes(lowerSearch)
+        );
+      });
+    }
+
+    // Sort
+    result.sort((a, b) => {
+      const timeA = new Date(a.timestamp);
+      const timeB = new Date(b.timestamp);
+      return sortOrder == "newest" ? timeB - timeA : timeA - timeB;
+    });
+
+    return result;
+  };
+
   return (
     <>
       <Container className="orders-container py-4">
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        <div className="d-flex justify-content-between align-items-center mb-4 gap-3">
           <h2 className="orders-title">🧾 Đơn Đặt Bàn</h2>
+
+          <div className="d-flex gap-2">
+            <Form.Control
+              size="sm"
+              placeholder="Tìm kiếm..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              style={{ width: 350, height: 35 }}
+            />
+
+            <Form.Select
+              size="sm"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+              style={{ width: 200, height: 35 }}
+            >
+              <option value="newest">Mới nhất</option>
+              <option value="oldest">Cũ nhất</option>
+            </Form.Select>
+          </div>
+
           <Button variant="custom-white" className="add-order-btn" onClick={() => setShowAddModal(true)}>➕ Thêm Đơn Mới</Button>
         </div>
 
-        <Card className="orders-card shadow-sm">
-          <Card.Body className="p-0">
-            <Table responsive hover className="mb-0 order-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Thời gian</th>
-                  <th>Bàn</th>
-                  <th>Nhân viên gọi món</th>
-                  <th>Chi tiết món</th>
-                  <th>Tổng tiền</th>
-                  <th>Trạng thái</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order, index) => {
-                  const status = order.status;
-                  return (
-                    <tr key={order.id}>
-                      <td>{order.id}</td>
-                      <td>
-                        {new Date(order.timestamp).toLocaleString("vi-VN", {
-                          day: '2-digit',
-                          month: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </td>
-                      <td><span className="table-pill">#{order.tableId}</span></td>
-                      <td>{users.find((u) => u.id == order.userId)?.name || "?"}</td>
-                      <td>
-                        <div className="order-details">
-                          {order.items.map((item, idx) => (
-                            <div className="detail-item" key={idx}>
-                              <div className="item-name">
-                                {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
-                              </div>
-                              <div className="item-info">
-                                SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </td>
-                      <td><strong>{order.total.toLocaleString("vi-VN")}đ</strong></td>
-                      <td>
-                        <Form.Select
-                          size="sm"
-                          value={status}
-                          onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                          className="status-select"
-                          style={{ marginTop: "28px" }}
-                        >
-                          {Object.keys(statusLabels).map((statusOption) => (
-                            <option key={statusOption} value={statusOption}>
-                              {statusLabels[statusOption]}
-                            </option>
-                          ))}
-                        </Form.Select>
-                        <Badge bg={statusColors[status]} className="status-badge mt-1">{statusLabels[status]}</Badge>
-                      </td>
-
-                      <td>
-                        <div className="d-flex gap-2">
-                          <Button
-                            variant="outline-info"
-                            size="sm"
-                            onClick={() => handleView(order)}
-                          >
-                            <i className="fa-solid fa-eye"></i>
-                          </Button>
-                          <Button
-                            variant="outline-danger"
-                            size="sm"
-                            onClick={() => handleDelete(order.id)}
-                          >
-                            <i className="fa-solid fa-trash"></i>
-                          </Button>
-                        </div>
-                      </td>
-
+        <Row>
+          <Col sm={10} md={10} lg={10}>
+            <Card className="orders-card shadow-sm">
+              <Card.Body className="p-0">
+                <Table responsive hover className="mb-0 order-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Thời gian</th>
+                      <th>Bàn</th>
+                      <th>Nhân viên gọi món</th>
+                      <th>Chi tiết món</th>
+                      <th>Tổng tiền</th>
+                      <th>Trạng thái</th>
+                      <th>Hành động</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
+                  </thead>
+                  <tbody>
+                    {getFilteredAndSortedOrders().map((order) => {
+                      const status = order.status;
+                      return (
+                        <tr key={order.id}>
+                          <td>{order.id}</td>
+                          <td>
+                            {new Date(order.timestamp).toLocaleString("vi-VN", {
+                              day: '2-digit',
+                              month: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
+                          </td>
+                          <td><span className="table-pill">#{order.tableId}</span></td>
+                          <td>{users.find((u) => u.id == order.userId)?.name || "?"}</td>
+                          <td>
+                            <div className="order-details">
+                              {order.items.map((item, idx) => (
+                                <div className="detail-item" key={idx}>
+                                  <div className="item-name">
+                                    {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
+                                  </div>
+                                  <div className="item-info">
+                                    SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </td>
+                          <td><strong>{order.total.toLocaleString("vi-VN")}đ</strong></td>
+                          <td>
+                            <Form.Select
+                              size="sm"
+                              value={status}
+                              onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                              className="status-select"
+                              style={{ marginTop: "28px" }}
+                            >
+                              {Object.keys(statusLabels).map((statusOption) => (
+                                <option key={statusOption} value={statusOption}>
+                                  {statusLabels[statusOption]}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Badge bg={statusColors[status]} className="status-badge mt-1">{statusLabels[status]}</Badge>
+                          </td>
+
+                          <td>
+                            <div className="d-flex gap-2">
+                              <Button
+                                variant="outline-info"
+                                size="sm"
+                                onClick={() => handleView(order)}
+                              >
+                                <i className="fa-solid fa-eye"></i>
+                              </Button>
+                              <Button
+                                variant="outline-danger"
+                                size="sm"
+                                onClick={() => handleDelete(order.id)}
+                              >
+                                <i className="fa-solid fa-trash"></i>
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col sm={2} md={2} lg={2}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Lọc theo trạng thái</Card.Title>
+                <Form>
+                  {Object.keys(statusLabels).map(status => (
+                    <Form.Check
+                      key={status}
+                      type="checkbox"
+                      label={statusLabels[status]}
+                      className="mb-2"
+                      checked={statusFilter[status]}
+                      onChange={(e) => setStatusFilter(prev => ({
+                        ...prev,
+                        [status]: e.target.checked,
+                      }))}
+                    />
+                  ))}
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
         {/* Modal view order details */}
         <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
@@ -430,7 +516,7 @@ export default function Orders() {
           </Modal.Footer>
         </Modal>
 
-      </Container>
+      </Container >
     </>
   )
 }
