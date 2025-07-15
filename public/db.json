@@ -31,7 +31,7 @@
       "id": "1"
     },
     {
-      "id": "2",
+      "id": "2", 
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
@@ -178,6 +178,91 @@
       "role": "chef",
       "phone": "0909090908",
       "password": "123456"
+    }
+  ],
+  "customers": [
+    {
+      "id": "1",
+      "name": "Khách Hàng 1",
+      "phone": "0123456789",
+      "email": "khachhang1@example.com"
+    }
+  ],
+  "bills": [
+    {
+      "id": "1",
+      "orderId": 1,
+      "tableId": 3,
+      "userId": 1,
+      "total": 500000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:00:00Z",
+      "paidAt": "2025-06-28T15:05:00Z"
+    },
+    {
+      "id": "2",
+      "orderId": 2,
+      "tableId": 5,
+      "userId": 2,
+      "total": 460000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:10:00Z",
+      "paidAt": "2025-06-28T15:12:00Z"
+    },
+    {
+      "id": "3",
+      "orderId": 3,
+      "tableId": 1,
+      "userId": 1,
+      "total": 220000,
+      "paymentMethod": "Card",
+      "status": "Pending",
+      "createdAt": "2025-06-28T16:20:00Z",
+      "paidAt": "2025-06-28T16:22:00Z"
+    },
+    {
+      "id": "4",
+      "orderId": 4,
+      "tableId": 2,
+      "userId": 2,
+      "total": 175000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:00:00Z",
+      "paidAt": null
+    },
+    {
+      "id": "5",
+      "orderId": 5,
+      "tableId": 4,
+      "userId": 1,
+      "total": 385000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:30:00Z",
+      "paidAt": "2025-06-28T17:35:00Z"
+    },
+    {
+      "id": "6",
+      "orderId": null,
+      "tableId": 2,
+      "total": 123123,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T04:30:07.013Z",
+      "paidAt": "2025-07-15T04:30:07.013Z"
+    },
+    {
+      "id": "61",
+      "orderId": null,
+      "tableId": 3,
+      "total": 200000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T10:43:01.632Z",
+      "paidAt": "2025-07-15T10:43:01.632Z"
     }
   ],
   "earnings": {

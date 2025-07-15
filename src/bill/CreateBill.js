@@ -83,7 +83,6 @@ const CreateBill = () => {
     setDescription('');
     setTableId('');
     setPaymentMethod('Cash');
-    navigate(`/bills/${newBill.id}`);
   };
 
   const getTableName = (id) => {
