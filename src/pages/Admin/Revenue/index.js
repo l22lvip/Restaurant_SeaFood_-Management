@@ -61,12 +61,8 @@ const RevenueManagement = () => {
       setImportCosts(response.data || []);
     } catch (error) {
       console.error('Error fetching import costs:', error);
-      // Create mock data if no API endpoint
-      setImportCosts([
-        { id: 1, date: '2025-01-15', amount: 2500000, description: 'Tôm hùm Alaska', supplier: 'Nhà cung cấp A' },
-        { id: 2, date: '2025-01-14', amount: 1800000, description: 'Cua hoàng đế', supplier: 'Nhà cung cấp B' },
-        { id: 3, date: '2025-01-13', amount: 3200000, description: 'Cá hồi Na Uy', supplier: 'Nhà cung cấp C' }
-      ]);
+      // Fallback to empty array if API fails
+      setImportCosts([]);
     }
   };
 
@@ -76,66 +72,19 @@ const RevenueManagement = () => {
       setMonthlyData(response.data || []);
     } catch (error) {
       console.error('Error fetching monthly data:', error);
-      // Create mock data
-      setMonthlyData([
-        { 
-          month: 1, 
-          year: 2025, 
-          totalRevenue: 125000000, 
-          totalExpenses: 85000000, 
-          profit: 40000000, 
-          interestRate: 32.0,
-          orders: 450 
-        },
-        { 
-          month: 12, 
-          year: 2024, 
-          totalRevenue: 118000000, 
-          totalExpenses: 82000000, 
-          profit: 36000000, 
-          interestRate: 30.5,
-          orders: 420 
-        },
-        { 
-          month: 11, 
-          year: 2024, 
-          totalRevenue: 110000000, 
-          totalExpenses: 78000000, 
-          profit: 32000000, 
-          interestRate: 29.1,
-          orders: 390 
-        }
-      ]);
+      // Fallback to empty array if API fails
+      setMonthlyData([]);
     }
   };
 
   const fetchRevenueData = async () => {
     try {
-      const response = await axios.get(`${API_URL}/revenues`);
+      const response = await axios.get(`${API_URL}/dailyRevenues`);
       setRevenueData(response.data || []);
     } catch (error) {
       console.error('Error fetching revenue data:', error);
-      // Create mock data
-      setRevenueData([
-        { 
-          date: '2025-01-15', 
-          totalSales: 4500000, 
-          totalOrders: 18, 
-          expenses: 2800000, 
-          profit: 1700000,
-          topDishes: ['Tôm hùm nướng', 'Cua hoàng đế hấp'],
-          peakHours: ['19:00-21:00']
-        },
-        { 
-          date: '2025-01-14', 
-          totalSales: 3800000, 
-          totalOrders: 15, 
-          expenses: 2400000, 
-          profit: 1400000,
-          topDishes: ['Cá hồi nướng', 'Tôm càng xanh'],
-          peakHours: ['18:30-20:30']
-        }
-      ]);
+      // Fallback to empty array if API fails
+      setRevenueData([]);
     }
   };
 
@@ -193,7 +142,7 @@ const RevenueManagement = () => {
       data => data.month === selectedMonth && data.year === selectedYear
     );
     
-    if (currentMonthData) {
+    if (currentMonthData && currentMonthData.interestRate !== undefined) {
       return currentMonthData.interestRate;
     }
     
@@ -203,14 +152,14 @@ const RevenueManagement = () => {
         const itemDate = new Date(item.date);
         return itemDate.getMonth() + 1 === selectedMonth && itemDate.getFullYear() === selectedYear;
       })
-      .reduce((sum, item) => sum + item.profit, 0);
+      .reduce((sum, item) => sum + (item.profit || 0), 0);
     
     const monthExpenses = revenueData
       .filter(item => {
         const itemDate = new Date(item.date);
         return itemDate.getMonth() + 1 === selectedMonth && itemDate.getFullYear() === selectedYear;
       })
-      .reduce((sum, item) => sum + item.expenses, 0);
+      .reduce((sum, item) => sum + (item.expenses || 0), 0);
     
     return monthExpenses > 0 ? ((monthRevenue / monthExpenses) * 100) : 0;
   };
@@ -360,7 +309,7 @@ const RevenueManagement = () => {
               <FaChartLine size={48} className="text-success mb-3" />
               <h5>Lãi suất tháng {selectedMonth}/{selectedYear}</h5>
               <h2 className="text-success">
-                {calculateMonthlyInterest().toFixed(2)}%
+                {(calculateMonthlyInterest() || 0).toFixed(2)}%
               </h2>
             </Card.Body>
           </Card>
