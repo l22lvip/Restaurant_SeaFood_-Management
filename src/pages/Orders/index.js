@@ -356,17 +356,12 @@ export default function Orders() {
             {selectedOrder && (
               <>
                 <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
-
                 <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
-
                 <p><strong>Nhân viên gọi món: </strong> {
                   users.find(u => u.id == selectedOrder.userId)?.name || "?"
                 }</p>
-
                 <p><strong>Trạng thái:</strong> {statusLabels[selectedOrder.status]}</p>
-
                 <hr />
-
                 <h5>📋 Chi tiết món</h5>
                 <Table striped bordered hover size="sm">
                   <thead>
