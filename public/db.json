@@ -89,7 +89,7 @@
         }
       ],
       "total": 500000,
-      "status": "In Progress",
+      "status": "Completed",
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
@@ -109,8 +109,23 @@
         }
       ],
       "total": 460000,
-      "status": "Ready",
+      "status": "Canceled",
       "timestamp": "2025-06-28T14:35:00Z"
+    },
+    {
+      "id": "3",
+      "tableId": 2,
+      "userId": 2,
+      "items": [
+        {
+          "menuItemId": 1,
+          "quantity": 1,
+          "price": 55005
+        }
+      ],
+      "status": "Ready",
+      "timestamp": "2025-07-15T12:36:10.825Z",
+      "total": 55005
     }
   ],
   "tables": [
@@ -173,36 +188,42 @@
     {
       "date": "2024-06-28",
       "amount": 2000000,
-      "note": "Nhập rau củ"
+      "note": "Nhập rau củ",
+      "id": "2faa"
     },
     {
       "date": "2024-06-27",
       "amount": 1500000,
-      "note": "Nhập hải sản"
+      "note": "Nhập hải sản",
+      "id": "f5b3"
     }
   ],
   "monthlyRevenue": [
     {
       "month": 6,
       "year": 2024,
-      "total": 12000000
+      "total": 12000000,
+      "id": "fccf"
     },
     {
       "month": 5,
       "year": 2024,
-      "total": 10500000
+      "total": 10500000,
+      "id": "b672"
     }
   ],
   "monthlyInterest": [
     {
       "month": 6,
       "year": 2024,
-      "interest": 8.5
+      "interest": 8.5,
+      "id": "8401"
     },
     {
       "month": 5,
       "year": 2024,
-      "interest": 7.8
+      "interest": 7.8,
+      "id": "e219"
     }
   ],
   "revenues": [
@@ -210,15 +231,29 @@
       "date": "2024-06-28",
       "totalSales": 5000000,
       "totalOrders": 25,
-      "topDishes": ["Cua sốt me", "Tôm hùm nướng phô mai"],
-      "peakHours": ["12:00-13:00", "18:00-19:00"]
+      "topDishes": [
+        "Cua sốt me",
+        "Tôm hùm nướng phô mai"
+      ],
+      "peakHours": [
+        "12:00-13:00",
+        "18:00-19:00"
+      ],
+      "id": "dafc"
     },
     {
       "date": "2024-06-27",
       "totalSales": 4200000,
       "totalOrders": 20,
-      "topDishes": ["Gỏi cuốn tôm thịt", "Lẩu Thái hải sản"],
-      "peakHours": ["11:00-12:00", "19:00-20:00"]
+      "topDishes": [
+        "Gỏi cuốn tôm thịt",
+        "Lẩu Thái hải sản"
+      ],
+      "peakHours": [
+        "11:00-12:00",
+        "19:00-20:00"
+      ],
+      "id": "3c57"
     }
   ],
   "expenses": [
@@ -228,7 +263,8 @@
       "electricity": 300000,
       "salary": 1000000,
       "other": 100000,
-      "note": "Sửa chữa nhỏ"
+      "note": "Sửa chữa nhỏ",
+      "id": "22f0"
     },
     {
       "date": "2024-06-27",
@@ -236,17 +272,20 @@
       "electricity": 250000,
       "salary": 1000000,
       "other": 50000,
-      "note": ""
+      "note": "",
+      "id": "86ef"
     }
   ],
   "profits": [
     {
       "date": "2024-06-28",
-      "profit": 1600000
+      "profit": 1600000,
+      "id": "92f7"
     },
     {
       "date": "2024-06-27",
-      "profit": 1400000
+      "profit": 1400000,
+      "id": "05e5"
     }
   ]
 }
