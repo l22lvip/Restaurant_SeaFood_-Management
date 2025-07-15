@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserCog, FaUserShield } from 'react-icons/fa';
+import { FaUserCog, FaUserShield, FaMoneyBillWave } from 'react-icons/fa';
 import { MdBarChart } from 'react-icons/md';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../css/BottomNav.css';
@@ -101,6 +101,29 @@ const AdminBottomNav = () => {
       >
         <MdBarChart className="icon" size={28} style={{ marginBottom: 2 }} />
         <span style={{ fontSize: 14 }}>Thống kê & Báo cáo</span>
+      </button>
+
+      {/* Quản lý Doanh thu */}
+      <button
+        className={`nav-button${isActive('/admin/revenue') ? ' active' : ''}`}
+        onClick={() => navigate('/admin/revenue')}
+        style={{
+          background: isActive('/admin/revenue') ? '#dc3545' : 'transparent',
+          color: isActive('/admin/revenue') ? '#fff' : '#dc3545',
+          border: 'none',
+          borderRadius: 18,
+          padding: '0.5rem 1.2rem',
+          fontWeight: 600,
+          fontSize: 16,
+          boxShadow: isActive('/admin/revenue') ? '0 2px 12px rgba(220,53,69,0.12)' : 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          transition: 'all 0.18s',
+        }}
+      >
+        <FaMoneyBillWave className="icon" size={28} style={{ marginBottom: 2 }} />
+        <span style={{ fontSize: 14 }}>Quản lý Doanh thu</span>
       </button>
     </div>
   );

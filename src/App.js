@@ -12,6 +12,7 @@ import PayWithQR from './bill/PayWithQr';
 
 
 import Menu from './pages/Admin/Menu';
+import Revenue from './pages/Admin/Revenue';
 import { ToastContainer } from 'react-toastify';
 import Profile from './pages/Profile';
 
@@ -52,6 +53,7 @@ function App() {
             <Route path="dashboard" element={<DashboardRevenue />} />
             <Route path="accounts" element={<Employees />} />
             <Route path="menu" element={<Menu />} />
+            <Route path="revenue" element={<Revenue />} />
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>
