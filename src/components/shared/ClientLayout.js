@@ -10,6 +10,7 @@ const ClientLayout = () => {
       <div className="mt-5">
         <Outlet />
       </div>
+      <div className="my-5"></div>
     </>
   );
 };

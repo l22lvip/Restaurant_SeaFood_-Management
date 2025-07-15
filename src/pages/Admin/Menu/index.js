@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { BiSearch } from 'react-icons/bi';
 
 const API_URL = 'http://localhost:9999/menuItems';
 const CATEGORY_URL = 'http://localhost:9999/categories';
@@ -20,8 +21,10 @@ const MenuManagement = () => {
     description: '',
     price: '',
     imageUrl: '',
+    imageFile: null,
     categoryId: ''
   });
+
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -95,6 +98,35 @@ const MenuManagement = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+    });
+
+  const uploadImageToImgBB = async (file) => {
+    const base64 = await toBase64(file);
+    const formData = new URLSearchParams();
+    formData.append('key', 'f9ae9117ab595c982d21d625abd11582'); // thay bằng key của bạn
+    formData.append('image', base64);
+
+    const res = await axios.post('https://api.imgbb.com/1/upload', formData.toString(), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    return res.data.data.url;
+  };
+
+
+  const handleFileChange = (e) => {
+    setFormData(prev => ({ ...prev, imageFile: e.target.files[0] }));
+  };
+
+
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure?')) {
       try {
@@ -108,20 +140,28 @@ const MenuManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      name: formData.name,
-      description: formData.description,
-      price: Number(formData.price),
-      imageUrl: formData.imageUrl,
-      categoryId: Number(formData.categoryId)
-    };
+
+    let imageUrl = formData.imageUrl;
 
     try {
+      if (formData.imageFile) {
+        imageUrl = await uploadImageToImgBB(formData.imageFile);
+      }
+
+      const data = {
+        name: formData.name,
+        description: formData.description,
+        price: Number(formData.price),
+        imageUrl,
+        categoryId: Number(formData.categoryId)
+      };
+
       if (modalMode === 'add') {
         await axios.post(API_URL, data);
       } else {
         await axios.put(`${API_URL}/${formData.id}`, data);
       }
+
       fetchMenuItems();
       handleClose();
     } catch (err) {
@@ -133,16 +173,16 @@ const MenuManagement = () => {
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Menu Management</h2>
+        <h2>Quản lý thực đơn</h2>
         <Button variant="danger" className="rounded-pill" onClick={() => handleShow('add')}>
-          + Add Menu Item
+          + Thêm món ăn
         </Button>
       </div>
       <InputGroup className="mb-3" style={{ maxWidth: '300px' }}>
-        <InputGroup.Text>🔍</InputGroup.Text>
+        <InputGroup.Text><BiSearch></BiSearch></InputGroup.Text>
         <Form.Control
           type="text"
-          placeholder="Search by name..."
+          placeholder="Tìm theo tên..."
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -158,7 +198,7 @@ const MenuManagement = () => {
             setSelectedCategory('');
           }}
         >
-          All
+          Tất cả
         </Button>
         {categories?.map(cat => (
           <Button
@@ -210,9 +250,43 @@ const MenuManagement = () => {
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Row>
+              <Col md={12}>
+                <Form.Group className="mb-3">
+
+                  {formData.imageFile ? (
+                    <div className="d-flex flex-column align-items-center mt-2">
+                      <img
+                        src={URL.createObjectURL(formData.imageFile)}
+                        alt="Preview"
+                        style={{ height: 100, marginTop: 10 }}
+                      />
+
+                    </div>
+                  ) : (
+                    formData.imageUrl && (
+                      <div className="d-flex flex-column align-items-center mt-2">
+                        <img
+                          src={formData.imageUrl}
+                          alt="Current"
+                          style={{ height: 100, marginTop: 10 }}
+                        />
+                        <p className="text-muted">Ảnh hiện tại</p>
+                      </div>
+                    )
+                  )}
+                  <Form.Label>Ảnh</Form.Label>
+
+                  <Form.Control
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </Form.Group>
+
+              </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label>Tên món ăn</Form.Label>
                   <Form.Control
                     name="name"
                     value={formData.name}
@@ -223,7 +297,7 @@ const MenuManagement = () => {
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>Price</Form.Label>
+                  <Form.Label>Giá</Form.Label>
                   <Form.Control
                     type="number"
                     name="price"
@@ -236,7 +310,7 @@ const MenuManagement = () => {
               </Col>
             </Row>
             <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Mô tả</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={2}
@@ -247,23 +321,14 @@ const MenuManagement = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Image URL</Form.Label>
-              <Form.Control
-                name="imageUrl"
-                value={formData.imageUrl}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Danh mục</Form.Label>
               <Form.Select
                 name="categoryId"
                 value={formData.categoryId}
                 onChange={handleChange}
                 required
               >
-                <option value="">-- Select Category --</option>
+                <option value="">-- Chọn danh mục --</option>
                 {categories?.map(cat => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}

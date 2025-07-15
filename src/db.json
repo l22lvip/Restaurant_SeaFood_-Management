@@ -262,15 +262,27 @@
       "date": "2024-06-28",
       "totalSales": 5000000,
       "totalOrders": 25,
-      "topDishes": ["Cua sốt me", "Tôm hùm nướng phô mai"],
-      "peakHours": ["12:00-13:00", "18:00-19:00"]
+      "topDishes": [
+        "Cua sốt me",
+        "Tôm hùm nướng phô mai"
+      ],
+      "peakHours": [
+        "12:00-13:00",
+        "18:00-19:00"
+      ]
     },
     {
       "date": "2024-06-27",
       "totalSales": 4200000,
       "totalOrders": 20,
-      "topDishes": ["Gỏi cuốn tôm thịt", "Lẩu Thái hải sản"],
-      "peakHours": ["11:00-12:00", "19:00-20:00"]
+      "topDishes": [
+        "Gỏi cuốn tôm thịt",
+        "Lẩu Thái hải sản"
+      ],
+      "peakHours": [
+        "11:00-12:00",
+        "19:00-20:00"
+      ]
     }
   ],
   "expenses": [
