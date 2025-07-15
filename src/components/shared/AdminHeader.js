@@ -1,26 +1,32 @@
 // Header.js
-import React, { useEffect, useState } from 'react'
-import { FaSearch } from 'react-icons/fa'
+import { use, useEffect, useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
-import { FaBell } from 'react-icons/fa'
-import logo from '../../assets/images/logo.png'
-import logo2 from '../../assets/images/logo-Trongsuot.png'
-import logo3 from '../../assets/images/logo-Photoroom.jpg'
 import logo4 from '../../assets/images/logo4-done.png'
 import '../../css/Header.css'
 import dayjs from 'dayjs'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Header = () => {
     const [currentTime, setCurrentTime] = useState(dayjs());
-
+    const [userProfile, setUserProfile] = useState({});
     const user = JSON.parse(localStorage.getItem('user')) || {};
+    const navigate = useNavigate();
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const res = await axios.get(`http://localhost:9999/users/${user.id}`);
+            setUserProfile(res.data);
+        };
+        fetchProfile();
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(dayjs());
-        }, 1000); // update mỗi giây
+        }, 1000); 
         return () => clearInterval(interval);
     }, []);
+
     return (
         <div className='header-container'>
             {/* Logo  */}
@@ -31,18 +37,25 @@ const Header = () => {
 
             {/* Search */}
             <div className="search-section justify-content-center">
-                <h3 className="search-icon text-center mb-0 " style={{width:"120px"}}>
+                <h3 className="search-icon text-center mb-0 " style={{ width: "120px" }}>
                     {currentTime?.format('HH:mm:ss')}
                 </h3>
             </div>
 
             {/* LOGGED USER DETAIL */}
             <div className='user-section'>
-                <div className='user-profile-section'>
-                    <FaUserCircle className='user-icon' />
+                <div className='user-profile-section' onClick={() => navigate('/staff/profile')}>
+                    {
+                        userProfile?.imageUrl ? (
+                            <img src={userProfile.imageUrl} style={{ width: '40px', height: '40px' }} alt="User Profile" className='user-image rounded-circle' />
+                        ) : (
+                            <FaUserCircle className='user-icon' />
+                        )
+                    }
+
                     <div className='user-details'>
                         <h1 className='mb-0'>{user?.name}</h1>
-                        <p  className='mb-0'>{user?.role[0].toUpperCase() + user?.role.slice(1)}</p>
+                        <p className='mb-0'>{user?.role[0].toUpperCase() + user?.role.slice(1)}</p>
                     </div>
                 </div>
             </div>

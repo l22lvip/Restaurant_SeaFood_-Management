@@ -148,6 +148,7 @@
       "name": "Nhân Viên 1",
       "phone": "0123456789",
       "role": "Bồi bàn",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Nhân+Viên+1",
       "password": "123456"
     },
     {
@@ -155,6 +156,7 @@
       "name": "Quản Lý 1",
       "role": "Quản lý",
       "phone": "0999999999",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Quản+Lý+1",
       "password": "123456"
     },
     {
@@ -162,7 +164,16 @@
       "name": "Bếp Trưởng",
       "role": "Đầu Bếp",
       "phone": "0909090909",
+      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Bếp+Trưởng",
       "password": "123456"
+    },
+    {
+      "name": "asdajkd",
+      "phone": "kjshdkad",
+      "role": "Bồi bàn",
+      "password": "123",
+      "imageUrl": "https://i.ibb.co/qPFSVmr/92a09aca919e.jpg",
+      "id": "cdd8"
     }
   ],
   "earnings": {

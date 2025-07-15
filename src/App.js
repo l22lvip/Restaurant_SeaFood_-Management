@@ -7,6 +7,8 @@ import AdminLayout from './components/shared/AdminLayout';
 import Employees from './pages/Admin/Employees';
 import Dashboard from './pages/Admin/Dashboard';
 import Menu from './pages/Admin/Menu';
+import { ToastContainer } from 'react-toastify';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -25,10 +27,12 @@ function App() {
           <Route path="/staff" element={<AdminLayout />}>
             {/* quản lý nhân viên */}
             <Route path="employees" element={<Employees />} />
-            
+
+            <Route path="profile" element={<Profile />} />
+
             {/* thống kê */}
             <Route path="dashboard" element={<Dashboard />} />
-            
+
             {/* đặt bàn */}
             {/* <Route path="orders" element={<Orders />} /> */}
 
@@ -39,6 +43,8 @@ function App() {
             <Route path="menu" element={<Menu />} />
           </Route>
         </Routes>
+        <ToastContainer />
+
       </Router>
     </>
   );
