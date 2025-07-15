@@ -50,7 +50,7 @@ const CreateBill = () => {
       });
   }, [maxId, update]);
 
-  const handleCreateBill = () => {
+  const handleCreateBill = async () => {
     // Validate số tiền
     if (!amount || isNaN(amount) || parseInt(amount) <= 0) {
       alert('Số tiền phải là số lớn hơn 0!');
@@ -77,12 +77,22 @@ const CreateBill = () => {
       createdAt: new Date().toISOString(),
       paidAt: new Date().toISOString(),
     };
-    axios.post('http://localhost:9999/bills', newBill);
-    setUpdate(!update);
-    setAmount('');
-    setDescription('');
-    setTableId('');
-    setPaymentMethod('Cash');
+    try {
+      const res = await axios.post('http://localhost:9999/bills', newBill);
+      if (res && res.status === 201) {
+        setUpdate((prev) => !prev);
+        setAmount('');
+        setDescription('');
+        setTableId('');
+        setPaymentMethod('Cash');
+        setId(newBill.id); // cập nhật maxId mới
+        alert('Tạo hóa đơn thành công!');
+      } else {
+        alert('Tạo hóa đơn thất bại!');
+      }
+    } catch (error) {
+      alert('Lỗi khi tạo hóa đơn!');
+    }
   };
 
   const getTableName = (id) => {

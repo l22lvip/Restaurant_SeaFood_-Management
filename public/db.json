@@ -31,7 +31,7 @@
       "id": "1"
     },
     {
-      "id": "2", 
+      "id": "2",
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
@@ -190,7 +190,7 @@
   ],
   "bills": [
     {
-      "id": "1",
+      "id": 1,
       "orderId": 1,
       "tableId": 3,
       "userId": 1,
@@ -201,7 +201,7 @@
       "paidAt": "2025-06-28T15:05:00Z"
     },
     {
-      "id": "2",
+      "id": 2,
       "orderId": 2,
       "tableId": 5,
       "userId": 2,
@@ -212,7 +212,7 @@
       "paidAt": "2025-06-28T15:12:00Z"
     },
     {
-      "id": "3",
+      "id": 3,
       "orderId": 3,
       "tableId": 1,
       "userId": 1,
@@ -223,7 +223,7 @@
       "paidAt": "2025-06-28T16:22:00Z"
     },
     {
-      "id": "4",
+      "id": 4,
       "orderId": 4,
       "tableId": 2,
       "userId": 2,
@@ -234,7 +234,7 @@
       "paidAt": null
     },
     {
-      "id": "5",
+      "id": 5,
       "orderId": 5,
       "tableId": 4,
       "userId": 1,
@@ -245,24 +245,14 @@
       "paidAt": "2025-06-28T17:35:00Z"
     },
     {
-      "id": "6",
+      "id": 6,
       "orderId": null,
       "tableId": 2,
-      "total": 123123,
+      "total": 123132,
       "paymentMethod": "QR",
       "status": "Pending",
-      "createdAt": "2025-07-15T04:30:07.013Z",
-      "paidAt": "2025-07-15T04:30:07.013Z"
-    },
-    {
-      "id": "61",
-      "orderId": null,
-      "tableId": 3,
-      "total": 200000,
-      "paymentMethod": "QR",
-      "status": "Pending",
-      "createdAt": "2025-07-15T10:43:01.632Z",
-      "paidAt": "2025-07-15T10:43:01.632Z"
+      "createdAt": "2025-07-15T18:16:28.301Z",
+      "paidAt": "2025-07-15T18:16:28.301Z"
     }
   ],
   "earnings": {
