@@ -5,7 +5,12 @@ import Home from './pages/Home';
 import ClientLayout from './components/shared/ClientLayout';
 import AdminLayout from './components/shared/AdminLayout';
 import Employees from './pages/Admin/Employees';
-import Dashboard from './pages/Admin/Dashboard';
+
+import CreateBill from './bill/CreateBill';
+import PayWithQR from './bill/PayWithQr';
+
+
+
 import Menu from './pages/Admin/Menu';
 import { ToastContainer } from 'react-toastify';
 import Profile from './pages/Profile';
@@ -26,6 +31,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/create-bill" element={<CreateBill />} />
+          <Route path="/bills/:id" element={<PayWithQR />} />
             <Route path="/register" element={<RegisterPage />} />
             {/* Đặt bàn */}
             <Route path="/book" element={<div>hello</div>} />

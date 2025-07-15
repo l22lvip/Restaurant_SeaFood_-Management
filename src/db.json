@@ -1,23 +1,23 @@
 {
   "categories": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Khai vị"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Hải sản"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Món chính"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Tráng miệng"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Đồ uống"
     }
   ],
@@ -31,7 +31,7 @@
       "id": "1"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Cua sốt me",
       "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
       "price": 450000,
@@ -39,7 +39,7 @@
       "categoryId": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Tôm hùm nướng phô mai",
       "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
       "price": 750000,
@@ -47,7 +47,7 @@
       "categoryId": 2
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Lẩu Thái hải sản",
       "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
       "price": 350000,
@@ -55,7 +55,7 @@
       "categoryId": 3
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Chè khúc bạch",
       "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
       "price": 35000,
@@ -63,7 +63,7 @@
       "categoryId": 4
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Nước chanh",
       "description": "Nước chanh tươi giải nhiệt.",
       "price": 25000,
@@ -73,7 +73,7 @@
   ],
   "orders": [
     {
-      "id": "1",
+      "id": 1,
       "tableId": 3,
       "userId": 1,
       "items": [
@@ -93,7 +93,7 @@
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
-      "id": "2",
+      "id": 2,
       "tableId": 5,
       "userId": 2,
       "items": [
@@ -115,64 +115,106 @@
   ],
   "tables": [
     {
-      "id": "1",
+      "id": 1,
       "status": "available",
       "capacity": 4
     },
     {
-      "id": "2",
+      "id": 2,
       "status": "available",
       "capacity": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "status": "occupied",
       "capacity": 4,
       "currentOrderId": 1
     },
     {
-      "id": "4",
+      "id": 4,
       "status": "reserved",
       "capacity": 6
     },
     {
-      "id": "5",
+      "id": 5,
       "status": "occupied",
       "capacity": 2,
       "currentOrderId": 2
     }
   ],
-  "users": [
+  "customers": [
     {
-      "name": "Quản Lý 1",
-      "phone": "0999999999",
-      "role": "Quản lý",
-      "imageUrl": "https://i.ibb.co/rK61cyS4/92e639cf34fd.jpg",
-      "id": "1"
+      "id": 1,
+      "name": "Khách Hàng 1",
+      "phone": "0123456789",
+      "email": "khachhang1@example.com"
+    }
+  ],
+  "bills": [
+    {
+      "id": 1,
+      "orderId": 1,
+      "tableId": 3,
+      "userId": 1,
+      "total": 500000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:00:00Z",
+      "paidAt": "2025-06-28T15:05:00Z"
     },
     {
-      "name": "Quản Lý ",
-      "phone": "0909090909",
-      "role": "Quản lý",
-      "password": "123456",
-      "imageUrl": "https://i.ibb.co/rK61cyS4/92e639cf34fd.jpg",
-      "id": "2"
+      "id": 2,
+      "orderId": 2,
+      "tableId": 5,
+      "userId": 2,
+      "total": 460000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T15:10:00Z",
+      "paidAt": "2025-06-28T15:12:00Z"
     },
     {
-      "id": "3",
-      "name": "Bếp Trưởng",
-      "role": "Đầu Bếp",
-      "phone": "0909090909",
-      "imageUrl": "https://placehold.jp/600x400/333333/FFFFFF?text=Bếp+Trưởng",
-      "password": "123456"
+      "id": 3,
+      "orderId": 3,
+      "tableId": 1,
+      "userId": 1,
+      "total": 220000,
+      "paymentMethod": "Card",
+      "status": "Pending",
+      "createdAt": "2025-06-28T16:20:00Z",
+      "paidAt": "2025-06-28T16:22:00Z"
     },
     {
-      "name": "asdajkd",
-      "phone": "kjshdkad",
-      "role": "Bồi bàn",
-      "password": "123",
-      "imageUrl": "https://i.ibb.co/qPFSVmr/92a09aca919e.jpg",
-      "id": "cdd8"
+      "id": 4,
+      "orderId": 4,
+      "tableId": 2,
+      "userId": 2,
+      "total": 175000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:00:00Z",
+      "paidAt": null
+    },
+    {
+      "id": 5,
+      "orderId": 5,
+      "tableId": 4,
+      "userId": 1,
+      "total": 385000,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-06-28T17:30:00Z",
+      "paidAt": "2025-06-28T17:35:00Z"
+    },
+    {
+      "id": 6,
+      "orderId": null,
+      "tableId": 2,
+      "total": 123123,
+      "paymentMethod": "QR",
+      "status": "Pending",
+      "createdAt": "2025-07-15T04:30:07.013Z",
+      "paidAt": "2025-07-15T04:30:07.013Z"
     }
   ],
   "earnings": {
