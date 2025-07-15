@@ -17,7 +17,6 @@ function PayWithQR() {
     const id = params.get('billId');
     if (id) {
       setBillId(id);
-      // Tự động thanh toán nếu có billId
       autoPay(id);
     }
     // eslint-disable-next-line
@@ -98,9 +97,12 @@ function PayWithQR() {
 
   return (
     <div className="qr-container">
-      <div className="qr-image-box">
-        <img src={qrImage} alt="QR code demo" />
-
+      <div className="qr-image-box" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 24 }}>
+        <img
+          src={qrImage}
+          alt="QR code demo"
+          style={{ width: 280, height: 280, maxWidth: '90vw', borderRadius: 20, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', border: '3px solid #e3e3e3', background: '#fff', objectFit: 'cover', display: 'block' }}
+        />
       </div>
       <h2>Thanh toán bằng QR</h2>
       <label htmlFor="billId">Mã Hóa Đơn</label>

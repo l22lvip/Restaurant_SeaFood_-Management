@@ -7,7 +7,7 @@ import {
   Button,
   Table,
   Row,
-  Col, 
+  Col,
   Card,
   Badge,
 } from 'react-bootstrap';
@@ -18,11 +18,10 @@ const CreateBill = () => {
   const navigate = useNavigate();
   const [bills, setBills] = useState([]);
   const [tables, setTables] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [customers, setCustomers] = useState([]);
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
   const [tableId, setTableId] = useState('');
-  const [userId, setUserId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [maxId, setId] = useState(0);
   const [update, setUpdate] = useState(false);
@@ -36,10 +35,10 @@ const CreateBill = () => {
     fetch('http://localhost:9999/tables')
       .then((res) => res.json())
       .then((data) => setTables(data));
-    // Fetch users
-    fetch('http://localhost:9999/users')
+    // Fetch customers
+    fetch('http://localhost:9999/customers')
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => setCustomers(data));
     axios.get('http://localhost:9999/bills')
       .then((res) => {
         res.data.forEach((bill) => {
@@ -51,15 +50,26 @@ const CreateBill = () => {
   }, [maxId, update]);
 
   const handleCreateBill = () => {
-    if (!amount || !description || !tableId || !userId) {
-      alert('Vui lòng điền đầy đủ thông tin');
+    // Validate số tiền
+    if (!amount || isNaN(amount) || parseInt(amount) <= 0) {
+      alert('Số tiền phải là số lớn hơn 0!');
       return;
     }
+    // Validate mô tả
+    if (!description.trim()) {
+      alert('Vui lòng nhập mô tả hóa đơn!');
+      return;
+    }
+    // Validate chọn bàn
+    if (!tableId) {
+      alert('Vui lòng chọn bàn!');
+      return;
+    }
+
     const newBill = {
       id: maxId + 1,
       orderId: null,
       tableId: parseInt(tableId),
-      userId: parseInt(userId),
       total: parseInt(amount),
       paymentMethod,
       status: 'Pending',
@@ -71,14 +81,8 @@ const CreateBill = () => {
     setAmount('');
     setDescription('');
     setTableId('');
-    setUserId('');
     setPaymentMethod('Cash');
-
-  };
-
-  const getUserName = (id) => {
-    const user = users.find((u) => u.id == id);
-    return user?.name || 'Unknown';
+    navigate(`/bills/${newBill.id}`);
   };
 
   const getTableName = (id) => {
@@ -105,6 +109,21 @@ const CreateBill = () => {
           <Card.Body>
             <h4 className="form-title">Thông tin hóa đơn</h4>
             <Row className="g-3 bill-form-row">
+              <Col md={12}>
+                <Form.Group>
+                  <Form.Label>Khách hàng</Form.Label>
+                  {/* Hiển thị thông tin khách hàng đầu tiên */}
+                  {customers.length > 0 ? (
+                    <div style={{ marginTop: 8, background: '#f8fafc', borderRadius: 8, padding: 10, fontSize: 15, color: '#1a3c5a' }}>
+                      <div><b>Tên:</b> {customers[0].name}</div>
+                      <div><b>Email:</b> {customers[0].email || '---'}</div>
+                      <div><b>SĐT:</b> {customers[0].phone || '---'}</div>
+                    </div>
+                  ) : (
+                    <div className="text-muted">Không có thông tin khách hàng</div>
+                  )}
+                </Form.Group>
+              </Col>
               <Col md={6}>
                 <Form.Group>
                   <Form.Label>Số tiền</Form.Label>
@@ -140,20 +159,8 @@ const CreateBill = () => {
                   </Form.Select>
                 </Form.Group>
               </Col>
+
               <Col md={6}>
-                <Form.Group>
-                  <Form.Label>Nhân viên</Form.Label>
-                  <Form.Select value={userId} onChange={(e) => setUserId(e.target.value)}>
-                    <option value="">Chọn nhân viên</option>
-                    {users.map((user) => (
-                      <option key={user.id} value={user.id}>
-                        {user.name}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col md={12}>
                 <Form.Group>
                   <Form.Label>Phương thức thanh toán</Form.Label>
                   <Form.Select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
@@ -180,19 +187,17 @@ const CreateBill = () => {
               <tr>
                 <th>#</th>
                 <th>Bàn</th>
-                <th>Nhân viên</th>
                 <th className="text-end">Tổng tiền</th>
                 <th>Phương thức</th>
                 <th>Trạng thái</th>
                 <th>Thời gian</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="table-light text-center">
               {bills.map((bill) => (
                 <tr key={bill.id}>
                   <td>{bill.id}</td>
                   <td>{getTableName(bill.tableId)}</td>
-                  <td>{getUserName(bill.userId)}</td>
                   <td className="text-end">
                     {bill.total.toLocaleString()} đ
                   </td>

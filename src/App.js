@@ -19,12 +19,12 @@ function App() {
       <Router>
         <Routes>
           <Route element={<ClientLayout />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create-bill" element={<CreateBill />} />
-          <Route path="/pay-qr" element={<PayWithQR />} />
+          <Route path="/bills/:id" element={<PayWithQR />} />
           </Route>
 
           {/* Layout riêng cho admin */}
