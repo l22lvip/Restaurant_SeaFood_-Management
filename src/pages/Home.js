@@ -34,7 +34,6 @@ const Home = () => {
         <PopularDishes /> 
       </Col>
     </Container>
-
   );
 }
 

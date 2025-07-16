@@ -1,0 +1,128 @@
+.orders {
+    background-color: #1f1f1f;
+    height: calc(100vh - 5rem);
+    /* overflow: hidden; */
+    display: flex;
+    /* THÊM VÀO */
+    flex-direction: column;
+    /* THÊM VÀO */
+}
+
+.orders-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 10px 20px;
+    /* Corresponds to px-10 py-4 */
+        flex-shrink: 0; /* Ngăn header bị co lại */
+
+
+}
+
+.orders-title {
+    color: #f5f5f5;
+    /* text-2xl font-semibold tracking-wide */
+    font-size: 1.5rem;
+    /* Corresponds to text-2xl */
+    font-weight: 500;
+    /* Corresponds to font-semibold */
+    letter-spacing: 0.025em;
+    /* Corresponds to tracking-wide */
+}
+
+.orders-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    /* Corresponds to gap-4 */
+}
+
+.orders-filter-all {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem;
+    /* Corresponds to text-lg */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    border-radius: 0.5rem;
+    /* Corresponds to rounded-lg */
+    padding: 5px 10px;
+    /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none;
+    /* <== Add this to remove white outline */
+    box-shadow: none;
+    /* <== Optional: remove extra button effect */
+}
+
+.orders-filter-in-progress {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem;
+    /* Corresponds to text-lg */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    border-radius: 0.5rem;
+    /* Corresponds to rounded-lg */
+    padding: 5px 10px;
+    /* Corresponds to px-5 py-2 */
+    background-color: #383838;
+
+}
+
+.orders-filter-ready {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem;
+    /* Corresponds to text-lg */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    border-radius: 0.5rem;
+    /* Corresponds to rounded-lg */
+    padding: 5px 10px;
+    /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none;
+    /* <== Add this to remove white outline */
+    box-shadow: none;
+    /* <== Optional: remove extra button effect */
+}
+
+.orders-filter-completed {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem;
+    /* Corresponds to text-lg */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    border-radius: 0.5rem;
+    /* Corresponds to rounded-lg */
+    padding: 5px 10px;
+    /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none;
+    /* <== Add this to remove white outline */
+    box-shadow: none;
+    /* <== Optional: remove extra button effect */
+}
+
+.orders-filter-active {
+    background-color: #383838;
+    color: #ababab;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 5px 10px;
+    border: none;
+}
+
+.orders-filter-inactive {
+    background-color: #1f1f1f;
+    color: #ababab;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 5px 10px;
+    border: none;
+}

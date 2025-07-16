@@ -1,82 +1,111 @@
 {
-
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Khai vị"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Hải sản"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Món chính"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Tráng miệng"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Đồ uống"
     }
   ],
-
   "menuItems": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Gỏi cuốn tôm thịt",
-      "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống, dùng kèm nước chấm đậm đà.",
+      "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống.",
       "price": 55000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Gỏi+Cuốn",
+      "imageUrl": "/imageItem/goitom.png",
       "categoryId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Cua sốt me",
-      "description": "Cua biển tươi ngon được rang với sốt me chua ngọt đặc trưng.",
+      "description": "Cua biển tươi ngon rang với sốt me chua ngọt.",
       "price": 450000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Cua+Sốt+Me",
+      "imageUrl": "/imageItem/cuasotme.png",
       "categoryId": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Tôm hùm nướng phô mai",
       "description": "Tôm hùm baby nướng với phô mai mozzarella béo ngậy.",
       "price": 750000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Tôm+Hùm",
+      "imageUrl": "/imageItem/tomhumnuongphomai.png",
       "categoryId": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Lẩu Thái hải sản",
-      "description": "Nồi lẩu chua cay đậm vị Thái với đầy đủ các loại hải sản tươi sống.",
+      "description": "Nồi lẩu chua cay đậm vị Thái với hải sản tươi sống.",
       "price": 350000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Lẩu+Thái",
+      "imageUrl": "/imageItem/lauthaihaisan.png",
       "categoryId": 3
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Chè khúc bạch",
       "description": "Món tráng miệng thanh mát với thạch hạnh nhân, nhãn và vải.",
       "price": 35000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Chè",
+      "imageUrl": "/imageItem/chekhucbach.png",
       "categoryId": 4
     },
     {
-      "id": 6,
-      "name": "Nước chanh",
+      "id": "6",
+      "name": "Nước Chanh",
       "description": "Nước chanh tươi giải nhiệt.",
       "price": 25000,
-      "imageUrl": "https://placehold.co/600x400/333333/FFFFFF?text=Nước+Chanh",
+      "imageUrl": "/imageItem/nuocchanh.png",
+      "categoryId": 5
+    },
+    {
+      "id": "7",
+      "name": "Mực nướng sa tế",
+      "description": "Mực tươi nướng với sa tế cay nồng, thơm lừng.",
+      "price": 180000,
+      "imageUrl": "/imageItem/mucnuongsate.png",
+      "categoryId": 2
+    },
+    {
+      "id": "8",
+      "name": "Hàu nướng mỡ hành",
+      "description": "Hàu sữa béo ngậy nướng cùng mỡ hành và đậu phộng.",
+      "price": 95000,
+      "imageUrl": "/imageItem/haunuongmohanh.png",
+      "categoryId": 2
+    },
+    {
+      "id": "9",
+      "name": "Cơm chiên hải sản",
+      "description": "Cơm chiên với tôm, mực và các loại rau củ.",
+      "price": 120000,
+      "imageUrl": "/imageItem/comchienhaisan.png",
+      "categoryId": 3
+    },
+    {
+      "id": "10",
+      "name": "Nước ép dứa",
+      "description": "Nước ép dứa nguyên chất, không đường.",
+      "price": 40000,
+      "imageUrl": "/imageItem/nuocepdua.png",
       "categoryId": 5
     }
   ],
-
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "tableId": 3,
       "userId": 1,
       "items": [
@@ -96,9 +125,9 @@
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "tableId": 5,
-      "userId": 2,
+      "userId": 1,
       "items": [
         {
           "menuItemId": 4,
@@ -114,60 +143,399 @@
       "total": 460000,
       "status": "Ready",
       "timestamp": "2025-06-28T14:35:00Z"
+    },
+    {
+      "id": "3",
+      "tableId": 1,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 3,
+          "quantity": 1,
+          "price": 750000
+        },
+        {
+          "menuItemId": 8,
+          "quantity": 2,
+          "price": 95000
+        },
+        {
+          "menuItemId": 10,
+          "quantity": 3,
+          "price": 40000
+        }
+      ],
+      "total": 1060000,
+      "status": "Completed",
+      "timestamp": "2025-06-29T10:00:00Z"
+    },
+    {
+      "id": "4",
+      "tableId": 2,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 7,
+          "quantity": 1,
+          "price": 180000
+        },
+        {
+          "menuItemId": 9,
+          "quantity": 1,
+          "price": 120000
+        }
+      ],
+      "total": 300000,
+      "status": "In Progress",
+      "timestamp": "2025-06-29T11:20:00Z"
+    },
+    {
+      "id": "5",
+      "tableId": 4,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 2,
+          "quantity": 2,
+          "price": 450000
+        },
+        {
+          "menuItemId": 8,
+          "quantity": 3,
+          "price": 95000
+        }
+      ],
+      "total": 1185000,
+      "status": "Completed",
+      "timestamp": "2025-06-29T12:05:00Z"
+    },
+    {
+      "id": "6",
+      "tableId": 3,
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": 1,
+          "quantity": 4,
+          "price": 55000
+        },
+        {
+          "menuItemId": 9,
+          "quantity": 2,
+          "price": 120000
+        }
+      ],
+      "total": 460000,
+      "status": "Completed",
+      "timestamp": "2025-06-29T13:15:00Z"
+    },
+    {
+      "id": "43e8",
+      "items": [
+        {
+          "menuItemId": "1",
+          "name": "Gỏi cuốn tôm thịt",
+          "quantity": 3,
+          "price": 55000
+        },
+        {
+          "menuItemId": "2",
+          "name": "Cua sốt me",
+          "quantity": 3,
+          "price": 450000
+        },
+        {
+          "menuItemId": "3",
+          "name": "Tôm hùm nướng phô mai",
+          "quantity": 3,
+          "price": 750000
+        },
+        {
+          "menuItemId": "4",
+          "name": "Lẩu Thái hải sản",
+          "quantity": 3,
+          "price": 350000
+        },
+        {
+          "menuItemId": "5",
+          "name": "Chè khúc bạch",
+          "quantity": 3,
+          "price": 35000
+        },
+        {
+          "menuItemId": "6",
+          "name": "Nước Chanh",
+          "quantity": 3,
+          "price": 25000
+        },
+        {
+          "menuItemId": "7",
+          "name": "Mực nướng sa tế",
+          "quantity": 1,
+          "price": 180000
+        },
+        {
+          "menuItemId": "8",
+          "name": "Hàu nướng mỡ hành",
+          "quantity": 1,
+          "price": 95000
+        },
+        {
+          "menuItemId": "9",
+          "name": "Cơm chiên hải sản",
+          "quantity": 1,
+          "price": 120000
+        },
+        {
+          "menuItemId": "10",
+          "name": "Nước ép dứa",
+          "quantity": 1,
+          "price": 40000
+        }
+      ],
+      "total": 5430000,
+      "tableId": "2",
+      "userId": 1,
+      "status": "Completed",
+      "timestamp": "2025-07-15T19:07:40.137Z"
+    },
+    {
+      "id": "a28d",
+      "tableId": "6",
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 3,
+          "price": 55000
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000
+        },
+        {
+          "menuItemId": "3",
+          "quantity": 1,
+          "price": 750000
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 1,
+          "price": 350000
+        },
+        {
+          "menuItemId": "5",
+          "quantity": 1,
+          "price": 35000
+        }
+      ],
+      "total": 1750000,
+      "status": "Completed",
+      "timestamp": "2025-07-15T20:56:35.612Z"
+    },
+    {
+      "id": "e88b",
+      "tableId": "3",
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": "7",
+          "quantity": 1,
+          "price": 180000
+        },
+        {
+          "menuItemId": "6",
+          "quantity": 1,
+          "price": 25000
+        },
+        {
+          "menuItemId": "5",
+          "quantity": 1,
+          "price": 35000
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 1,
+          "price": 350000
+        }
+      ],
+      "total": 590000,
+      "status": "Completed",
+      "timestamp": "2025-07-15T20:57:21.060Z"
+    },
+    {
+      "id": "e2e8",
+      "tableId": "7",
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": "8",
+          "quantity": 1,
+          "price": 95000
+        },
+        {
+          "menuItemId": "7",
+          "quantity": 1,
+          "price": 180000
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 1,
+          "price": 350000
+        },
+        {
+          "menuItemId": "3",
+          "quantity": 1,
+          "price": 750000
+        }
+      ],
+      "total": 1375000,
+      "status": "Completed",
+      "timestamp": "2025-07-15T20:57:25.324Z"
+    },
+    {
+      "id": "20c5",
+      "tableId": "6",
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": "3",
+          "quantity": 1,
+          "price": 750000
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 1,
+          "price": 350000
+        },
+        {
+          "menuItemId": "5",
+          "quantity": 1,
+          "price": 35000
+        },
+        {
+          "menuItemId": "6",
+          "quantity": 1,
+          "price": 25000
+        }
+      ],
+      "total": 1160000,
+      "status": "Completed",
+      "timestamp": "2025-07-15T22:22:49.177Z"
+    },
+    {
+      "id": "76d4",
+      "tableId": "3",
+      "userId": 1,
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000
+        }
+      ],
+      "total": 55000,
+      "status": "In Progress",
+      "timestamp": "2025-07-15T22:23:01.320Z"
     }
   ],
-
   "tables": [
     {
-      "id": 1,
+      "id": "1",
+      "name": "Table 1",
       "status": "available",
-      "capacity": 4
-    },
-    {
-      "id": 2,
-      "status": "available",
-      "capacity": 2
-    },
-    {
-      "id": 3,
-      "status": "occupied",
       "capacity": 4,
-      "currentOrderId": 1
+      "currentOrderId": 4
     },
     {
-      "id": 4,
-      "status": "reserved",
+      "id": "2",
+      "name": "Table 2",
+      "status": "empty",
+      "capacity": 4,
+      "currentOrderId": null
+    },
+    {
+      "id": "3",
+      "name": "Table 3",
+      "status": "available",
+      "capacity": 4,
+      "currentOrderId": "76d4"
+    },
+    {
+      "id": "4",
+      "name": "Table 4",
+      "status": "empty",
       "capacity": 6
     },
     {
-      "id": 5,
-      "status": "occupied",
-      "capacity": 2,
-      "currentOrderId": 2
+      "id": "5",
+      "name": "Table 5",
+      "status": "available",
+      "capacity": 6,
+      "currentOrderId": 6
+    },
+    {
+      "id": "6",
+      "name": "Table 6",
+      "status": "empty",
+      "capacity": 6,
+      "currentOrderId": null
+    },
+    {
+      "id": "7",
+      "name": "Table 7",
+      "status": "empty",
+      "capacity": 4,
+      "currentOrderId": null
+    },
+    {
+      "id": "8",
+      "name": "Table 8",
+      "status": "available",
+      "capacity": 4,
+      "currentOrderId": 3
+    },
+    {
+      "id": "9",
+      "name": "Table 9",
+      "status": "empty",
+      "capacity": 6,
+      "currentOrderId": null
+    },
+    {
+      "id": "10",
+      "name": "Table 10",
+      "status": "empty",
+      "capacity": 4
+    },
+    {
+      "id": "11",
+      "name": "Table 11",
+      "status": "empty",
+      "capacity": 6
+    },
+    {
+      "id": "12",
+      "name": "Table 12",
+      "status": "empty",
+      "capacity": 6
     }
   ],
-
   "users": [
     {
-      "id": 1,
-      "name": "Nhân Viên 1",
+      "id": "1",
+      "name": "Nhân Viên",
       "role": "waiter"
     },
     {
-      "id": 2,
-      "name": "Nhân Viên 2",
-      "role": "waiter"
-    },
-    {
-      "id": 3,
-      "name": "Bếp Trưởng",
-      "role": "chef"
+      "id": "2",
+      "name": "Admin",
+      "role": "admin"
     }
   ],
-
   "earnings": {
-    "today": 1200000,
-    "yesterday": 1135000
+    "today": 2500000,
+    "yesterday": 1850000
   }
-  
 }

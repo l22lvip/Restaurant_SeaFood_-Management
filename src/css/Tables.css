@@ -1,0 +1,67 @@
+
+
+
+
+.tables-filter-all {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem; /* Corresponds to text-lg */
+    font-weight: 600; /* Corresponds to font-semibold */
+    border-radius: 0.5rem; /* Corresponds to rounded-lg */
+    padding: 5px 10px; /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none; /* <== Add this to remove white outline */
+    box-shadow: none; /* <== Optional: remove extra button effect */
+}
+.tables-filter-in-progress {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem; /* Corresponds to text-lg */
+    font-weight: 600; /* Corresponds to font-semibold */
+    border-radius: 0.5rem; /* Corresponds to rounded-lg */
+    padding: 5px 10px; /* Corresponds to px-5 py-2 */
+    background-color: #383838;
+    
+}
+.tables-filter-ready {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem; /* Corresponds to text-lg */
+    font-weight: 600; /* Corresponds to font-semibold */
+    border-radius: 0.5rem; /* Corresponds to rounded-lg */
+    padding: 5px 10px; /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none; /* <== Add this to remove white outline */
+    box-shadow: none; /* <== Optional: remove extra button effect */
+}
+.tables-filter-completed {
+    color: #ababab;
+    /* text-lg font-semibold rounded-lg px-5 py-2*/
+    font-size: 1.125rem; /* Corresponds to text-lg */
+    font-weight: 600; /* Corresponds to font-semibold */
+    border-radius: 0.5rem; /* Corresponds to rounded-lg */
+    padding: 5px 10px; /* Corresponds to px-5 py-2 */
+    background-color: #1f1f1f;
+    border: none; /* <== Add this to remove white outline */
+    box-shadow: none; /* <== Optional: remove extra button effect */
+}
+
+.tables-filter-active {
+  background-color: #383838;
+  color: #ababab;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 5px 10px;
+  border: none;
+}
+
+.tables-filter-inactive {
+  background-color: #1f1f1f;
+  color: #ababab;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 5px 10px;
+  border: none;
+}

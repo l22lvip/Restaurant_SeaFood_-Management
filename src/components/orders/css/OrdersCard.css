@@ -1,0 +1,103 @@
+.order-card {
+    width: 500px;
+    background-color: #262626;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.75rem; 
+}
+
+.order-card-1 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.order-card-button {
+    background-color: #f6b100;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+.order-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.order-card-content-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.2rem;
+}
+
+.order-card-content-1 h1 {
+    color: #f5f5f5;
+    /* text-lg font-semibold tracking-wide */
+    font-size: 1rem;
+    /* Corresponds to text-lg */
+    font-weight: 600;
+    /* Corresponds to font-semibold */
+    letter-spacing: 0.025em;
+    /* Corresponds to tracking-wide */
+}
+
+.order-card-content-1 p {
+     color: #ababab;
+    /* text-sm */
+    font-size: 0.875rem; /* Corresponds to text-sm */
+}
+
+.order-card-content-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 0.5rem ;
+}
+
+.order-card-ready {
+    color: #22c55e;
+    padding: 0 0.5rem; 
+}
+
+.order-card-ready-icon {
+    /* inline mr-2 */
+    margin-right: 0.4rem; /* Corresponds to mr-2 */
+    vertical-align: middle; /* Aligns the icon with the text */
+}
+
+.order-card-serve {
+    color: #ababab;
+    /* text-sm */
+    font-size: 0.8rem; /* Corresponds to text-sm */
+}
+
+.order-card-serve-icon {
+    /* inline mr-2 */
+    margin-right: 0.5rem; /* Corresponds to mr-2 */
+    vertical-align: middle; /* Aligns the icon with the text */
+    color: #22c55e;
+}
+
+.order-card-hr {
+    /* w-full mt-4 border-t-1 border-gray-500  */
+    width: 100%; /* Corresponds to w-2 */
+    margin-top: 0.5rem; /* Corresponds to mt-4 */
+    border-top: 1px solid #413b3b;
+    /* Corresponds to border-t-1 */
+    /* Corresponds to border-gray-500 */
+
+}
+
+.order-card-2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ababab;
+    /* text-sm */
+    font-size: 0.875rem; /* Corresponds to text-sm */
+}
