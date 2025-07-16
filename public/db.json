@@ -89,7 +89,7 @@
         }
       ],
       "total": 500000,
-      "status": "Completed",
+      "status": "Ready",
       "timestamp": "2025-06-28T14:30:00Z"
     },
     {
@@ -177,6 +177,20 @@
       "name": "Bếp Trưởng",
       "role": "chef",
       "phone": "0909090908",
+      "password": "123456"
+    },
+    {
+      "id": "4",
+      "phone": "1231312322",
+      "name": "",
+      "role": "",
+      "password": "123"
+    },
+    {
+      "id": "5",
+      "phone": "0947135097",
+      "name": "",
+      "role": "",
       "password": "123456"
     }
   ],

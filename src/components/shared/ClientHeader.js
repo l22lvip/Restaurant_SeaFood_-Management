@@ -31,7 +31,6 @@ const ClientHeader = () => {
                                 Đăng nhập
                             </Button>
                         )}
-
                         <Button variant="danger" onClick={() => navigate('/book')} className="rounded-5 ms-2">
                             Đặt bàn
                         </Button>
