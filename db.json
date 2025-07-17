@@ -105,371 +105,141 @@
   ],
   "orders": [
     {
-      "id": "1",
-      "tableId": 3,
+      "id": "aec9",
+      "tableId": "8",
       "userId": 1,
+      "customerId": null,
       "items": [
         {
-          "menuItemId": 2,
+          "menuItemId": "6",
           "quantity": 1,
-          "price": 450000
-        },
-        {
-          "menuItemId": 6,
-          "quantity": 2,
           "price": 25000
         }
       ],
-      "total": 500000,
+      "total": 25000,
       "status": "In Progress",
-      "timestamp": "2025-06-28T14:30:00Z"
+      "timestamp": "2025-07-17T04:25:02.566Z"
+    },
+    {
+      "id": "0989",
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "3",
+          "quantity": 3,
+          "price": 750000,
+          "name": "Tôm hùm nướng phô mai"
+        }
+      ],
+      "total": 2305000,
+      "status": "Completed",
+      "timestamp": "2025-07-17T04:26:39.902Z"
+    }
+  ],
+  "bills": [
+    {
+      "id": "1",
+      "orderId": 1,
+      "tableId": 3,
+      "userId": 1,
+      "total": 500000,
+      "status": "Pending",
+      "timestamp": "2025-06-28T14:30:00Z",
+      "customerName": "Nguyễn Văn A",
+      "customerEmail": "nguyenvana@example.com",
+      "customerPhone": "0987654321"
+    },
+    {
+      "id": "2",
+      "orderId": 3,
+      "tableId": 1,
+      "userId": 1,
+      "total": 1060000,
+      "status": "Paid",
+      "timestamp": "2025-06-29T10:00:00Z",
+      "customerName": "Nguyễn Văn A",
+      "customerEmail": "nguyenvana@example.com",
+      "customerPhone": "0987654321"
     },
     {
       "id": "3",
-      "tableId": 1,
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": 3,
-          "quantity": 1,
-          "price": 750000
-        },
-        {
-          "menuItemId": 8,
-          "quantity": 2,
-          "price": 95000
-        },
-        {
-          "menuItemId": 10,
-          "quantity": 3,
-          "price": 40000
-        }
-      ],
-      "total": 1060000,
-      "status": "Completed",
-      "timestamp": "2025-06-29T10:00:00Z"
+      "orderId": "b2db",
+      "tableId": "3",
+      "total": 3750000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-17T03:57:36.273Z",
+      "customerName": "hello",
+      "customerEmail": "aaaa",
+      "customerPhone": "12312313"
     },
     {
       "id": "4",
-      "tableId": 2,
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": 7,
-          "quantity": 1,
-          "price": 180000
-        },
-        {
-          "menuItemId": 9,
-          "quantity": 1,
-          "price": 120000
-        }
-      ],
-      "total": 300000,
-      "status": "Completed",
-      "timestamp": "2025-06-29T11:20:00Z"
+      "orderId": "b2db",
+      "tableId": "3",
+      "total": 3750000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-17T03:58:38.291Z",
+      "customerName": "helloaaaaaaa",
+      "customerEmail": "aaaa123123",
+      "customerPhone": "12312313"
     },
     {
       "id": "5",
-      "tableId": 4,
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": 2,
-          "quantity": 2,
-          "price": 450000
-        },
-        {
-          "menuItemId": 8,
-          "quantity": 3,
-          "price": 95000
-        }
-      ],
-      "total": 1185000,
-      "status": "Completed",
-      "timestamp": "2025-06-29T12:05:00Z"
+      "orderId": "eb27",
+      "tableId": "2",
+      "total": 4235000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-17T04:00:22.862Z",
+      "customerName": "Nguyen Huu Bao Khanh",
+      "customerEmail": "nguyenhuubaokhanh2005@gmail.com",
+      "customerPhone": "01912391293"
     },
     {
       "id": "6",
-      "tableId": 3,
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": 1,
-          "quantity": 4,
-          "price": 55000
-        },
-        {
-          "menuItemId": 9,
-          "quantity": 2,
-          "price": 120000
-        }
-      ],
-      "total": 460000,
-      "status": "Completed",
-      "timestamp": "2025-06-29T13:15:00Z"
-    },
-    {
-      "id": "43e8",
-      "items": [
-        {
-          "menuItemId": "1",
-          "name": "Gỏi cuốn tôm thịt",
-          "quantity": 3,
-          "price": 55000
-        },
-        {
-          "menuItemId": "2",
-          "name": "Cua sốt me",
-          "quantity": 3,
-          "price": 450000
-        },
-        {
-          "menuItemId": "3",
-          "name": "Tôm hùm nướng phô mai",
-          "quantity": 3,
-          "price": 750000
-        },
-        {
-          "menuItemId": "4",
-          "name": "Lẩu Thái hải sản",
-          "quantity": 3,
-          "price": 350000
-        },
-        {
-          "menuItemId": "5",
-          "name": "Chè khúc bạch",
-          "quantity": 3,
-          "price": 35000
-        },
-        {
-          "menuItemId": "6",
-          "name": "Nước Chanh",
-          "quantity": 3,
-          "price": 25000
-        },
-        {
-          "menuItemId": "7",
-          "name": "Mực nướng sa tế",
-          "quantity": 1,
-          "price": 180000
-        },
-        {
-          "menuItemId": "8",
-          "name": "Hàu nướng mỡ hành",
-          "quantity": 1,
-          "price": 95000
-        },
-        {
-          "menuItemId": "9",
-          "name": "Cơm chiên hải sản",
-          "quantity": 1,
-          "price": 120000
-        },
-        {
-          "menuItemId": "10",
-          "name": "Nước ép dứa",
-          "quantity": 1,
-          "price": 40000
-        }
-      ],
-      "total": 5430000,
+      "orderId": "eb27",
       "tableId": "2",
-      "userId": 1,
-      "status": "Completed",
-      "timestamp": "2025-07-15T19:07:40.137Z"
+      "total": 4235000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-17T04:17:52.232Z",
+      "customerName": "aaa",
+      "customerEmail": "aaaa",
+      "customerPhone": "123"
     },
     {
-      "id": "a28d",
-      "tableId": "6",
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 3,
-          "price": 55000
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000
-        },
-        {
-          "menuItemId": "3",
-          "quantity": 1,
-          "price": 750000
-        },
-        {
-          "menuItemId": "4",
-          "quantity": 1,
-          "price": 350000
-        },
-        {
-          "menuItemId": "5",
-          "quantity": 1,
-          "price": 35000
-        }
-      ],
-      "total": 1750000,
-      "status": "Completed",
-      "timestamp": "2025-07-15T20:56:35.612Z"
+      "id": "7",
+      "orderId": "0989",
+      "tableId": "1",
+      "total": 2305000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-17T04:28:06.195Z",
+      "customerName": "aaaaa",
+      "customerEmail": "aaaaaaa",
+      "customerPhone": "09123123"
     },
     {
-      "id": "e88b",
-      "tableId": "3",
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": "7",
-          "quantity": 1,
-          "price": 180000
-        },
-        {
-          "menuItemId": "6",
-          "quantity": 1,
-          "price": 25000
-        },
-        {
-          "menuItemId": "5",
-          "quantity": 1,
-          "price": 35000
-        },
-        {
-          "menuItemId": "4",
-          "quantity": 1,
-          "price": 350000
-        }
-      ],
-      "total": 590000,
-      "status": "Completed",
-      "timestamp": "2025-07-15T20:57:21.060Z"
-    },
-    {
-      "id": "e2e8",
-      "tableId": "7",
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": "8",
-          "quantity": 1,
-          "price": 95000
-        },
-        {
-          "menuItemId": "7",
-          "quantity": 1,
-          "price": 180000
-        },
-        {
-          "menuItemId": "4",
-          "quantity": 1,
-          "price": 350000
-        },
-        {
-          "menuItemId": "3",
-          "quantity": 1,
-          "price": 750000
-        }
-      ],
-      "total": 1375000,
-      "status": "Completed",
-      "timestamp": "2025-07-15T20:57:25.324Z"
-    },
-    {
-      "id": "20c5",
-      "tableId": "6",
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": "3",
-          "quantity": 1,
-          "price": 750000
-        },
-        {
-          "menuItemId": "4",
-          "quantity": 1,
-          "price": 350000
-        },
-        {
-          "menuItemId": "5",
-          "quantity": 1,
-          "price": 35000
-        },
-        {
-          "menuItemId": "6",
-          "quantity": 1,
-          "price": 25000
-        }
-      ],
-      "total": 1160000,
-      "status": "Completed",
-      "timestamp": "2025-07-15T22:22:49.177Z"
-    },
-    {
-      "id": "76d4",
-      "tableId": "3",
-      "userId": 1,
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000
-        }
-      ],
-      "total": 55000,
-      "status": "Completed",
-      "timestamp": "2025-07-15T22:23:01.320Z"
-    },
-    {
-      "id": "ee42",
-      "tableId": "2",
-      "userId": 1,
-      "customerId": null,
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000
-        },
-        {
-          "menuItemId": "3",
-          "quantity": 1,
-          "price": 750000
-        }
-      ],
-      "total": 1255000,
-      "status": "Completed",
-      "timestamp": "2025-07-16T13:29:28.272Z"
-    },
-    {
-      "id": "566e",
-      "tableId": "2",
-      "userId": 1,
-      "customerId": null,
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000
-        },
-        {
-          "menuItemId": "3",
-          "quantity": 1,
-          "price": 750000
-        }
-      ],
-      "total": 1255000,
-      "status": "Completed",
-      "timestamp": "2025-07-16T13:29:44.343Z"
+      "id": 8,
+      "orderId": "0989",
+      "tableId": "1",
+      "total": 2305000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-17T04:41:25.765Z",
+      "customerName": "dddd",
+      "customerEmail": "aaaaaaa",
+      "customerPhone": "09123123"
     }
   ],
   "tables": [
@@ -478,55 +248,56 @@
       "name": "Table 1",
       "status": "available",
       "capacity": 4,
-      "currentOrderId": 4
+      "currentOrderId": "0989"
     },
     {
       "id": "2",
       "name": "Table 2",
       "status": "empty",
       "capacity": 4,
-      "currentOrderId": null
+      "currentOrderId": "eb27"
     },
     {
       "id": "3",
       "name": "Table 3",
       "status": "empty",
       "capacity": 4,
-      "currentOrderId": null
+      "currentOrderId": "b2db"
     },
     {
       "id": "4",
       "name": "Table 4",
       "status": "empty",
-      "capacity": 6
+      "capacity": 6,
+      "currentOrderId": "d91a"
     },
     {
       "id": "5",
       "name": "Table 5",
-      "status": "available",
+      "status": "empty",
       "capacity": 6,
-      "currentOrderId": 6
+      "currentOrderId": "c038"
     },
     {
       "id": "6",
       "name": "Table 6",
       "status": "empty",
       "capacity": 6,
-      "currentOrderId": null
+      "currentOrderId": "8877"
     },
     {
       "id": "7",
       "name": "Table 7",
       "status": "empty",
       "capacity": 4,
-      "currentOrderId": null
+      "currentOrderId": "6f24"
     },
     {
       "id": "8",
       "name": "Table 8",
-      "status": "available",
+      "status": "empty",
       "capacity": 4,
-      "currentOrderId": 3
+      "currentOrderId": "aec9"
     },
     {
       "id": "9",
@@ -544,8 +315,9 @@
     {
       "id": "11",
       "name": "Table 11",
-      "status": "empty",
-      "capacity": 6
+      "status": "available",
+      "capacity": 6,
+      "currentOrderId": "f480"
     },
     {
       "id": "12",
@@ -569,194 +341,5 @@
   "earnings": {
     "today": 2500000,
     "yesterday": 1850000
-  },
-  "bills": [
-    {
-      "id": "1",
-      "orderId": 3,
-      "tableId": 8,
-      "total": 1060000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-06-29T10:05:00Z",
-      "paidAt": "2025-06-29T10:05:00Z"
-    },
-    {
-      "id": "2",
-      "orderId": 6,
-      "tableId": 5,
-      "total": 460000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-06-29T13:20:00Z",
-      "paidAt": "2025-06-29T13:20:00Z"
-    },
-    {
-      "id": "c7b5",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Card",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:41:38.511Z",
-      "paidAt": "2025-07-16T02:41:38.511Z"
-    },
-    {
-      "id": "f0ad",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:41:50.047Z",
-      "paidAt": "2025-07-16T02:41:50.047Z"
-    },
-    {
-      "id": "4ecc",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:41:58.000Z",
-      "paidAt": "2025-07-16T02:41:58.000Z"
-    },
-    {
-      "id": "5ff3",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:47:42.583Z",
-      "paidAt": "2025-07-16T02:47:42.583Z"
-    },
-    {
-      "id": "7dac",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:50:03.135Z",
-      "paidAt": "2025-07-16T02:50:03.135Z"
-    },
-    {
-      "id": "6f1c",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:50:26.903Z",
-      "paidAt": "2025-07-16T02:50:26.903Z"
-    },
-    {
-      "id": "a02e",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:51:21.327Z",
-      "paidAt": "2025-07-16T02:51:21.327Z"
-    },
-    {
-      "id": "8167",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:51:29.863Z",
-      "paidAt": "2025-07-16T02:51:29.863Z"
-    },
-    {
-      "id": "5d4a",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:51:46.783Z",
-      "paidAt": "2025-07-16T02:51:46.783Z"
-    },
-    {
-      "id": "f865",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:53:47.008Z",
-      "paidAt": "2025-07-16T02:53:47.008Z"
-    },
-    {
-      "id": "ae8b",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:53:54.943Z",
-      "paidAt": "2025-07-16T02:53:54.943Z"
-    },
-    {
-      "id": "794e",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T02:54:09.848Z",
-      "paidAt": "2025-07-16T02:54:09.848Z"
-    },
-    {
-      "id": "7f99",
-      "orderId": "ee42",
-      "tableId": "2",
-      "total": 1255000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T13:29:32.288Z",
-      "paidAt": "2025-07-16T13:29:32.288Z"
-    },
-    {
-      "id": "5fe0",
-      "orderId": "566e",
-      "tableId": "2",
-      "total": 1255000,
-      "paymentMethod": "QR",
-      "status": "Paid",
-      "createdAt": "2025-07-16T13:29:52.488Z",
-      "paidAt": "2025-07-16T13:29:52.488Z"
-    },
-    {
-      "id": "f551",
-      "orderId": "4",
-      "tableId": "2",
-      "total": 300000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T13:29:59.720Z",
-      "paidAt": "2025-07-16T13:29:59.720Z"
-    },
-    {
-      "id": "3955",
-      "orderId": "76d4",
-      "tableId": "3",
-      "total": 55000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "createdAt": "2025-07-16T13:30:07.568Z",
-      "paidAt": "2025-07-16T13:30:07.568Z"
-    }
-  ],
-  "customers": [
-    {
-      "id": "1",
-      "name": "Nguyễn Văn A",
-      "phone": "0987654321"
-    }
-  ]
+  }
 }
