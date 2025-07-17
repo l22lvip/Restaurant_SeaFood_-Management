@@ -10,14 +10,14 @@ export default function Orders() {
   const [menu, setMenu] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [newOrder, setNewOrder] = useState({
-    tableId: '',
-    userId: '',
-    items: [],
-    status: 'In Progress',
-    timestamp: new Date().toISOString(),
-  });
+  // const [showAddModal, setShowAddModal] = useState(false);
+  // const [newOrder, setNewOrder] = useState({
+  //   tableId: '',
+  //   userId: '',
+  //   items: [],
+  //   status: 'In Progress',
+  //   timestamp: new Date().toISOString(),
+  // });
   const [selectedMenuItemId, setSelectedMenuItemId] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [searchText, setSearchText] = useState("");
@@ -56,112 +56,112 @@ export default function Orders() {
     "Completed": "Hoàn tất",
   };
 
-  const handleStatusChange = (orderId, newStatus) => {
-    const updatedOrders = orders.map(order =>
-      order.id === orderId ? { ...order, status: newStatus } : order
-    );
-    setOrders(updatedOrders);
+  // const handleStatusChange = (orderId, newStatus) => {
+  //   const updatedOrders = orders.map(order =>
+  //     order.id === orderId ? { ...order, status: newStatus } : order
+  //   );
+  //   setOrders(updatedOrders);
 
-    axios.patch(`http://localhost:9999/orders/${orderId}`, {
-      status: newStatus
-    })
-      .then(() => {
-        console.log("Đã cập nhật trạng thái đơn hàng");
-      })
-      .catch((error) => {
-        console.error("Lỗi khi cập nhật trạng thái:", error);
-        setOrders(orders);
-      });
-  };
+  //   axios.patch(`http://localhost:9999/orders/${orderId}`, {
+  //     status: newStatus
+  //   })
+  //     .then(() => {
+  //       console.log("Đã cập nhật trạng thái đơn hàng");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Lỗi khi cập nhật trạng thái:", error);
+  //       setOrders(orders);
+  //     });
+  // };
 
   const handleView = (order) => {
     setSelectedOrder(order);
     setShowModal(true);
   };
 
-  const getNextOrderId = (orders) => {
-    const numericIds = orders.map(order => parseInt(order.id))
-      .filter(id => !isNaN(id));
+  // const getNextOrderId = (orders) => {
+  //   const numericIds = orders.map(order => parseInt(order.id))
+  //     .filter(id => !isNaN(id));
 
-    const maxId = Math.max(...numericIds, 0);
-    return (maxId + 1).toString();
-  };
+  //   const maxId = Math.max(...numericIds, 0);
+  //   return (maxId + 1).toString();
+  // };
 
-  const handleAddOrder = () => {
-    if (!newOrder.tableId || !newOrder.userId) {
-      alert("Vui lòng chọn bàn và nhân viên phục vụ");
-      return;
-    }
+  // const handleAddOrder = () => {
+  //   if (!newOrder.tableId || !newOrder.userId) {
+  //     alert("Vui lòng chọn bàn và nhân viên phục vụ");
+  //     return;
+  //   }
 
-    if (newOrder.items.length === 0) {
-      alert("Vui lòng thêm ít nhất một món vào đơn đặt bàn");
-      return;
-    }
+  //   if (newOrder.items.length === 0) {
+  //     alert("Vui lòng thêm ít nhất một món vào đơn đặt bàn");
+  //     return;
+  //   }
 
-    const newId = getNextOrderId(orders);
+  //   const newId = getNextOrderId(orders);
 
-    const fixedItems = newOrder.items.map(item => ({
-      menuItemId: Number(item.menuItemId),
-      quantity: Number(item.quantity),
-      price: Number(item.price),
-    }));
+  //   const fixedItems = newOrder.items.map(item => ({
+  //     menuItemId: Number(item.menuItemId),
+  //     quantity: Number(item.quantity),
+  //     price: Number(item.price),
+  //   }));
 
-    const total = fixedItems.reduce(
-      (sum, item) => sum + item.quantity * item.price, 0
-    );
+  //   const total = fixedItems.reduce(
+  //     (sum, item) => sum + item.quantity * item.price, 0
+  //   );
 
-    const fixedOrder = {
-      ...newOrder,
-      id: newId,
-      tableId: Number(newOrder.tableId),
-      userId: Number(newOrder.userId),
-      items: fixedItems,
-      total,
-      status: 'In Progress',
-      timestamp: new Date().toISOString(),
-    };
+  //   const fixedOrder = {
+  //     ...newOrder,
+  //     id: newId,
+  //     tableId: Number(newOrder.tableId),
+  //     userId: Number(newOrder.userId),
+  //     items: fixedItems,
+  //     total,
+  //     status: 'In Progress',
+  //     timestamp: new Date().toISOString(),
+  //   };
 
-    axios.post('http://localhost:9999/orders', fixedOrder)
-      .then(response => {
-        setOrders(prev => [...prev, response.data]);
-        setShowAddModal(false);
+  //   axios.post('http://localhost:9999/orders', fixedOrder)
+  //     .then(response => {
+  //       setOrders(prev => [...prev, response.data]);
+  //       setShowAddModal(false);
 
-      })
-      .catch(error => {
-        console.error("Lỗi khi thêm đơn hàng:", error);
-      });
-  };
+  //     })
+  //     .catch(error => {
+  //       console.error("Lỗi khi thêm đơn hàng:", error);
+  //     });
+  // };
 
-  const handleAddMenuItem = () => {
-    if (!selectedMenuItemId || selectedQuantity < 1) return;
+  // const handleAddMenuItem = () => {
+  //   if (!selectedMenuItemId || selectedQuantity < 1) return;
 
-    const menuItem = menu.find(m => Number(m.id) === Number(selectedMenuItemId));
-    if (!menuItem) return;
+  //   const menuItem = menu.find(m => Number(m.id) === Number(selectedMenuItemId));
+  //   if (!menuItem) return;
 
-    const newItem = {
-      menuItemId: Number(menuItem.id),
-      quantity: Number(selectedQuantity),
-      price: Number(menuItem.price)
-    };
+  //   const newItem = {
+  //     menuItemId: Number(menuItem.id),
+  //     quantity: Number(selectedQuantity),
+  //     price: Number(menuItem.price)
+  //   };
 
-    setNewOrder(prev => ({
-      ...prev,
-      items: [...prev.items, newItem]
-    }));
+  //   setNewOrder(prev => ({
+  //     ...prev,
+  //     items: [...prev.items, newItem]
+  //   }));
 
-    setSelectedMenuItemId('');
-    setSelectedQuantity(1);
-  };
+  //   setSelectedMenuItemId('');
+  //   setSelectedQuantity(1);
+  // };
 
-  const handleDelete = (orderId) => {
-    if (window.confirm("Bạn chắc chắn muốn xóa đơn hàng này?")) {
-      axios.delete(`http://localhost:9999/orders/${orderId}`)
-        .then(() => {
-          setOrders(prev => prev.filter(order => order.id !== orderId));
-        })
-        .catch(err => console.error("Xoá thất bại", err));
-    }
-  };
+  // const handleDelete = (orderId) => {
+  //   if (window.confirm("Bạn chắc chắn muốn xóa đơn hàng này?")) {
+  //     axios.delete(`http://localhost:9999/orders/${orderId}`)
+  //       .then(() => {
+  //         setOrders(prev => prev.filter(order => order.id !== orderId));
+  //       })
+  //       .catch(err => console.error("Xoá thất bại", err));
+  //   }
+  // };
 
   const getFilteredAndSortedOrders = () => {
     let result = [...orders];
@@ -205,7 +205,7 @@ export default function Orders() {
     <>
       <Container className="orders-container py-4">
         <div className="d-flex justify-content-between align-items-center mb-4 gap-3">
-          <h2 className="orders-title">🧾 Đơn Đặt Bàn</h2>
+          <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
 
           <div className="d-flex gap-2">
             <Form.Control
@@ -227,7 +227,7 @@ export default function Orders() {
             </Form.Select>
           </div>
 
-          <Button variant="custom-white" className="add-order-btn" onClick={() => setShowAddModal(true)}>➕ Thêm Đơn Mới</Button>
+          {/* <Button variant="custom-white" className="add-order-btn" onClick={() => setShowAddModal(true)}>➕ Thêm Đơn Mới</Button> */}
         </div>
 
         <Row>
@@ -243,8 +243,8 @@ export default function Orders() {
                       <th>Nhân viên gọi món</th>
                       <th>Chi tiết món</th>
                       <th>Tổng tiền</th>
-                      <th>Trạng thái</th>
-                      <th>Hành động</th>
+                      {/* <th>Trạng thái</th> */}
+                      <th>Xem chi tiết</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -278,7 +278,7 @@ export default function Orders() {
                             </div>
                           </td>
                           <td><strong>{order.total.toLocaleString("vi-VN")}đ</strong></td>
-                          <td>
+                          {/* <td>
                             <Form.Select
                               size="sm"
                               value={status}
@@ -293,7 +293,7 @@ export default function Orders() {
                               ))}
                             </Form.Select>
                             <Badge bg={statusColors[status]} className="status-badge mt-1">{statusLabels[status]}</Badge>
-                          </td>
+                          </td> */}
 
                           <td>
                             <div className="d-flex gap-2">
@@ -304,13 +304,13 @@ export default function Orders() {
                               >
                                 <i className="fa-solid fa-eye"></i>
                               </Button>
-                              <Button
+                              {/* <Button
                                 variant="outline-danger"
                                 size="sm"
                                 onClick={() => handleDelete(order.id)}
                               >
                                 <i className="fa-solid fa-trash"></i>
-                              </Button>
+                              </Button> */}
                             </div>
                           </td>
                         </tr>
@@ -322,7 +322,7 @@ export default function Orders() {
             </Card>
           </Col>
 
-          <Col sm={2} md={2} lg={2}>
+          {/* <Col sm={2} md={2} lg={2}>
             <Card>
               <Card.Body>
                 <Card.Title>Lọc theo trạng thái</Card.Title>
@@ -343,7 +343,7 @@ export default function Orders() {
                 </Form>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
 
         {/* Modal view order details */}
@@ -400,7 +400,7 @@ export default function Orders() {
         </Modal>
 
         {/* Modal add new order */}
-        <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
+        {/* <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Thêm đơn đặt bàn mới</Modal.Title>
           </Modal.Header>
@@ -464,10 +464,10 @@ export default function Orders() {
                 <Button variant="success" style={{ width: "80px", height: "40px", marginBottom: "15px" }} onClick={handleAddMenuItem}>Thêm</Button>
               </Col>
             </Row>
-          </Modal.Body>
+          </Modal.Body> */}
 
-          {/* Danh sách món đã chọn */}
-          <Container>
+        {/* Danh sách món đã chọn */}
+        {/* <Container>
             {newOrder.items.length > 0 && (
               <Table size="sm" bordered className="mt-3">
                 <thead>
@@ -509,7 +509,7 @@ export default function Orders() {
             <Button variant="secondary" onClick={() => setShowAddModal(false)}>Hủy</Button>
             <Button variant="primary" onClick={handleAddOrder}>Lưu</Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
 
       </Container >
     </>
