@@ -22,11 +22,11 @@ const ClientHeader = () => {
                             </Nav.Link>
                         ))}
                         {user?.role && (
-                           <Button variant="outline-danger" onClick={() => navigate('/staff')} className="rounded-5">
+                            <Button variant="outline-danger" onClick={() => navigate('/staff')} className="rounded-5">
                                 Quay lại trang làm việc
                             </Button>
                         )}
-                        {!user?.role  && (
+                        {!user?.role && (
                             <Button variant="outline-danger" onClick={() => navigate('/login')} className="rounded-5">
                                 Đăng nhập
                             </Button>
