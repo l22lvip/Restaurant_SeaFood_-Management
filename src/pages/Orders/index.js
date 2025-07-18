@@ -6,6 +6,7 @@ import './orders.css';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
+  const [bills, setBills] = useState([]);
   const [users, setUsers] = useState([]);
   const [menu, setMenu] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -27,6 +28,15 @@ export default function Orders() {
   useEffect(() => {
     axios.get("http://localhost:9999/orders")
       .then(result => setOrders(result.data))
+      .catch(error => console.error(error))
+  }, [])
+
+  useEffect(() => {
+    axios.get("http://localhost:9999/bills")
+      .then(result => {
+        const paidBills = result.data.filter(bill => bill.status === "Paid");
+        setBills(paidBills);
+      })
       .catch(error => console.error(error))
   }, [])
 
@@ -201,84 +211,237 @@ export default function Orders() {
     return result;
   };
 
+  const filteredAndSortedBills = () => {
+    let result = [...bills];
+
+    // Filter by status
+    // const hasAnyStatusFilter = Object.values(statusFilter).some(v => v);
+    // if (hasAnyStatusFilter) {
+    //   result = result.filter(order => statusFilter[order.status]);
+    // }
+
+    // Search
+    if (searchText.trim() !== "") {
+      const lowerSearch = searchText.toLowerCase();
+      result = result.filter(bill => {
+        const userName = users.find(u => u.id == bill.userId)?.name?.toLowerCase() || "";
+        const orderTime = new Date(bill.timestamp).toLocaleString("vi-VN", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        return (
+          userName.includes(lowerSearch) ||
+          orderTime.includes(lowerSearch)
+        );
+      });
+    }
+
+    // Sort
+    result.sort((a, b) => {
+      const timeA = new Date(a.timestamp);
+      const timeB = new Date(b.timestamp);
+      return sortOrder == "newest" ? timeB - timeA : timeA - timeB;
+    });
+
+    return result;
+  };
+
   return (
     <>
       <Container className="orders-container py-4">
-        <div className="d-flex justify-content-between align-items-center mb-4 gap-3">
-          <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
+        <div className="d-flex justify-content-between align-items-center mb-4 gap-3 w-100">
+          <div className="flex-fill">
+            <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
+          </div>
 
-          <div className="d-flex gap-2">
+          <div className="flex-fill d-flex justify-content-center">
             <Form.Control
-              size="sm"
               placeholder="Tìm kiếm..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              style={{ width: 350, height: 35 }}
+              style={{ width: 450, height: 40 }}
             />
-
-            <Form.Select
-              size="sm"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              style={{ width: 200, height: 35 }}
-            >
-              <option value="newest">Mới nhất</option>
-              <option value="oldest">Cũ nhất</option>
-            </Form.Select>
           </div>
 
-          {/* <Button variant="custom-white" className="add-order-btn" onClick={() => setShowAddModal(true)}>➕ Thêm Đơn Mới</Button> */}
+          <div className="flex-fill d-flex justify-content-end">
+            <Button variant='dark'>
+              Export to PDF/Excel
+            </Button>
+          </div>
         </div>
 
         <Row>
-          <Col sm={10} md={10} lg={10}>
-            <Card className="orders-card shadow-sm">
-              <Card.Body className="p-0">
-                <Table responsive hover className="mb-0 order-table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Thời gian</th>
-                      <th>Bàn</th>
-                      <th>Nhân viên gọi món</th>
-                      <th>Chi tiết món</th>
-                      <th>Tổng tiền</th>
-                      {/* <th>Trạng thái</th> */}
-                      <th>Xem chi tiết</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {getFilteredAndSortedOrders().map((order) => {
-                      const status = order.status;
-                      return (
-                        <tr key={order.id}>
-                          <td>{order.id}</td>
-                          <td>
-                            {new Date(order.timestamp).toLocaleString("vi-VN", {
-                              day: '2-digit',
-                              month: '2-digit',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                            })}
-                          </td>
-                          <td><span className="table-pill">#{order.tableId}</span></td>
-                          <td>{users.find((u) => u.id == order.userId)?.name || "?"}</td>
-                          <td>
-                            <div className="order-details">
-                              {order.items.map((item, idx) => (
-                                <div className="detail-item" key={idx}>
-                                  <div className="item-name">
-                                    {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
-                                  </div>
-                                  <div className="item-info">
-                                    SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
-                                  </div>
+
+          {/* Filter */}
+          <Col md={3} lg={3}>
+            <Card
+              style={{
+                position: "sticky",
+                top: 80,
+                zIndex: 10,
+                backgroundColor: "#f8f9fa", // màu nền sáng
+                boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                border: "none",
+              }}
+            >
+              <Card.Body>
+                <h5 className="fw-bold text-center mb-4">🔍 Bộ lọc tìm kiếm</h5>
+
+                {/* Từ khóa */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Từ khóa</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    placeholder="Tìm món / bàn / nhân viên..."
+                  // value={searchText}
+                  // onChange={(e) => setSearchText(e.target.value)}
+                  />
+                </Form.Group>
+
+                {/* Trạng thái đơn */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Trạng thái đơn</Form.Label>
+                  <Form.Select
+                    size="sm"
+                  // value={statusFilter}
+                  // onChange={(e) => setStatusFilter(e.target.value)}
+                  >
+                    <option value="">Tất cả</option>
+                    <option value="paid">Đã thanh toán</option>
+                    <option value="unpaid">Chưa thanh toán</option>
+                  </Form.Select>
+                </Form.Group>
+
+                {/* Khoảng thời gian */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Thời gian</Form.Label>
+                  <Form.Control
+                    type="date"
+                    size="sm"
+                  // value={startDate}
+                  // onChange={(e) => setStartDate(e.target.value)}
+                  />
+                  <div className="text-center my-2">đến</div>
+                  <Form.Control
+                    type="date"
+                    size="sm"
+                  // value={endDate}
+                  // onChange={(e) => setEndDate(e.target.value)}
+                  />
+                </Form.Group>
+
+                {/* Lọc theo bàn */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Bàn</Form.Label>
+                  <Form.Select
+                    size="sm"
+                  // value={tableFilter}
+                  // onChange={(e) => setTableFilter(e.target.value)}
+                  >
+                    <option value="">Tất cả</option>
+                    {[1, 2, 3, 4, 5].map(num => (
+                      <option key={num} value={num}>Bàn #{num}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+
+                {/* Button áp dụng */}
+                <div className="d-grid">
+                  <Button variant="dark" size="sm">
+                    Áp dụng lọc
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+
+
+          {/* Sort + Table */}
+          <Col md={9} lg={9}>
+
+            {/* Sort Option */}
+            <Row className="mb-3">
+              <Col sm={12}>
+                <Card className="w-100 px-4 py-3" style={{ backgroundColor: "#f8f9fa" }}>
+                  <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <Form.Select
+                      value={sortOrder}
+                      onChange={(e) => setSortOrder(e.target.value)}
+                      style={{ width: 200, height: 35 }}
+                    >
+                      <option value="newest">Mới nhất</option>
+                      <option value="oldest">Cũ nhất</option>
+                    </Form.Select>
+
+                    <Form.Select style={{ width: 200 }}>
+                      <option>Trạng thái</option>
+                      <option value="paid">Đã thanh toán</option>
+                      <option value="unpaid">Chưa thanh toán</option>
+                    </Form.Select>
+
+                    <Button variant="dark">Áp dụng</Button>
+                    <span style={{ fontWeight: 500 }}>Tổng số đơn: 10</span>
+                  </div>
+                </Card>
+              </Col>
+            </Row>
+
+
+
+            {/* Table */}
+            <Row>
+              <Col sm={12} md={12} lg={12}>
+                <Card className="orders-card shadow-sm">
+                  <Card.Body className="p-0">
+                    <Table responsive hover className="mb-0 order-table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Thời gian</th>
+                          <th>Bàn</th>
+                          <th>Nhân viên gọi món</th>
+                          <th>Chi tiết món</th>
+                          <th>Tổng tiền</th>
+                          {/* <th>Trạng thái</th> */}
+                          <th>Xem chi tiết</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredAndSortedBills().map((bill) => {
+                          const order = orders.find(o => o.id == bill.orderId);
+
+                          return (
+                            <tr key={bill.id}>
+                              <td>{bill.id}</td>
+                              <td>
+                                {new Date(bill.timestamp).toLocaleString("vi-VN", {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                })}
+                              </td>
+                              <td><span className="table-pill">#{bill.tableId}</span></td>
+                              <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td>
+                              <td>
+                                <div className="order-details">
+                                  {order?.items.map((item, idx) => (
+                                    <div className="detail-item" key={idx}>
+                                      <div className="item-name">
+                                        {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
+                                      </div>
+                                      <div className="item-info">
+                                        SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
+                                      </div>
+                                    </div>
+                                  ))}
                                 </div>
-                              ))}
-                            </div>
-                          </td>
-                          <td><strong>{order.total.toLocaleString("vi-VN")}đ</strong></td>
-                          {/* <td>
+                              </td>
+                              <td><strong>{bill.total.toLocaleString("vi-VN")}đ</strong></td>
+                              {/* <td>
                             <Form.Select
                               size="sm"
                               value={status}
@@ -295,34 +458,34 @@ export default function Orders() {
                             <Badge bg={statusColors[status]} className="status-badge mt-1">{statusLabels[status]}</Badge>
                           </td> */}
 
-                          <td>
-                            <div className="d-flex gap-2">
-                              <Button
-                                variant="outline-info"
-                                size="sm"
-                                onClick={() => handleView(order)}
-                              >
-                                <i className="fa-solid fa-eye"></i>
-                              </Button>
-                              {/* <Button
+                              <td>
+                                <div className="d-flex gap-2">
+                                  <Button
+                                    variant="outline-info"
+                                    size="sm"
+                                    onClick={() => handleView(order)}
+                                  >
+                                    <i className="fa-solid fa-eye"></i>
+                                  </Button>
+                                  {/* <Button
                                 variant="outline-danger"
                                 size="sm"
                                 onClick={() => handleDelete(order.id)}
                               >
                                 <i className="fa-solid fa-trash"></i>
                               </Button> */}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
-          </Col>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </Table>
+                  </Card.Body>
+                </Card>
+              </Col>
 
-          {/* <Col sm={2} md={2} lg={2}>
+              {/* <Col sm={2} md={2} lg={2}>
             <Card>
               <Card.Body>
                 <Card.Title>Lọc theo trạng thái</Card.Title>
@@ -344,7 +507,12 @@ export default function Orders() {
               </Card.Body>
             </Card>
           </Col> */}
+            </Row>
+
+          </Col>
         </Row>
+
+
 
         {/* Modal view order details */}
         <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
@@ -360,7 +528,7 @@ export default function Orders() {
                 <p><strong>Nhân viên gọi món: </strong> {
                   users.find(u => u.id == selectedOrder.userId)?.name || "?"
                 }</p>
-                <p><strong>Trạng thái:</strong> {statusLabels[selectedOrder.status]}</p>
+                {/* <p><strong>Trạng thái:</strong> {statusLabels[selectedOrder.status]}</p> */}
                 <hr />
                 <h5>📋 Chi tiết món</h5>
                 <Table striped bordered hover size="sm">
@@ -374,19 +542,28 @@ export default function Orders() {
                     </tr>
                   </thead>
                   <tbody>
-                    {selectedOrder.items.map((item, index) => {
-                      const menuItem = menu.find(i => i.id == item.menuItemId);
-                      const totalItemPrice = item.quantity * item.price;
-                      return (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{menuItem?.name}</td>
-                          <td>{item.quantity}</td>
-                          <td>{item.price.toLocaleString("vi-VN")}đ</td>
-                          <td>{totalItemPrice.toLocaleString("vi-VN")}đ</td>
-                        </tr>
+                    {(() => {
+                      const order = orders.find(o => o.id === selectedOrder.orderId);
+                      if (!order) return (
+                        <tr><td colSpan={5}>Không tìm thấy đơn hàng</td></tr>
                       );
+
+                      return order.items.map((item, index) => {
+                        const menuItem = menu.find(i => i.id == item.menuItemId);
+                        const totalItemPrice = item.quantity * item.price;
+                        return (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{menuItem?.name}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.price.toLocaleString("vi-VN")}đ</td>
+                            <td>{totalItemPrice.toLocaleString("vi-VN")}đ</td>
+                          </tr>
+                        );
+                      })
                     })}
+
+
                   </tbody>
                 </Table>
                 <p className="mt-3"><strong>Tổng tiền: </strong> {selectedOrder.total.toLocaleString("vi-VN")}đ</p>
