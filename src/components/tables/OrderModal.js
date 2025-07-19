@@ -63,13 +63,14 @@ const OrderModal = ({ show, handleClose, table, onOrderUpdate }) => {
   };
 
   const handleSubmitOrder = async () => {
-    const itemsToSubmit = currentOrder.items.map(({ menuItemId, quantity, price }) => ({ menuItemId, quantity, price }));
+    const itemsToSubmit = currentOrder.items.map(({ menuItemId, quantity, price, name }) => ({ menuItemId, quantity, price, name }));
     try {
       if (table.status === 'empty') {
         const newOrder = {
           tableId: table.id,
           userId: 1,
           customerId: null,
+          name: menuItems.find(item => item.id === table.currentOrderId)?.name || 'Unknown',
           items: itemsToSubmit,
           total: currentOrder.total,
           status: 'In Progress',
