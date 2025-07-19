@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Table, Form, Badge, Card, Modal } from "react-bootstrap";
+import { Container, Row, Col, Button, Table, Form, Badge, Card, Modal, FormGroup } from "react-bootstrap";
 import { } from "react-router-dom";
 import axios from 'axios';
 import './orders.css';
@@ -11,19 +11,18 @@ export default function Orders() {
   const [menu, setMenu] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  // const [showAddModal, setShowAddModal] = useState(false);
-  // const [newOrder, setNewOrder] = useState({
-  //   tableId: '',
-  //   userId: '',
-  //   items: [],
-  //   status: 'In Progress',
-  //   timestamp: new Date().toISOString(),
-  // });
+
   const [selectedMenuItemId, setSelectedMenuItemId] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const [selectedStaff, setSelectedStaff] = useState("");
   const [searchText, setSearchText] = useState("");
   const [sortOrder, setSortOrder] = useState("newest");
   const [statusFilter, setStatusFilter] = useState({});
+
+  const [quickOption, setQuickOption] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:9999/orders")
@@ -66,112 +65,10 @@ export default function Orders() {
     "Completed": "Hoàn tất",
   };
 
-  // const handleStatusChange = (orderId, newStatus) => {
-  //   const updatedOrders = orders.map(order =>
-  //     order.id === orderId ? { ...order, status: newStatus } : order
-  //   );
-  //   setOrders(updatedOrders);
-
-  //   axios.patch(`http://localhost:9999/orders/${orderId}`, {
-  //     status: newStatus
-  //   })
-  //     .then(() => {
-  //       console.log("Đã cập nhật trạng thái đơn hàng");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Lỗi khi cập nhật trạng thái:", error);
-  //       setOrders(orders);
-  //     });
-  // };
-
   const handleView = (order) => {
     setSelectedOrder(order);
     setShowModal(true);
   };
-
-  // const getNextOrderId = (orders) => {
-  //   const numericIds = orders.map(order => parseInt(order.id))
-  //     .filter(id => !isNaN(id));
-
-  //   const maxId = Math.max(...numericIds, 0);
-  //   return (maxId + 1).toString();
-  // };
-
-  // const handleAddOrder = () => {
-  //   if (!newOrder.tableId || !newOrder.userId) {
-  //     alert("Vui lòng chọn bàn và nhân viên phục vụ");
-  //     return;
-  //   }
-
-  //   if (newOrder.items.length === 0) {
-  //     alert("Vui lòng thêm ít nhất một món vào đơn đặt bàn");
-  //     return;
-  //   }
-
-  //   const newId = getNextOrderId(orders);
-
-  //   const fixedItems = newOrder.items.map(item => ({
-  //     menuItemId: Number(item.menuItemId),
-  //     quantity: Number(item.quantity),
-  //     price: Number(item.price),
-  //   }));
-
-  //   const total = fixedItems.reduce(
-  //     (sum, item) => sum + item.quantity * item.price, 0
-  //   );
-
-  //   const fixedOrder = {
-  //     ...newOrder,
-  //     id: newId,
-  //     tableId: Number(newOrder.tableId),
-  //     userId: Number(newOrder.userId),
-  //     items: fixedItems,
-  //     total,
-  //     status: 'In Progress',
-  //     timestamp: new Date().toISOString(),
-  //   };
-
-  //   axios.post('http://localhost:9999/orders', fixedOrder)
-  //     .then(response => {
-  //       setOrders(prev => [...prev, response.data]);
-  //       setShowAddModal(false);
-
-  //     })
-  //     .catch(error => {
-  //       console.error("Lỗi khi thêm đơn hàng:", error);
-  //     });
-  // };
-
-  // const handleAddMenuItem = () => {
-  //   if (!selectedMenuItemId || selectedQuantity < 1) return;
-
-  //   const menuItem = menu.find(m => Number(m.id) === Number(selectedMenuItemId));
-  //   if (!menuItem) return;
-
-  //   const newItem = {
-  //     menuItemId: Number(menuItem.id),
-  //     quantity: Number(selectedQuantity),
-  //     price: Number(menuItem.price)
-  //   };
-
-  //   setNewOrder(prev => ({
-  //     ...prev,
-  //     items: [...prev.items, newItem]
-  //   }));
-
-  //   setSelectedMenuItemId('');
-  //   setSelectedQuantity(1);
-  // };
-
-  // const handleDelete = (orderId) => {
-  //   if (window.confirm("Bạn chắc chắn muốn xóa đơn hàng này?")) {
-  //     axios.delete(`http://localhost:9999/orders/${orderId}`)
-  //       .then(() => {
-  //         setOrders(prev => prev.filter(order => order.id !== orderId));
-  //       })
-  //       .catch(err => console.error("Xoá thất bại", err));
-  //   }
-  // };
 
   const getFilteredAndSortedOrders = () => {
     let result = [...orders];
@@ -214,17 +111,19 @@ export default function Orders() {
   const filteredAndSortedBills = () => {
     let result = [...bills];
 
-    // Filter by status
-    // const hasAnyStatusFilter = Object.values(statusFilter).some(v => v);
-    // if (hasAnyStatusFilter) {
-    //   result = result.filter(order => statusFilter[order.status]);
-    // }
-
     // Search
     if (searchText.trim() !== "") {
       const lowerSearch = searchText.toLowerCase();
+
       result = result.filter(bill => {
         const userName = users.find(u => u.id == bill.userId)?.name?.toLowerCase() || "";
+        const order = orders.find(o => o.id == bill.orderId);
+
+        const menuItemNames = order?.items.map(item => {
+          const menuItem = menu.find(m => m.id == item.menuItemId);
+          return menuItem?.name?.toLowerCase() || "";
+        }) || [];
+
         const orderTime = new Date(bill.timestamp).toLocaleString("vi-VN", {
           day: "2-digit",
           month: "2-digit",
@@ -234,10 +133,24 @@ export default function Orders() {
 
         return (
           userName.includes(lowerSearch) ||
-          orderTime.includes(lowerSearch)
+          orderTime.includes(lowerSearch) ||
+          menuItemNames.some(name => name.includes(lowerSearch))
         );
       });
     }
+
+    // Filter by payment method + Staff
+    result = result.filter(bill => {
+      const matchPaymentMethod =
+        selectedPaymentMethod === "" ||
+        (selectedPaymentMethod === bill.paymentMethod);
+
+      const matchStaff =
+        selectedStaff === "" ||
+        (parseInt(selectedStaff) === bill.userId)
+
+      return matchPaymentMethod && matchStaff;
+    })
 
     // Sort
     result.sort((a, b) => {
@@ -249,22 +162,83 @@ export default function Orders() {
     return result;
   };
 
+  const getToday = () => new Date().toISOString().slice(0, 10);
+
+  const handleQuickOption = (value) => {
+    setQuickOption(value);
+    const today = new Date();
+    let from = "", to = "";
+
+    switch (value) {
+      case "today":
+        from = to = getToday();
+        break;
+      case "yesterday":
+        const y = new Date(today);
+        y.setDate(y.getDate() - 1);
+        from = to = y.toISOString().slice(0, 10);
+        break;
+      case "thisWeek":
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - today.getDay());
+        from = startOfWeek.toISOString().slice(0, 10);
+        to = getToday();
+        break;
+      case "thisMonth":
+        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        from = startOfMonth.toISOString().slice(0, 10);
+        to = getToday();
+        break;
+      case "singleDay":
+      case "range":
+        from = to = "";
+        break;
+      case "":
+        from = to = "";
+        break;
+      default:
+        break;
+    }
+
+    setFromDate(from);
+    setToDate(to);
+  };
+
+  const handleApply = () => {
+    let filtered = [...filteredAndSortedBills];
+
+    if (quickOption === "singleDay" && fromDate) {
+      filtered = filtered.filter(order => order.date === fromDate);
+    } else if (quickOption === "range" && fromDate && toDate) {
+      filtered = filtered.filter(order =>
+        order.date >= fromDate && order.date <= toDate
+      );
+    } else if (fromDate && toDate) {
+      filtered = filtered.filter(order =>
+        order.date >= fromDate && order.date <= toDate
+      );
+    }
+  }
+
+  useEffect(() => {
+    handleQuickOption(quickOption); // tự động khởi tạo ngày hôm nay
+  }, []);
+
+  const paymentMethodMap = {
+    Cash: "Tiền mặt",
+    Card: "Thẻ",
+    Banking: "Chuyển khoản"
+  };
+
+
   return (
     <>
       <Container className="orders-container py-4">
-        <div className="d-flex justify-content-between align-items-center mb-4 gap-3 w-100">
+        <div className="d-flex justify-content-between align-items-center mb-2 gap-3 w-100">
           <div className="flex-fill">
             <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
           </div>
 
-          <div className="flex-fill d-flex justify-content-center">
-            <Form.Control
-              placeholder="Tìm kiếm..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              style={{ width: 450, height: 40 }}
-            />
-          </div>
 
           <div className="flex-fill d-flex justify-content-end">
             <Button variant='dark'>
@@ -276,120 +250,146 @@ export default function Orders() {
         <Row>
 
           {/* Filter */}
-          <Col md={3} lg={3}>
+          <Col sm={2} md={2} lg={2}>
             <Card
               style={{
                 position: "sticky",
                 top: 80,
                 zIndex: 10,
-                backgroundColor: "#f8f9fa", // màu nền sáng
+                backgroundColor: "#f8f9fa",
                 boxShadow: "0 0 10px rgba(0,0,0,0.05)",
                 border: "none",
               }}
             >
               <Card.Body>
-                <h5 className="fw-bold text-center mb-4">🔍 Bộ lọc tìm kiếm</h5>
+                <h5 className="fw-bold text-center mb-4">Bộ lọc tìm kiếm</h5>
 
-                {/* Từ khóa */}
+                {/* Quick Option */}
                 <Form.Group className="mb-3">
-                  <Form.Label>Từ khóa</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    placeholder="Tìm món / bàn / nhân viên..."
-                  // value={searchText}
-                  // onChange={(e) => setSearchText(e.target.value)}
-                  />
-                </Form.Group>
-
-                {/* Trạng thái đơn */}
-                <Form.Group className="mb-3">
-                  <Form.Label>Trạng thái đơn</Form.Label>
+                  <Form.Label>Lọc theo thời gian</Form.Label>
                   <Form.Select
-                    size="sm"
-                  // value={statusFilter}
-                  // onChange={(e) => setStatusFilter(e.target.value)}
+                    size="md"
+                    value={quickOption}
+                    onChange={(e) => handleQuickOption(e.target.value)}
                   >
                     <option value="">Tất cả</option>
-                    <option value="paid">Đã thanh toán</option>
-                    <option value="unpaid">Chưa thanh toán</option>
+                    <option value="today">Hôm nay</option>
+                    <option value="yesterday">Hôm qua</option>
+                    <option value="thisWeek">Tuần này</option>
+                    <option value="thisMonth">Tháng này</option>
+                    <option value="singleDay">Ngày cụ thể</option>
+                    <option value="range">Khoảng thời gian</option>
+                  </Form.Select>
+
+                  {/* Input ngày tương ứng */}
+                  <div className="mt-2">
+                    {quickOption === "singleDay" && (
+                      <Form.Control
+                        type="date"
+                        size="sm"
+                        value={fromDate}
+                        onChange={(e) => setFromDate(e.target.value)}
+                      />
+                    )}
+
+                    {quickOption === "range" && (
+                      <div className="d-flex flex-column gap-2">
+                        <Form.Control
+                          type="date"
+                          size="sm"
+                          value={fromDate}
+                          onChange={(e) => setFromDate(e.target.value)}
+                        />
+                        <Form.Control
+                          type="date"
+                          size="sm"
+                          value={toDate}
+                          onChange={(e) => setToDate(e.target.value)}
+                        />
+                      </div>
+                    )}
+
+                  </div>
+                </Form.Group>
+
+                {/* Payment Method */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Phương thức thanh toán</Form.Label>
+                  <Form.Select
+                    size="md"
+                    value={selectedPaymentMethod}
+                    onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                  >
+                    <option value="">Tất cả</option>
+                    <option value="Card">Thẻ</option>
+                    <option value="Cash">Tiền mặt</option>
+                    <option value="Banking">Chuyển khoản ngân hàng</option>
                   </Form.Select>
                 </Form.Group>
 
-                {/* Khoảng thời gian */}
-                <Form.Group className="mb-3">
-                  <Form.Label>Thời gian</Form.Label>
-                  <Form.Control
-                    type="date"
-                    size="sm"
-                  // value={startDate}
-                  // onChange={(e) => setStartDate(e.target.value)}
-                  />
-                  <div className="text-center my-2">đến</div>
-                  <Form.Control
-                    type="date"
-                    size="sm"
-                  // value={endDate}
-                  // onChange={(e) => setEndDate(e.target.value)}
-                  />
-                </Form.Group>
 
-                {/* Lọc theo bàn */}
+                {/* Staff */}
                 <Form.Group className="mb-3">
-                  <Form.Label>Bàn</Form.Label>
+                  <Form.Label>Nhân viên</Form.Label>
                   <Form.Select
-                    size="sm"
-                  // value={tableFilter}
-                  // onChange={(e) => setTableFilter(e.target.value)}
+                    size="md"
+                    value={selectedStaff}
+                    onChange={(e) => setSelectedStaff(e.target.value)}
                   >
                     <option value="">Tất cả</option>
-                    {[1, 2, 3, 4, 5].map(num => (
-                      <option key={num} value={num}>Bàn #{num}</option>
-                    ))}
+
+                    {users.filter(user => user.role === 'waiter')
+                      .map((user) => (
+                        <option key={user.id} value={user.id}>{user.name}</option>
+                      ))}
                   </Form.Select>
                 </Form.Group>
 
-                {/* Button áp dụng */}
-                <div className="d-grid">
-                  <Button variant="dark" size="sm">
-                    Áp dụng lọc
-                  </Button>
-                </div>
               </Card.Body>
             </Card>
           </Col>
 
 
           {/* Sort + Table */}
-          <Col md={9} lg={9}>
+          <Col sm={10} md={10} lg={10}>
 
             {/* Sort Option */}
             <Row className="mb-3">
               <Col sm={12}>
-                <Card className="w-100 px-4 py-3" style={{ backgroundColor: "#f8f9fa" }}>
+                <Card
+                  className="w-100 px-4 py-3"
+                  style={{
+                    backgroundColor: "#f8f9fa",
+                    border: "none",
+                  }}>
                   <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                    <Form.Select
-                      value={sortOrder}
-                      onChange={(e) => setSortOrder(e.target.value)}
-                      style={{ width: 200, height: 35 }}
-                    >
-                      <option value="newest">Mới nhất</option>
-                      <option value="oldest">Cũ nhất</option>
-                    </Form.Select>
+                    <Form.Group>
+                      <Form.Select
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                        style={{ width: 200, height: 35 }}
+                      >
+                        <option value="newest">Mới nhất</option>
+                        <option value="oldest">Cũ nhất</option>
+                      </Form.Select>
+                    </Form.Group>
 
-                    <Form.Select style={{ width: 200 }}>
-                      <option>Trạng thái</option>
-                      <option value="paid">Đã thanh toán</option>
-                      <option value="unpaid">Chưa thanh toán</option>
-                    </Form.Select>
+                    <div className="flex-fill d-flex justify-content-center">
+                      <Form.Control
+                        placeholder="Tìm kiếm..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        style={{ width: 450, height: 40 }}
+                      />
+                    </div>
 
-                    <Button variant="dark">Áp dụng</Button>
-                    <span style={{ fontWeight: 500 }}>Tổng số đơn: 10</span>
+                    <div className="text-nowrap" style={{ fontWeight: 500 }}>
+                      Tổng số đơn: 10
+                    </div>
                   </div>
                 </Card>
               </Col>
             </Row>
-
-
 
             {/* Table */}
             <Row>
@@ -404,9 +404,9 @@ export default function Orders() {
                           <th>Bàn</th>
                           <th>Nhân viên gọi món</th>
                           <th>Chi tiết món</th>
-                          <th>Tổng tiền</th>
-                          {/* <th>Trạng thái</th> */}
-                          <th>Xem chi tiết</th>
+                          <th className='text-center'>Tổng tiền</th>
+                          <th className='text-center'>Thanh toán</th>
+                          <th className='text-center'>Xem chi tiết</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -440,40 +440,21 @@ export default function Orders() {
                                   ))}
                                 </div>
                               </td>
-                              <td><strong>{bill.total.toLocaleString("vi-VN")}đ</strong></td>
-                              {/* <td>
-                            <Form.Select
-                              size="sm"
-                              value={status}
-                              onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                              className="status-select"
-                              style={{ marginTop: "28px" }}
-                            >
-                              {Object.keys(statusLabels).map((statusOption) => (
-                                <option key={statusOption} value={statusOption}>
-                                  {statusLabels[statusOption]}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Badge bg={statusColors[status]} className="status-badge mt-1">{statusLabels[status]}</Badge>
-                          </td> */}
 
-                              <td>
-                                <div className="d-flex gap-2">
+                              <td className='text-center'><strong>{bill.total.toLocaleString("vi-VN")}đ</strong></td>
+
+                              <td className="text-center">{paymentMethodMap[bill.paymentMethod]}</td>
+
+                              <td className="text-center">
+                                <div className="d-flex justify-content-center">
                                   <Button
                                     variant="outline-info"
-                                    size="sm"
-                                    onClick={() => handleView(order)}
+                                    onClick={() => handleView(bill)}
+                                    className="d-flex justify-content-center align-items-center p-0"
+                                    style={{ width: '36px', height: '36px' }}
                                   >
                                     <i className="fa-solid fa-eye"></i>
                                   </Button>
-                                  {/* <Button
-                                variant="outline-danger"
-                                size="sm"
-                                onClick={() => handleDelete(order.id)}
-                              >
-                                <i className="fa-solid fa-trash"></i>
-                              </Button> */}
                                 </div>
                               </td>
                             </tr>
@@ -484,35 +465,9 @@ export default function Orders() {
                   </Card.Body>
                 </Card>
               </Col>
-
-              {/* <Col sm={2} md={2} lg={2}>
-            <Card>
-              <Card.Body>
-                <Card.Title>Lọc theo trạng thái</Card.Title>
-                <Form>
-                  {Object.keys(statusLabels).map(status => (
-                    <Form.Check
-                      key={status}
-                      type="checkbox"
-                      label={statusLabels[status]}
-                      className="mb-2"
-                      checked={statusFilter[status]}
-                      onChange={(e) => setStatusFilter(prev => ({
-                        ...prev,
-                        [status]: e.target.checked,
-                      }))}
-                    />
-                  ))}
-                </Form>
-              </Card.Body>
-            </Card>
-          </Col> */}
             </Row>
-
           </Col>
         </Row>
-
-
 
         {/* Modal view order details */}
         <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
@@ -523,14 +478,27 @@ export default function Orders() {
           <Modal.Body>
             {selectedOrder && (
               <>
-                <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
-                <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
-                <p><strong>Nhân viên gọi món: </strong> {
-                  users.find(u => u.id == selectedOrder.userId)?.name || "?"
-                }</p>
-                {/* <p><strong>Trạng thái:</strong> {statusLabels[selectedOrder.status]}</p> */}
+                <Row>
+                  <Col>
+                    <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
+                    <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
+                    <p><strong>Nhân viên gọi món: </strong>
+                      {
+                        users.find(u => u.id == selectedOrder.userId)?.name || "?"
+                      }
+                    </p>
+                    <p><strong>Phương thức thanh toán: </strong> {paymentMethodMap[selectedOrder.paymentMethod]}</p>
+                  </Col>
+
+                  <Col>
+                    <p><strong>Tên khách hàng: </strong> {selectedOrder.customerName}</p>
+                    <p><strong>Email: </strong> {selectedOrder.customerEmail}</p>
+                    <p><strong>Số điện thoại: </strong> {selectedOrder.customerPhone}</p>
+                  </Col>
+                </Row>
+
                 <hr />
-                <h5>📋 Chi tiết món</h5>
+
                 <Table striped bordered hover size="sm">
                   <thead>
                     <tr>
@@ -541,29 +509,29 @@ export default function Orders() {
                       <th>Tổng</th>
                     </tr>
                   </thead>
+
                   <tbody>
                     {(() => {
-                      const order = orders.find(o => o.id === selectedOrder.orderId);
+                      const order = orders.find(o => o.id == selectedOrder.orderId);
                       if (!order) return (
                         <tr><td colSpan={5}>Không tìm thấy đơn hàng</td></tr>
                       );
 
                       return order.items.map((item, index) => {
-                        const menuItem = menu.find(i => i.id == item.menuItemId);
+                        const menuItem = menu.find(i => String(i.id) === String(item.menuItemId));
                         const totalItemPrice = item.quantity * item.price;
+
                         return (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{menuItem?.name}</td>
+                            <td>{menuItem?.name || `[Món #${item.menuItemId} không tồn tại]`}</td>
                             <td>{item.quantity}</td>
                             <td>{item.price.toLocaleString("vi-VN")}đ</td>
                             <td>{totalItemPrice.toLocaleString("vi-VN")}đ</td>
                           </tr>
                         );
-                      })
-                    })}
-
-
+                      });
+                    })()}
                   </tbody>
                 </Table>
                 <p className="mt-3"><strong>Tổng tiền: </strong> {selectedOrder.total.toLocaleString("vi-VN")}đ</p>
@@ -576,117 +544,6 @@ export default function Orders() {
           </Modal.Footer>
         </Modal>
 
-        {/* Modal add new order */}
-        {/* <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Thêm đơn đặt bàn mới</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Group className="mb-3">
-              <Form.Label>Bàn số</Form.Label>
-              <Form.Select
-                value={newOrder.tableId}
-                onChange={(e) => setNewOrder({ ...newOrder, tableId: Number(e.target.value) })}
-              >
-                <option value="">-- Chọn bàn --</option>
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
-                  <option key={num} value={num}>Bàn {num}</option>
-                ))}
-              </Form.Select>
-
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Nhân viên</Form.Label>
-              <Form.Select
-                value={newOrder.userId}
-                onChange={(e) => setNewOrder({ ...newOrder, userId: e.target.value })}
-              >
-                <option value="">-- Chọn nhân viên --</option>
-                {users.map(user => (
-                  <option key={user.id} value={user.id}>{user.name}</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-
-            <Row className="align-items-end">
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Món ăn</Form.Label>
-                  <Form.Select
-                    value={selectedMenuItemId}
-                    onChange={(e) => setSelectedMenuItemId(e.target.value)}
-                  >
-                    <option value="">-- Chọn món --</option>
-                    {menu.map(item => (
-                      <option key={item.id} value={item.id}>{item.name} - {item.price.toLocaleString("vi-VN")}đ</option>
-                    ))}
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-
-              <Col md={3}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Số lượng</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="1"
-                    value={selectedQuantity}
-                    onChange={(e) => setSelectedQuantity(Number(e.target.value))}
-                  />
-                </Form.Group>
-              </Col>
-
-              <Col md={3}>
-                <Button variant="success" style={{ width: "80px", height: "40px", marginBottom: "15px" }} onClick={handleAddMenuItem}>Thêm</Button>
-              </Col>
-            </Row>
-          </Modal.Body> */}
-
-        {/* Danh sách món đã chọn */}
-        {/* <Container>
-            {newOrder.items.length > 0 && (
-              <Table size="sm" bordered className="mt-3">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Món</th>
-                    <th>SL</th>
-                    <th>Đơn giá</th>
-                    <th>Tổng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {newOrder.items.map((item, index) => {
-                    const menuItem = menu.find(m => m.id == item.menuItemId);
-                    return (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{menuItem?.name}</td>
-                        <td>{item.quantity}</td>
-                        <td>{item.price.toLocaleString("vi-VN")}đ</td>
-                        <td>{(item.quantity * item.price).toLocaleString("vi-VN")}đ</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan={4} className="text-end fw-bold">Tổng tiền:</td>
-                    <td className="fw-bold">
-                      {newOrder.items.reduce((sum, item) => sum + item.quantity * item.price, 0).toLocaleString("vi-VN")}đ
-                    </td>
-                  </tr>
-                </tfoot>
-              </Table>
-            )}
-          </Container>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowAddModal(false)}>Hủy</Button>
-            <Button variant="primary" onClick={handleAddOrder}>Lưu</Button>
-          </Modal.Footer>
-        </Modal> */}
 
       </Container >
     </>
