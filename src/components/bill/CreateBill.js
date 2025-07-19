@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  Container,
-  Form,
-  Button,
-  Table,
-  Row,
-  Col,
-  Card,
-  Badge
-} from 'react-bootstrap';
+import { Container, Form, Button, Table, Row, Col, Card, Badge } from 'react-bootstrap';
 import './css/CreateBill.css';
 import axios from 'axios';
 
@@ -28,9 +19,10 @@ const CreateBill = () => {
   // State cho phân trang hóa đơn
   const [currentPage, setCurrentPage] = useState(1);
   const [customerName, setCustomerName] = useState('');
-  const [customerEmail, setCustomerEmail] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [bills, setBills] = useState([]);
+
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
 
   const billsPerPage = 5;
@@ -61,6 +53,26 @@ const CreateBill = () => {
       });
   }, [maxId, update]);
 
+  useEffect(() => {
+    const selected = orderInfo ? orderInfo : orders.find(o => String(o.tableId) === String(tableId));
+    if (selected && selected.items?.length) {
+      setIsPaymentSuccessful(true);
+    }
+  }, [orderInfo, orders, tableId]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (!isPaymentSuccessful) {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [isPaymentSuccessful]);
+
   const handleCreateBill = async () => {
     console.log("tableId đang chọn:", tableId);
     console.log("bills hiện tại:", bills);
@@ -72,7 +84,7 @@ const CreateBill = () => {
     }
 
     const newBill = {
-      id: Number(maxId) + 1,
+      id: String(maxId + 1),
       orderId: selectedOrder.id,
       tableId: selectedOrder.tableId,
       total: selectedOrder.total,
@@ -80,7 +92,6 @@ const CreateBill = () => {
       status: 'Pending',
       timestamp: new Date().toISOString(),
       customerName,
-      customerEmail,
       customerPhone
     };
 
@@ -121,42 +132,40 @@ const CreateBill = () => {
   };
 
   const handleMarkAsPaid = async () => {
-    const selectedOrder = orderInfo ? orderInfo : orders.find(o => String(o.tableId) === String(tableId));
-    if (!selectedOrder || !selectedOrder.items?.length) {
-      alert('Không có sản phẩm nào cho bàn này!');
-      return;
-    }
+    const selectedOrder = orderInfo || orders.find(o => String(o.tableId) === String(tableId));
+    if (!selectedOrder?.items?.length) return alert('Không có sản phẩm nào cho bàn này!');
 
-    // Cập nhật trạng thái đơn hàng
-    const updatedOrder = {
-      ...selectedOrder,
-      status: 'Completed'
-    };
+    const updatedOrder = { ...selectedOrder, status: 'Completed' };
+    const billToUpdate = bills.find(b => String(b.orderId) === String(selectedOrder.id));
+    if (!billToUpdate) return alert('Không tìm thấy hóa đơn!');
 
-    // Cập nhật trạng thái hóa đơn
-    const billToUpdate = bills.find(bill => String(bill.orderId) === String(selectedOrder.id));
-     if (!billToUpdate) {
-      alert('Không tìm thấy hóa đơn để cập nhật!');
-      return;
-    }
-    const updatedBill = {
-      ...billToUpdate,
-      status: 'Paid'
-    };
-    console.log('Đơn hàng được chọn:', selectedOrder);
-    console.log('Hóa đơn cần cập nhật:', billToUpdate);
+    const updatedBill = { ...billToUpdate, status: 'Paid' };
+    console.log('selectedOrder:', selectedOrder);
+    console.log('billToUpdate:', billToUpdate);
     try {
-      // Cập nhật đơn hàng
       await axios.put(`http://localhost:9999/orders/${selectedOrder.id}`, updatedOrder);
-      // Cập nhật hóa đơn
-      await axios.put(`http://localhost:9999/bills/${billToUpdate.id}`, updatedBill);
-      alert('Cập nhật trạng thái thành công!');
-      setUpdate((prev) => !prev); // refresh data
-    } catch (error) {
+      await axios.put(`http://localhost:9999/bills/${String(billToUpdate.id)}`, updatedBill);
+      await axios.put(`http://localhost:9999/tables/${selectedOrder.tableId}`, {
+        ...tables.find(t => t.id === selectedOrder.tableId),
+        status: 'empty'
+      });
+      alert('Thanh toán thành công!');
+      navigate('/tables');
+    } catch {
       alert('Lỗi khi cập nhật trạng thái!');
     }
-    console.log('Cập nhật trạng thái:', updatedOrder, updatedBill);
   };
+
+  const handleBack = () => {
+    if (isPaymentSuccessful) {
+      if (window.confirm('Bạn có muốn hủy phiên thanh toán không?')) {
+        navigate('/tables');
+      }
+    } else {
+      navigate('/tables');
+    }
+  };
+
 
 
   return (
@@ -169,35 +178,29 @@ const CreateBill = () => {
             <Col md={12}>
               <Form.Group>
                 <Form.Label>Khách hàng</Form.Label>
-                <Row>
-                  Tên khách hàng:
-                  <Form.Control
-                    type="text"
-                    placeholder="Tên khách hàng"
-                    value={customerName}
-                    onChange={(e) => setCustomerName(e.target.value)}
-                    className="mb-2"
-                  />
-                </Row>
-                <Row>
-                  Email khách hàng:
-                  <Form.Control
-                    type="email"
-                    placeholder="Email (nếu có)"
-                    value={customerEmail}
-                    onChange={(e) => setCustomerEmail(e.target.value)}
-                    className="mb-2"
-                  />
+                <Row className="mb-5 mt-2">
+                  <Col>
+                    Tên khách hàng:
+                    <Form.Control
+                      type="text"
+                      placeholder="Tên khách hàng"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      className="mb-2"
+                    />
+                  </Col>
                 </Row>
 
-                <Row>
-                  Số điện thoại:
-                  <Form.Control
-                    type="tel"
-                    placeholder="Số điện thoại (nếu có)"
-                    value={customerPhone}
-                    onChange={(e) => setCustomerPhone(e.target.value)}
-                  />
+                <Row className='mb-3'>
+                  <Col>
+                    Số điện thoại:
+                    <Form.Control
+                      type="tel"
+                      placeholder="Số điện thoại (nếu có)"
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                    />
+                  </Col>
                 </Row>
               </Form.Group>
 
@@ -206,30 +209,10 @@ const CreateBill = () => {
 
             <Col md={6}>
               <Form.Group>
-                <Form.Label>Tổng số tiền</Form.Label>
-                <Form.Control
-                  type="number"
-                  value={orderInfo ? orderInfo.total : (() => {
-                    const order = orders.find(o => String(o.tableId) === String(tableId));
-                    return order ? order.total : '';
-                  })()}
-                  readOnly
-                  placeholder="Tự động lấy từ đơn hàng"
-                />
-              </Form.Group>
-            </Col>
+                <Form.Label>Bàn: </Form.Label>
+                {orderInfo ? orderInfo.tableId : tableId}
 
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Bàn</Form.Label>
-                <Form.Select value={orderInfo ? orderInfo.tableId : tableId} onChange={(e) => setTableId(e.target.value)} disabled={!!orderInfo}>
-                  <option value="">Chọn bàn</option>
-                  {tables.map((table) => (
-                    <option key={table.id} value={table.id}>
-                      {getTableName(table.id)}
-                    </option>
-                  ))}
-                </Form.Select>
+
               </Form.Group>
             </Col>
 
@@ -294,7 +277,7 @@ const CreateBill = () => {
                         {selectedOrder.items.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{item.name || item.productName}</td>
+                            <td>{item.name}</td>
                             <td>{item.quantity}</td>
                             <td>{item.price.toLocaleString()} đ</td>
                             <td>{(item.price * item.quantity).toLocaleString()} đ</td>
@@ -350,13 +333,13 @@ const CreateBill = () => {
                               <td>
                                 <div><strong>{bill.customerName || '---'}</strong></div>
                                 <div className="text-muted" style={{ fontSize: '0.9em' }}>
-                                  {bill.customerEmail || '---'}<br />
                                   {bill.customerPhone || '---'}
                                 </div>
                               </td>
                               <td>{bill.total?.toLocaleString() || '---'} đ</td>
                               <td>{renderStatus(bill.status)}</td>
                               <td>{new Date(bill.timestamp).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + new Date(bill.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</td>
+
                             </tr>
                           );
                         })}
