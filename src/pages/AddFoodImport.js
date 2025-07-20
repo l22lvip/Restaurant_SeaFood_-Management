@@ -37,7 +37,7 @@ const AddFoodImport = () => {
 
       if (response.ok) {
         alert('Chi phí nhập hàng đã được thêm thành công!');
-        navigate('/financial');
+        navigate('/admin/financial');
       } else {
         alert('Có lỗi xảy ra khi thêm chi phí nhập hàng.');
       }
@@ -50,7 +50,7 @@ const AddFoodImport = () => {
   };
 
   const handleCancel = () => {
-    navigate('/financial');
+    navigate('/admin/financial');
   };
 
   return (

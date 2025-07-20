@@ -7,30 +7,30 @@ import axios from "axios";
 const API_URL = "http://localhost:9999/employees";
 
 const EmployeeList = () => {
-  const [users, setUsers] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
 
-  const fetchUsers = async () => {
+  const fetchEmployees = async () => {
     const res = await axios.get(API_URL);
-    setUsers(res.data);
+    setEmployees(res.data);
   };
 
   useEffect(() => {
-    fetchUsers();
+    fetchEmployees();
   }, []);
 
   const handleDelete = async (id) => {
     const confirm = window.confirm("Bạn có chắc chắn muốn xóa nhân viên này không?");
     if (confirm) {
       await axios.delete(`${API_URL}/${id}`);
-      fetchUsers();
+      fetchEmployees();
     }
   };
 
   const [search, setSearch] = useState("");
 
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+  const filteredEmployees = employees.filter((employee) =>
+    employee.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -61,30 +61,32 @@ const EmployeeList = () => {
             <th>Địa chỉ</th>
             <th>Email</th>
             <th>Giới tính</th>
+            <th>Vai trò</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.phone}</td>
-              <td>{user.age}</td>
-              <td>{user.address}</td>
-              <td>{user.email}</td>
-              <td>{user.gender === "male" ? "Nam" : user.gender === "female" ? "Nữ" : "Khác"}</td>
+          {filteredEmployees.map((employee) => (
+            <tr key={employee.id}>
+              <td>{employee.name}</td>
+              <td>{employee.phone}</td>
+              <td>{employee.age}</td>
+              <td>{employee.address}</td>
+              <td>{employee.email}</td>
+              <td>{employee.gender === "male" ? "Nam" : employee.gender === "female" ? "Nữ" : "Khác"}</td>
+              <td>{employee.role === "admin" ? "Quản lý" : "Nhân viên"}</td>
               <td className="user-actions">
                 <button
                   className="edit-btn"
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigate(`/admin/employees/edit/${user.id}`)}
+                  onClick={() => navigate(`/admin/employees/edit/${employee.id}`)}
                 >
                   Sửa
                 </button>
                 <button
                   className="delete-btn"
                   style={{ cursor: "pointer" }}
-                  onClick={() => handleDelete(user.id)}
+                  onClick={() => handleDelete(employee.id)}
                 >
                   Xóa
                 </button>

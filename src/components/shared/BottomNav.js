@@ -58,8 +58,8 @@ const BottomNav = () => {
           <p>Users</p>
         </button>
         <button
-          className={`nav-button ${isActive('/financial') ? 'active' : ''}`}
-          onClick={() => navigate('/financial')}
+          className={`nav-button ${isActive('/admin/financial') ? 'active' : ''}`}
+          onClick={() => navigate('/admin/financial')}
         >
           <FaChartLine className="icon" size={20} />
           <p>Finance</p>

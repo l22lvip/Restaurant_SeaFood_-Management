@@ -72,7 +72,7 @@ const FinancialDashboard = () => {
   };
 
   const handleAddImport = () => {
-    navigate('/add-food-import');
+    navigate('/admin/add-food-import');
   };
 
   return (

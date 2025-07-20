@@ -443,6 +443,63 @@
       "password": ""
     }
   ],
+  "employees": [
+    {
+      "id": "1",
+      "name": "Nhân Viên 1",
+      "phone": "0912345678",
+      "age": 20,
+      "address": "Hà Nội",
+      "email": "nhanvien1@gmail.com",
+      "gender": "male",
+      "role": "staff",
+      "password": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Nhân Viên 2",
+      "phone": "0987654322",
+      "age": 25,
+      "address": "Hồ Chí Minh",
+      "email": "nhanvien2@gmail.com",
+      "gender": "female",
+      "role": "staff",
+      "password": "admin"
+    },
+    {
+      "id": "3",
+      "name": "Nhân Viên 3",
+      "phone": "0987654320",
+      "age": 30,
+      "address": "Đà Nẵng",
+      "email": "nhanvien3@gmail.com",
+      "gender": "male",
+      "role": "staff",
+      "password": "123"
+    },
+    {
+      "id": "4",
+      "name": "Quản Lý 1",
+      "phone": "0947135098",
+      "age": 35,
+      "address": "Hà Nội",
+      "email": "quanly1@gmail.com",
+      "gender": "male",
+      "role": "admin",
+      "password": "Vangiap1"
+    },
+    {
+      "id": "5",
+      "name": "Nhân Viên 4",
+      "phone": "0912567991",
+      "age": 22,
+      "address": "Cần Thơ",
+      "email": "nhanvien4@gmail.com",
+      "gender": "female",
+      "role": "staff",
+      "password": "123456"
+    }
+  ],
   "earnings": {
     "today": 2500000,
     "yesterday": 1850000
@@ -479,6 +536,14 @@
       "description": "Cá",
       "supplier": "ANB",
       "timestamp": "2025-07-20T20:36:06.997Z"
+    },
+    {
+      "id": "1753045597528",
+      "date": "2025-07-20",
+      "amount": 1230000,
+      "description": "ABC",
+      "supplier": "ABC",
+      "timestamp": "2025-07-20T21:06:37.528Z"
     }
   ]
 }

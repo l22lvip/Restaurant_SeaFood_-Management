@@ -15,6 +15,8 @@ const CreateEmployee = () => {
     address: "",
     email: "",
     gender: "",
+    role: "staff",
+    password: ""
   });
 
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const CreateEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, phone, age, address, email, gender } = formData;
+    const { name, phone, age, address, email, gender, role, password } = formData;
 
     if (!name.trim()) {
       alert("Tên không được để trống");
@@ -42,13 +44,32 @@ const CreateEmployee = () => {
       return;
     }
 
+    if (!address.trim()) {
+      alert("Địa chỉ không được để trống");
+      return;
+    }
+
+    if (!email.trim()) {
+      alert("Email không được để trống");
+      return;
+    }
+
+    if (!password.trim()) {
+      alert("Mật khẩu không được để trống");
+      return;
+    }
 
     try {
-      await axios.post(API_URL, { ...formData, id: Date.now().toString() });
+      await axios.post(API_URL, { 
+        ...formData, 
+        id: Date.now().toString(),
+        age: Number(age)
+      });
+      alert("Tạo nhân viên thành công!");
       navigate("/admin/employees");
     } catch (error) {
-      console.error("Lỗi khi tạo người dùng:", error);
-      alert("Tạo người dùng thất bại");
+      console.error("Lỗi khi tạo nhân viên:", error);
+      alert("Tạo nhân viên thất bại");
     }
   };
 

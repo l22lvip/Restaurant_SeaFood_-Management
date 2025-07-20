@@ -78,6 +78,30 @@ const UserForm = ({ formData, handleChange }) => {
           <option value="other">Khác</option>
         </Form.Select>
       </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Vai trò: </Form.Label>
+        <Form.Select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+        >
+          <option value="staff">Nhân viên</option>
+          <option value="admin">Quản lý</option>
+        </Form.Select>
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Mật khẩu: </Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Nhập mật khẩu"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
     </>
   );
 };
