@@ -11,7 +11,7 @@ const EditUser = () => {
     const [userList, setUserList] = useState([]);
     const [formData, setFormData] = useState({
         name: "",
-        role: "waiter",
+        role: "staff",
         phone: "",
         password: "",
     });

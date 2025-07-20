@@ -10,7 +10,7 @@ const UserManagement = () => {
   const [editingUser, setEditingUser] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
-    role: "waiter",
+    role: "staff",
     phone: "",
     password: "",
   });

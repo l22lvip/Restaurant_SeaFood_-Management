@@ -24,7 +24,7 @@ const UserForm = ({ formData, handleChange, isEdit = false }) => {
                     onChange={handleChange}
                 >
                     <option value="admin">Admin</option>
-                    <option value="waiter">Nhân viên</option>
+                    <option value="staff">Nhân viên</option>
                 </Form.Select>
             </Form.Group>
 
