@@ -47,7 +47,14 @@ const EditUser = () => {
             return;
         }
 
-        await axios.put(`${API_URL}/${id}`, formData);
+        // Nếu không nhập password mới, giữ nguyên password cũ
+        let dataToUpdate = { ...formData };
+        if (!formData.password) {
+            const oldUser = userList.find(u => u.id === id);
+            if (oldUser) dataToUpdate.password = oldUser.password;
+        }
+
+        await axios.put(`${API_URL}/${id}`, dataToUpdate);
         navigate("/users");
     };
 

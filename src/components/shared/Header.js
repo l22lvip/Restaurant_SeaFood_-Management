@@ -11,12 +11,20 @@ import '../../css/Header.css'
 
 const Header = () => {
     const role = localStorage.getItem('role');
+    const user = JSON.parse(localStorage.getItem('user'));
     if (role === 'admin') {
         return (
             <div className='header-container'>
                 <div className='logo-section'>
                     <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
                     <h1 className='header-title'>Harbor Fresh</h1>
+                </div>
+                <div className='user-section' style={{marginLeft: 'auto', display: 'flex', alignItems: 'center'}}>
+                    <FaUserCircle className='user-icon' />
+                    <div className='user-details'>
+                        <h1 style={{fontSize: '1.1rem', margin: 0}}>{user?.name || 'Admin'}</h1>
+                        <p style={{fontSize: '0.9rem', margin: 0}}>Admin</p>
+                    </div>
                 </div>
             </div>
         );

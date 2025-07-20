@@ -38,20 +38,19 @@ const UserForm = ({ formData, handleChange, isEdit = false }) => {
                     required
                 />
             </Form.Group>
-            {
-                !isEdit && (
-                    <Form.Group className="mb-3">
-                        <Form.Label style={{ marginRight: "10px" }}>Mật khẩu: </Form.Label>
-                        <Form.Control
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </Form.Group>
-                )
-            }
+            {formData.role === 'admin' && (
+                <Form.Group className="mb-3">
+                    <Form.Label style={{ marginRight: "10px" }}>Mật khẩu: </Form.Label>
+                    <Form.Control
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required={!isEdit}
+                        placeholder={isEdit ? "Để trống nếu không đổi mật khẩu" : "Nhập mật khẩu"}
+                    />
+                </Form.Group>
+            )}
         </>
     );
 };
