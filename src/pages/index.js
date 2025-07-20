@@ -1,5 +1,5 @@
 export { default as Home } from './Home.js';
-export { default as Auth } from './Auth.js';   
+export { default as Auth } from './Auth.js';
 export { default as Orders } from './Orders.js';
 export { default as Tables } from './Tables.js';
 export { default as CreateEmployee } from './CreateEmployee.js';

@@ -25,7 +25,7 @@ function AppContent() {
   );
 }
 
-function App() {
+const App = () => {
   return (
     <Router>
       <AppContent />
@@ -33,4 +33,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
