@@ -182,6 +182,64 @@
       "total": 4100000,
       "status": "Completed",
       "timestamp": "2025-07-17T04:00:22.862Z"
+    },
+    {
+      "id": "5",
+      "tableId": "5",
+      "userId": 1,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "9",
+          "quantity": 2,
+          "price": 120000
+        },
+        {
+          "menuItemId": "6",
+          "quantity": 2,
+          "price": 25000
+        }
+      ],
+      "total": 290000,
+      "status": "Completed",
+      "timestamp": "2025-07-18T12:15:45.000Z"
+    },
+    {
+      "id": "6",
+      "tableId": "7",
+      "userId": 1,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "7",
+          "quantity": 1,
+          "price": 180000
+        },
+        {
+          "menuItemId": "5",
+          "quantity": 3,
+          "price": 35000
+        }
+      ],
+      "total": 285000,
+      "status": "Completed",
+      "timestamp": "2025-07-18T14:40:10.000Z"
+    },
+    {
+      "id": "7",
+      "tableId": "6",
+      "userId": 1,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "10",
+          "quantity": 2,
+          "price": 40000
+        }
+      ],
+      "total": 80000,
+      "status": "In Progress",
+      "timestamp": "2025-07-19T08:00:00.000Z"
     }
   ],
   "bills": [
@@ -206,7 +264,7 @@
       "total": 2305000,
       "paymentMethod": "Cash",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:28:06.195Z",
+      "timestamp": "2025-07-17T04:32:06.195Z",
       "customerName": "Nguyễn Văn A",
       "customerEmail": "nguyenvana@example.com",
       "customerPhone": "0987654321"
@@ -219,7 +277,7 @@
       "total": 3450000,
       "paymentMethod": "Card",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:00:00Z",
+      "timestamp": "2025-07-17T05:00:00Z",
       "customerName": "Trần B",
       "customerEmail": "tranb@example.com",
       "customerPhone": "0912345678"
@@ -236,6 +294,32 @@
       "customerName": "Nguyen Huu Bao Khanh",
       "customerEmail": "nguyenhuubaokhanh2005@gmail.com",
       "customerPhone": "01912391293"
+    },
+    {
+      "id": "5",
+      "orderId": "5",
+      "tableId": "5",
+      "userId": 1,
+      "total": 290000,
+      "paymentMethod": "Banking",
+      "status": "Paid",
+      "timestamp": "2025-07-19T12:30:00.000Z",
+      "customerName": "Phạm Quốc",
+      "customerEmail": "phamquoc@example.com",
+      "customerPhone": "0911888999"
+    },
+    {
+      "id": "6",
+      "orderId": "6",
+      "tableId": "7",
+      "userId": 1,
+      "total": 285000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-20T09:00:00.000Z",
+      "customerName": "Vũ Thảo",
+      "customerEmail": "vuthao@example.com",
+      "customerPhone": "0977555333"
     }
   ],
   "tables": [

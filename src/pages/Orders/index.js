@@ -11,16 +11,11 @@ export default function Orders() {
   const [menu, setMenu] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  const [selectedMenuItemId, setSelectedMenuItemId] = useState("");
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const [selectedStaff, setSelectedStaff] = useState("");
   const [searchText, setSearchText] = useState("");
   const [sortOrder, setSortOrder] = useState("newest");
-  const [statusFilter, setStatusFilter] = useState({});
-
-  const [quickOption, setQuickOption] = useState("");
+  const [dayOption, setDayOption] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
 
@@ -51,61 +46,49 @@ export default function Orders() {
       .catch(error => console.error(error))
   }, [])
 
-  const statusColors = {
-    "In Progress": "warning",
-    "Ready": "success",
-    "Canceled": "danger",
-    "Completed": "primary",
-  };
-
-  const statusLabels = {
-    "In Progress": "Đang chuẩn bị",
-    "Ready": "Sẵn sàng",
-    "Canceled": "Đã hủy",
-    "Completed": "Hoàn tất",
-  };
-
   const handleView = (order) => {
     setSelectedOrder(order);
     setShowModal(true);
   };
 
-  const getFilteredAndSortedOrders = () => {
-    let result = [...orders];
+  const getToday = () => new Date().toISOString().slice(0, 10);
 
-    // Filter by status
-    const hasAnyStatusFilter = Object.values(statusFilter).some(v => v);
-    if (hasAnyStatusFilter) {
-      result = result.filter(order => statusFilter[order.status]);
+  const handleDayOption = (value) => {
+    setDayOption(value);
+    const today = new Date();
+    let from = "", to = "";
+
+    switch (value) {
+      case "today":
+        from = to = getToday();
+        break;
+
+      case "yesterday":
+        const y = new Date(today);
+        y.setDate(y.getDate() - 1);
+        from = to = y.toISOString().slice(0, 10);
+        break;
+
+      case "thisWeek":
+        const startOfWeek = new Date(today);
+        const day = today.getDay() || 7;      // sun (0) -> 7
+        startOfWeek.setDate(today.getDate() - day + 1);
+        from = startOfWeek.toISOString().slice(0, 10);
+        to = getToday();
+        break;
+
+      case "thisMonth":
+        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        from = startOfMonth.toISOString().slice(0, 10);
+        to = getToday();
+        break;
+
+      default:
+        break;
     }
 
-    // Search
-    if (searchText.trim() !== "") {
-      const lowerSearch = searchText.toLowerCase();
-      result = result.filter(order => {
-        const userName = users.find(u => u.id == order.userId)?.name?.toLowerCase() || "";
-        const orderTime = new Date(order.timestamp).toLocaleString("vi-VN", {
-          day: "2-digit",
-          month: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
-        return (
-          userName.includes(lowerSearch) ||
-          orderTime.includes(lowerSearch)
-        );
-      });
-    }
-
-    // Sort
-    result.sort((a, b) => {
-      const timeA = new Date(a.timestamp);
-      const timeB = new Date(b.timestamp);
-      return sortOrder == "newest" ? timeB - timeA : timeA - timeB;
-    });
-
-    return result;
+    setFromDate(from);
+    setToDate(to);
   };
 
   const filteredAndSortedBills = () => {
@@ -152,6 +135,21 @@ export default function Orders() {
       return matchPaymentMethod && matchStaff;
     })
 
+    // Filter by day
+    const normalizedBills = result.map(bill => ({
+      ...bill,
+      date: new Date(bill.timestamp).toISOString().slice(0, 10)
+    }));
+
+    if (dayOption === "singleDay" && fromDate) {
+      result = normalizedBills.filter(bill => bill.date === fromDate);
+
+    } else if (dayOption === "range" && fromDate && toDate) {
+      result = normalizedBills.filter(bill =>
+        bill.date >= fromDate && bill.date <= toDate
+      );
+    }
+
     // Sort
     result.sort((a, b) => {
       const timeA = new Date(a.timestamp);
@@ -162,74 +160,11 @@ export default function Orders() {
     return result;
   };
 
-  const getToday = () => new Date().toISOString().slice(0, 10);
-
-  const handleQuickOption = (value) => {
-    setQuickOption(value);
-    const today = new Date();
-    let from = "", to = "";
-
-    switch (value) {
-      case "today":
-        from = to = getToday();
-        break;
-      case "yesterday":
-        const y = new Date(today);
-        y.setDate(y.getDate() - 1);
-        from = to = y.toISOString().slice(0, 10);
-        break;
-      case "thisWeek":
-        const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - today.getDay());
-        from = startOfWeek.toISOString().slice(0, 10);
-        to = getToday();
-        break;
-      case "thisMonth":
-        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-        from = startOfMonth.toISOString().slice(0, 10);
-        to = getToday();
-        break;
-      case "singleDay":
-      case "range":
-        from = to = "";
-        break;
-      case "":
-        from = to = "";
-        break;
-      default:
-        break;
-    }
-
-    setFromDate(from);
-    setToDate(to);
-  };
-
-  const handleApply = () => {
-    let filtered = [...filteredAndSortedBills];
-
-    if (quickOption === "singleDay" && fromDate) {
-      filtered = filtered.filter(order => order.date === fromDate);
-    } else if (quickOption === "range" && fromDate && toDate) {
-      filtered = filtered.filter(order =>
-        order.date >= fromDate && order.date <= toDate
-      );
-    } else if (fromDate && toDate) {
-      filtered = filtered.filter(order =>
-        order.date >= fromDate && order.date <= toDate
-      );
-    }
-  }
-
-  useEffect(() => {
-    handleQuickOption(quickOption); // tự động khởi tạo ngày hôm nay
-  }, []);
-
   const paymentMethodMap = {
     Cash: "Tiền mặt",
     Card: "Thẻ",
     Banking: "Chuyển khoản"
   };
-
 
   return (
     <>
@@ -239,7 +174,6 @@ export default function Orders() {
             <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
           </div>
 
-
           <div className="flex-fill d-flex justify-content-end">
             <Button variant='dark'>
               Export to PDF/Excel
@@ -248,7 +182,6 @@ export default function Orders() {
         </div>
 
         <Row>
-
           {/* Filter */}
           <Col sm={2} md={2} lg={2}>
             <Card
@@ -264,13 +197,13 @@ export default function Orders() {
               <Card.Body>
                 <h5 className="fw-bold text-center mb-4">Bộ lọc tìm kiếm</h5>
 
-                {/* Quick Option */}
+                {/* Day Option */}
                 <Form.Group className="mb-3">
                   <Form.Label>Lọc theo thời gian</Form.Label>
                   <Form.Select
                     size="md"
-                    value={quickOption}
-                    onChange={(e) => handleQuickOption(e.target.value)}
+                    value={dayOption}
+                    onChange={(e) => handleDayOption(e.target.value)}
                   >
                     <option value="">Tất cả</option>
                     <option value="today">Hôm nay</option>
@@ -281,9 +214,9 @@ export default function Orders() {
                     <option value="range">Khoảng thời gian</option>
                   </Form.Select>
 
-                  {/* Input ngày tương ứng */}
+                  {/* Input day */}
                   <div className="mt-2">
-                    {quickOption === "singleDay" && (
+                    {dayOption === "singleDay" && (
                       <Form.Control
                         type="date"
                         size="sm"
@@ -292,7 +225,7 @@ export default function Orders() {
                       />
                     )}
 
-                    {quickOption === "range" && (
+                    {dayOption === "range" && (
                       <div className="d-flex flex-column gap-2">
                         <Form.Control
                           type="date"
@@ -308,7 +241,6 @@ export default function Orders() {
                         />
                       </div>
                     )}
-
                   </div>
                 </Form.Group>
 
@@ -327,7 +259,6 @@ export default function Orders() {
                   </Form.Select>
                 </Form.Group>
 
-
                 {/* Staff */}
                 <Form.Group className="mb-3">
                   <Form.Label>Nhân viên</Form.Label>
@@ -344,11 +275,9 @@ export default function Orders() {
                       ))}
                   </Form.Select>
                 </Form.Group>
-
               </Card.Body>
             </Card>
           </Col>
-
 
           {/* Sort + Table */}
           <Col sm={10} md={10} lg={10}>
@@ -543,7 +472,6 @@ export default function Orders() {
             <Button variant="secondary" onClick={() => setShowModal(false)}>Đóng</Button>
           </Modal.Footer>
         </Modal>
-
 
       </Container >
     </>
