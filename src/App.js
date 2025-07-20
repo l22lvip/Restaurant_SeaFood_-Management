@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Home, Auth, Orders, Tables, EmployeeList, CreateEmployee, EditEmployee, FinancialDashboard, AddFoodImport } from './pages';
+import { Home, Auth, Orders, Tables, EmployeeList, CreateEmployee, EditEmployee, FinancialDashboard, AddFoodImport, OrderManagement } from './pages';
 import Header from './components/shared/Header';
 import BottomNav from './components/shared/BottomNav';
 import CreateBill from './components/bill/CreateBill';
@@ -24,6 +24,7 @@ function AppContent() {
         <Route path="/admin/employees/edit/:id" element={<EditEmployee />} />
         <Route path="/admin/financial" element={<FinancialDashboard />} />
         <Route path="/admin/add-food-import" element={<AddFoodImport />} />
+        <Route path="/admin/orders" element={<OrderManagement />} />
       </Routes>
       {!hideNav && <BottomNav />}
     </>

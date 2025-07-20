@@ -185,10 +185,10 @@ export default function Orders() {
 
     return (
         <>
-            <Container className="orders-container py-4">
-                <div className="d-flex justify-content-between align-items-center mb-2 gap-3 w-100 orders-header">
+            <Container className="completed-order-container py-4">
+                <div className="d-flex justify-content-between align-items-center mb-2 gap-3 w-100 completed-order-header">
                     <div className="flex-fill">
-                        <h2 className="orders-title">🧾 Đơn Đã Hoàn Thành</h2>
+                        <h2 className="completed-order-title">🧾 Đơn Đã Hoàn Thành</h2>
                     </div>
 
                     <div className="flex-fill d-flex justify-content-end">
@@ -198,10 +198,10 @@ export default function Orders() {
                     </div>
                 </div>
 
-                <div className="orders-body">
+                <div className="completed-order-body">
 
                     {/* Filter */}
-                    <aside className="orders-sidebar">
+                    <aside className="completed-order-sidebar">
                         <Col sm={2} md={2} lg={2}>
                             <Card
                                 style={{
@@ -304,7 +304,7 @@ export default function Orders() {
                         </Col>
                     </aside>
 
-                    <main className="orders-main">
+                    <main className="completed-order-main">
                         {/* Sort + Table */}
                         <Col sm={10} md={10} lg={10}>
 
@@ -329,7 +329,7 @@ export default function Orders() {
                                                 onChange={(e) => setSearchText(e.target.value)}
                                             />
 
-                                            <div className="total-orders">
+                                            <div className="completed-total-order">
                                                 Tổng số đơn: {filteredAndSortedBills().length}
                                             </div>
                                         </Card>
@@ -339,11 +339,11 @@ export default function Orders() {
                             </div>
 
                             {/* Table */}
-                            <Row id="invoice" className='order-table'>
+                            <Row id="invoice" className='completed-order-table'>
                                 <Col sm={12} md={12} lg={12}>
-                                    <Card className="orders-card shadow-sm">
+                                    <Card className="completed-order-card shadow-sm">
                                         <Card.Body className="p-0">
-                                            <Table responsive hover className="mb-0 order-table">
+                                            <Table responsive hover className="mb-0 completed-order-table">
                                                 <thead>
                                                     <tr>
                                                         <th data-html2canvas-ignore>#</th>
@@ -374,7 +374,7 @@ export default function Orders() {
                                                                 <td><span className="table-pill">#{bill.tableId}</span></td>
                                                                 <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td>
                                                                 <td>
-                                                                    <div className="order-details">
+                                                                    <div className="completed-order-details">
                                                                         {order?.items.map((item, idx) => (
                                                                             <div className="detail-item" key={idx}>
                                                                                 <div className="item-name">

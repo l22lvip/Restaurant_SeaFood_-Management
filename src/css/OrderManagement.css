@@ -1,10 +1,10 @@
-.orders-container {
+.completed-order-container {
     padding: 24px;
     max-width: 100%;
     background-color: #1f1f1f;
 }
 
-.orders-header {
+.completed-order-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,7 +13,7 @@
     flex-wrap: wrap;
 }
 
-.orders-title {
+.completed-order-title {
     color: #DC3545;
     font-weight: 700;
     font-size: 2rem;
@@ -33,14 +33,14 @@
     background-color: #23272b;
 }
 
-.orders-body {
+.completed-order-body {
     display: flex;
     gap: 20px;
     align-items: flex-start;
 }
 
 /* Sidebar filter */
-.orders-filter {
+.completed-order-filter {
     flex: 0 0 220px;
     background: #f8f9fa;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -51,22 +51,22 @@
 }
 
 /* Main content */
-.orders-content {
+.completed-order-content {
     flex: 1;
 }
 
 /* Input/select styling */
-.orders-filter label,
-.orders-filter select,
-.orders-filter input {
+.completed-order-filter label,
+.completed-order-filter select,
+.completed-order-filter input {
     display: block;
     width: 100%;
     margin-bottom: 12px;
     font-size: 0.95rem;
 }
 
-.orders-filter select,
-.orders-filter input {
+.completed-order-filter select,
+.completed-order-filter input {
     padding: 6px 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -85,20 +85,20 @@
 }
 
 /* Table */
-.order-table {
+.completed-order-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.order-table th,
-.order-table td {
+.completed-order-table th,
+.completed-order-table td {
     padding: 12px 14px;
     border-bottom: 1px solid #eee;
     text-align: left;
     vertical-align: middle;
 }
 
-.order-table thead {
+.completed-order-table thead {
     background-color: #f2f2f2;
     font-weight: 600;
 }
@@ -112,7 +112,7 @@
     font-size: 0.85rem;
 }
 
-.order-details {
+.completed-order-details {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -139,7 +139,7 @@
     border-bottom-left-radius: 6px;
 }
 
-.orders-filter {
+.completed-order-filter {
     display: flex;
     flex-direction: column;
     background-color: #1f1f1f;
@@ -257,7 +257,7 @@
     height: 40px;
 }
 
-.search-sort-card .total-orders {
+.search-sort-card .completed-total-order {
     color: #dc3545;
     font-weight: 600;
     white-space: nowrap;
@@ -286,33 +286,33 @@
     height: 45px;
 }
 
-.total-orders {
+.completed-total-order {
     margin-bottom: 15px;
     font-size: 18px;
 }
 
-.orders-sidebar {
+.completed-order-sidebar {
     flex: 0 0 250px;
     /* cố định chiều rộng */
 }
 
-.orders-main {
+.completed-order-main {
     flex: 1;
     /* phần còn lại */
     min-width: 0;
     /* chống tràn nội dung */
 }
 
-.order-details {
+.completed-order-details {
     word-break: break-word;
     max-width: 100%;
 }
 
-.orders-card {
+.completed-order-card {
     overflow-x: auto;
 }
 
-.order-table {
+.completed-order-table {
     width: 500px;
 }
 
@@ -320,26 +320,26 @@
     width: 1100px;
 }
 
-.order-table {
+.completed-order-table {
     width: 1100px;
 }
 
-.orders-card {
+.completed-order-card {
     width: 100%;
 }
 
-.order-table table {
+.completed-order-table table {
     width: 100%;
 }
 
-.order-table th,
-.order-table td {
+.completed-order-table th,
+.completed-order-table td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.orders-body {
+.completed-order-body {
     display: flex;
     justify-content: center;
     margin: 0 auto;
