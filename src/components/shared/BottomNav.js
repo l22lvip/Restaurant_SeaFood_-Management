@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaHome, FaUser, FaSignOutAlt } from 'react-icons/fa'
+import { FaHome, FaUser, FaSignOutAlt, FaChartLine } from 'react-icons/fa'
 import { MdOutlineReorder, MdTableBar } from 'react-icons/md'
 import '../../css/BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -56,6 +56,13 @@ const BottomNav = () => {
         >
           <FaUser className="icon" size={20} />
           <p>Users</p>
+        </button>
+        <button
+          className={`nav-button ${isActive('/financial') ? 'active' : ''}`}
+          onClick={() => navigate('/financial')}
+        >
+          <FaChartLine className="icon" size={20} />
+          <p>Finance</p>
         </button>
         <button
           className="nav-button"

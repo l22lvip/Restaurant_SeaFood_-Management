@@ -446,5 +446,39 @@
   "earnings": {
     "today": 2500000,
     "yesterday": 1850000
-  }
+  },
+  "foodImports": [
+    {
+      "id": "1",
+      "date": "2025-07-21",
+      "amount": 2500000,
+      "description": "Nhập hải sản tươi sống",
+      "supplier": "Công ty Hải Sản Biển Đông",
+      "timestamp": "2025-07-21T08:30:00Z"
+    },
+    {
+      "id": "2",
+      "date": "2025-07-20",
+      "amount": 1800000,
+      "description": "Nhập rau củ quả tươi",
+      "supplier": "Công ty Nông Sản Sạch",
+      "timestamp": "2025-07-20T07:45:00Z"
+    },
+    {
+      "id": "3",
+      "date": "2025-07-19",
+      "amount": 3200000,
+      "description": "Nhập thịt heo, thịt bò",
+      "supplier": "Công ty Chăn Nuôi An Toàn",
+      "timestamp": "2025-07-19T09:15:00Z"
+    },
+    {
+      "id": "1753043766997",
+      "date": "2025-07-20",
+      "amount": 1000000,
+      "description": "Cá",
+      "supplier": "ANB",
+      "timestamp": "2025-07-20T20:36:06.997Z"
+    }
+  ]
 }
