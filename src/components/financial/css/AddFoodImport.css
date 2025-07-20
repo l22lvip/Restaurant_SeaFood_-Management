@@ -1,0 +1,184 @@
+/* Add Food Import Page Styles */
+.add-food-import {
+  background-color: #1f1f1f;
+  min-height: calc(100vh - 5rem);
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #f5f5f5;
+}
+
+.import-page-card {
+  background-color: #262626;
+  border-radius: 0.5rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.import-page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #ababab;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.back-btn:hover {
+  color: #f5f5f5;
+  background-color: #3a3a3a;
+}
+
+.import-page-title {
+  color: #f5f5f5;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.import-page-body {
+  padding: 0;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  color: #f5f5f5;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-input {
+  width: 95%;
+  padding: 0.75rem 1rem;
+  background-color: #1f1f1f;
+  border: 1px solid #383838;
+  border-radius: 0.5rem;
+  color: #f5f5f5;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  min-width: 200px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f6b100;
+  box-shadow: 0 0 0 0.2rem rgba(246, 177, 0, 0.25);
+}
+
+.form-input::placeholder {
+  color: #ababab;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.btn-cancel {
+  background-color: #3a3a3a;
+  color: #ababab;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-cancel:hover {
+  background-color: #4a4a4a;
+  color: #f5f5f5;
+}
+
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-submit {
+  background-color: #f6b100;
+  color: #1f1f1f;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #e5a800;
+}
+
+.btn-submit:disabled {
+  background-color: #4a4a4a;
+  color: #ababab;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-food-import {
+    padding: 1rem;
+  }
+  
+  .import-page-card {
+    margin: 1rem auto;
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .import-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .import-page-title {
+    font-size: 1.25rem;
+  }
+  
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+    padding: 0.875rem;
+  }
+  
+  .form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
