@@ -58,6 +58,7 @@ const EmployeeList = () => {
             <th>Tên</th>
             <th>Số điện thoại</th>
             <th>Tuổi</th>
+            <th>Địa chỉ</th>
             <th>Email</th>
             <th>Giới tính</th>
             <th>Hành động</th>
@@ -69,6 +70,7 @@ const EmployeeList = () => {
               <td>{user.name}</td>
               <td>{user.phone}</td>
               <td>{user.age}</td>
+              <td>{user.address}</td>
               <td>{user.email}</td>
               <td>{user.gender === "male" ? "Nam" : user.gender === "female" ? "Nữ" : "Khác"}</td>
               <td className="user-actions">
