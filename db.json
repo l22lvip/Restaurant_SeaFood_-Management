@@ -107,7 +107,7 @@
     {
       "id": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -123,7 +123,7 @@
     {
       "id": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -144,7 +144,7 @@
     {
       "id": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -165,7 +165,7 @@
     {
       "id": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -184,130 +184,62 @@
       "timestamp": "2025-07-17T04:00:22.862Z"
     },
     {
-      "id": "a177",
-      "tableId": "2",
-      "userId": 1,
+      "id": "5",
+      "tableId": "5",
+      "userId": 2,
       "customerId": null,
-      "name": "Unknown",
       "items": [
+        {
+          "menuItemId": "9",
+          "quantity": 2,
+          "price": 120000
+        },
+        {
+          "menuItemId": "6",
+          "quantity": 2,
+          "price": 25000
+        }
+      ],
+      "total": 290000,
+      "status": "Completed",
+      "timestamp": "2025-07-18T12:15:45.000Z"
+    },
+    {
+      "id": "6",
+      "tableId": "7",
+      "userId": 3,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "7",
+          "quantity": 1,
+          "price": 180000
+        },
         {
           "menuItemId": "5",
-          "quantity": 4,
-          "price": 35000,
-          "name": "Chè khúc bạch"
+          "quantity": 3,
+          "price": 35000
         }
       ],
-      "total": 140000,
+      "total": 285000,
       "status": "Completed",
-      "timestamp": "2025-07-19T11:18:58.293Z"
+      "timestamp": "2025-07-18T14:40:10.000Z"
     },
     {
-      "id": "20cf",
-      "tableId": "1",
-      "userId": 1,
+      "id": "7",
+      "tableId": "6",
+      "userId": 2,
       "customerId": null,
-      "name": "Unknown",
       "items": [
         {
-          "menuItemId": "3",
-          "quantity": 5,
-          "price": 750000,
-          "name": "Tôm hùm nướng phô mai"
+          "menuItemId": "10",
+          "quantity": 2,
+          "price": 40000
         }
       ],
-      "total": 3750000,
-      "status": "Completed",
-      "timestamp": "2025-07-19T11:21:10.901Z"
-    },
-    {
-      "tableId": "1",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 4,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
-      "total": 1855000,
-      "status": "Completed",
-      "timestamp": "2025-07-19T11:54:12.671Z",
-      "id": "980d"
-    },
-    {
-      "id": "7c8a",
-      "tableId": "1",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 4,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
-      "total": 1855000,
-      "status": "Completed",
-      "timestamp": "2025-07-19T12:07:50.142Z"
-    },
-    {
-      "id": "d15d",
-      "tableId": "8",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        }
-      ],
-      "total": 55000,
+      "total": 80000,
       "status": "In Progress",
-      "timestamp": "2025-07-20T07:25:10.685Z"
-    },
-    {
-      "id": "3596",
-      "tableId": "1",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
-      "total": 505000,
-      "status": "In Progress",
-      "timestamp": "2025-07-20T09:12:59.705Z"
+      "timestamp": "2025-07-19T08:00:00.000Z"
     }
   ],
   "bills": [
@@ -315,7 +247,7 @@
       "id": "1",
       "orderId": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "total": 25000,
       "paymentMethod": "Cash",
       "status": "Paid",
@@ -328,11 +260,11 @@
       "id": "2",
       "orderId": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "total": 2305000,
       "paymentMethod": "Cash",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:28:06.195Z",
+      "timestamp": "2025-07-17T04:32:06.195Z",
       "customerName": "Nguyễn Văn A",
       "customerEmail": "nguyenvana@example.com",
       "customerPhone": "0987654321"
@@ -341,11 +273,11 @@
       "id": "3",
       "orderId": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "total": 3450000,
-      "paymentMethod": "Cash",
+      "paymentMethod": "Card",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:00:00Z",
+      "timestamp": "2025-07-17T05:00:00Z",
       "customerName": "Trần B",
       "customerEmail": "tranb@example.com",
       "customerPhone": "0912345678"
@@ -354,9 +286,9 @@
       "id": "4",
       "orderId": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "total": 4100000,
-      "paymentMethod": "Cash",
+      "paymentMethod": "Banking",
       "status": "Pending",
       "timestamp": "2025-07-17T04:17:52.232Z",
       "customerName": "Nguyen Huu Bao Khanh",
@@ -365,47 +297,29 @@
     },
     {
       "id": "5",
-      "orderId": "980d",
-      "tableId": "1",
-      "total": 1855000,
-      "paymentMethod": "Cash",
+      "orderId": "5",
+      "tableId": "5",
+      "userId": 2,
+      "total": 290000,
+      "paymentMethod": "Banking",
       "status": "Paid",
-      "timestamp": "2025-07-19T12:05:23.588Z",
-      "customerName": "asdasd",
-      "customerPhone": "asdasdasd"
+      "timestamp": "2025-07-19T12:30:00.000Z",
+      "customerName": "Phạm Quốc",
+      "customerEmail": "phamquoc@example.com",
+      "customerPhone": "0911888999"
     },
     {
       "id": "6",
-      "orderId": "7c8a",
-      "tableId": "1",
-      "total": 1855000,
+      "orderId": "6",
+      "tableId": "7",
+      "userId": 3,
+      "total": 285000,
       "paymentMethod": "Cash",
       "status": "Paid",
-      "timestamp": "2025-07-19T12:08:12.444Z",
-      "customerName": "Nguyen Minh",
-      "customerPhone": "123123123"
-    },
-    {
-      "id": "7",
-      "orderId": "7c8a",
-      "tableId": "1",
-      "total": 1855000,
-      "paymentMethod": "Cash",
-      "status": "Pending",
-      "timestamp": "2025-07-19T12:09:10.732Z",
-      "customerName": "asdasdasdasd",
-      "customerPhone": "asdasdasdasdasd"
-    },
-    {
-      "id": "8",
-      "orderId": "a177",
-      "tableId": "2",
-      "total": 140000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "timestamp": "2025-07-19T12:09:42.845Z",
-      "customerName": "asdasd",
-      "customerPhone": "asdasdasd"
+      "timestamp": "2025-07-20T09:00:00.000Z",
+      "customerName": "Vũ Thảo",
+      "customerEmail": "vuthao@example.com",
+      "customerPhone": "0977555333"
     }
   ],
   "tables": [
@@ -495,17 +409,24 @@
   "users": [
     {
       "id": "1",
-      "name": "Nhân Viên",
-      "role": "staff",
+      "name": "Admin",
+      "role": "admin",
       "phone": "0912345678",
       "password": "admin"
     },
     {
       "id": "2",
-      "name": "Admin",
-      "role": "admin",
+      "name": "Nhân Viên 1",
+      "role": "staff",
       "phone": "0987654322",
       "password": "admin"
+    },
+    {
+      "id": "3",
+      "name": "Nhân Viên 2",
+      "role": "staff",
+      "phone": "0987654320",
+      "password": "123"
     },
     {
       "id": "1753029147701",
