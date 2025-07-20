@@ -10,6 +10,17 @@ import logo4 from '../../assets/images/logo4-done.png'
 import '../../css/Header.css'
 
 const Header = () => {
+    const role = localStorage.getItem('role');
+    if (role === 'admin') {
+        return (
+            <div className='header-container'>
+                <div className='logo-section'>
+                    <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
+                    <h1 className='header-title'>Harbor Fresh</h1>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className='header-container'>
             {/* Logo  */}
@@ -41,9 +52,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }
