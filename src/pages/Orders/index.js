@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Table, Form, Badge, Card, Modal, FormGroup
 import { } from "react-router-dom";
 import axios from 'axios';
 import './orders.css';
+import html2pdf from 'html2pdf.js';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -101,6 +102,9 @@ export default function Orders() {
       result = result.filter(bill => {
         const userName = users.find(u => u.id == bill.userId)?.name?.toLowerCase() || "";
         const order = orders.find(o => o.id == bill.orderId);
+        const customerName = bill?.customerName.toLowerCase() || "";
+        const customerPhone = bill?.customerPhone || "";
+        const total = String(bill?.total || "");
 
         const menuItemNames = order?.items.map(item => {
           const menuItem = menu.find(m => m.id == item.menuItemId);
@@ -117,6 +121,9 @@ export default function Orders() {
         return (
           userName.includes(lowerSearch) ||
           orderTime.includes(lowerSearch) ||
+          customerName.includes(lowerSearch) ||
+          customerPhone.includes(lowerSearch) ||
+          total.includes(lowerSearch) ||
           menuItemNames.some(name => name.includes(lowerSearch))
         );
       });
@@ -148,7 +155,12 @@ export default function Orders() {
       result = normalizedBills.filter(bill =>
         bill.date >= fromDate && bill.date <= toDate
       );
+    } else if (fromDate && toDate) {
+      result = normalizedBills.filter(bill =>
+        bill.date >= fromDate && bill.date <= toDate
+      );
     }
+
 
     // Sort
     result.sort((a, b) => {
@@ -166,6 +178,11 @@ export default function Orders() {
     Banking: "Chuyển khoản"
   };
 
+  const handleExport = () => {
+    const element = document.querySelector('#invoice');
+    html2pdf(element);
+  }
+
   return (
     <>
       <Container className="orders-container py-4">
@@ -175,8 +192,8 @@ export default function Orders() {
           </div>
 
           <div className="flex-fill d-flex justify-content-end">
-            <Button variant='dark'>
-              Export to PDF/Excel
+            <Button variant='dark' onClick={handleExport}>
+              Xuất file PDF
             </Button>
           </div>
         </div>
@@ -312,8 +329,8 @@ export default function Orders() {
                       />
                     </div>
 
-                    <div className="text-nowrap" style={{ fontWeight: 500 }}>
-                      Tổng số đơn: 10
+                    <div className="text-nowrap fw-bold" style={{ fontWeight: 500, color: "#DC3545" }}>
+                      Tổng số đơn: {filteredAndSortedBills().length}
                     </div>
                   </div>
                 </Card>
@@ -321,21 +338,21 @@ export default function Orders() {
             </Row>
 
             {/* Table */}
-            <Row>
+            <Row id="invoice">
               <Col sm={12} md={12} lg={12}>
                 <Card className="orders-card shadow-sm">
                   <Card.Body className="p-0">
                     <Table responsive hover className="mb-0 order-table">
                       <thead>
                         <tr>
-                          <th>#</th>
+                          <th data-html2canvas-ignore>#</th>
                           <th>Thời gian</th>
                           <th>Bàn</th>
                           <th>Nhân viên gọi món</th>
                           <th>Chi tiết món</th>
                           <th className='text-center'>Tổng tiền</th>
                           <th className='text-center'>Thanh toán</th>
-                          <th className='text-center'>Xem chi tiết</th>
+                          <th className='text-center' data-html2canvas-ignore>Xem chi tiết</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -344,7 +361,7 @@ export default function Orders() {
 
                           return (
                             <tr key={bill.id}>
-                              <td>{bill.id}</td>
+                              <td data-html2canvas-ignore>{bill.id}</td>
                               <td>
                                 {new Date(bill.timestamp).toLocaleString("vi-VN", {
                                   day: '2-digit',
@@ -374,7 +391,7 @@ export default function Orders() {
 
                               <td className="text-center">{paymentMethodMap[bill.paymentMethod]}</td>
 
-                              <td className="text-center">
+                              <td className="text-center" data-html2canvas-ignore>
                                 <div className="d-flex justify-content-center">
                                   <Button
                                     variant="outline-info"

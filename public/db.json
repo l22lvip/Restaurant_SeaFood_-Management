@@ -107,7 +107,7 @@
     {
       "id": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -123,7 +123,7 @@
     {
       "id": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -144,7 +144,7 @@
     {
       "id": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -165,7 +165,7 @@
     {
       "id": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -186,7 +186,7 @@
     {
       "id": "5",
       "tableId": "5",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -207,7 +207,7 @@
     {
       "id": "6",
       "tableId": "7",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -228,7 +228,7 @@
     {
       "id": "7",
       "tableId": "6",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -247,7 +247,7 @@
       "id": "1",
       "orderId": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "total": 25000,
       "paymentMethod": "Cash",
       "status": "Paid",
@@ -260,7 +260,7 @@
       "id": "2",
       "orderId": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "total": 2305000,
       "paymentMethod": "Cash",
       "status": "Paid",
@@ -273,7 +273,7 @@
       "id": "3",
       "orderId": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "total": 3450000,
       "paymentMethod": "Card",
       "status": "Paid",
@@ -286,7 +286,7 @@
       "id": "4",
       "orderId": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "total": 4100000,
       "paymentMethod": "Banking",
       "status": "Pending",
@@ -299,7 +299,7 @@
       "id": "5",
       "orderId": "5",
       "tableId": "5",
-      "userId": 1,
+      "userId": 2,
       "total": 290000,
       "paymentMethod": "Banking",
       "status": "Paid",
@@ -312,7 +312,7 @@
       "id": "6",
       "orderId": "6",
       "tableId": "7",
-      "userId": 1,
+      "userId": 3,
       "total": 285000,
       "paymentMethod": "Cash",
       "status": "Paid",
@@ -409,13 +409,18 @@
   "users": [
     {
       "id": "1",
-      "name": "Nhân Viên",
-      "role": "waiter"
+      "name": "Admin",
+      "role": "admin"
     },
     {
       "id": "2",
-      "name": "Admin",
-      "role": "admin"
+      "name": "Nhân Viên 1",
+      "role": "waiter"
+    },
+    {
+      "id": "3",
+      "name": "Nhân Viên 2",
+      "role": "waiter"
     }
   ],
   "earnings": {
