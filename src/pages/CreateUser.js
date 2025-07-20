@@ -10,7 +10,7 @@ const API_URL = "http://localhost:9999/users";
 const CreateUser = () => {
   const [formData, setFormData] = useState({
     name: "",
-    role: "waiter",
+    role: "staff",
     phone: "",
     password: "",
   });
