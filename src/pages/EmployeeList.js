@@ -1,12 +1,12 @@
-// pages/UserList.js
+// pages/EmployeeList.js
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:9999/users";
+const API_URL = "http://localhost:9999/employees";
 
-const UserList = () => {
+const EmployeeList = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
@@ -20,8 +20,7 @@ const UserList = () => {
   }, []);
 
   const handleDelete = async (id) => {
-
-    const confirm = window.confirm("Bạn có chắc chắn muốn xóa người dùng này không?");
+    const confirm = window.confirm("Bạn có chắc chắn muốn xóa nhân viên này không?");
     if (confirm) {
       await axios.delete(`${API_URL}/${id}`);
       fetchUsers();
@@ -29,49 +28,38 @@ const UserList = () => {
   };
 
   const [search, setSearch] = useState("");
-  const [roleFilter, setRoleFilter] = useState("");
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(search.toLowerCase()) &&
-    (roleFilter === "" || user.role === roleFilter)
+
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="user-page">
       <div className="user-header">
-        <h4 className="user-title">Danh sách nhân viên</h4>
-        
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <h4 className="user-title">Quản lý nhân viên</h4>
 
-          <Button style={{ cursor: "pointer" }} onClick={() => navigate("/users/create")}>
-            Thêm nhân viên
-          </Button>
-        </div>
+        <Button style={{ cursor: "pointer" }} onClick={() => navigate("/admin/employees/create")}>
+          Thêm nhân viên
+        </Button>
       </div>
-      <div style={{ display: "flex", justifyContent: "", alignItems: "center" }}>
+
+      <div style={{ marginBottom: "1rem" }}>
         <Form.Control
           type="text"
           placeholder="Tìm kiếm theo tên..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{ marginBottom: "1rem" }}
         />
-        <Form.Select
-          style={{ width: "200px", marginLeft: "1rem" }}
-          onChange={(e) => setRoleFilter(e.target.value)}
-          value={roleFilter}
-        >
-          <option value="">Tất cả vai trò</option>
-          <option value="admin">Quản trị viên</option>
-          <option value="staff">Nhân viên</option>
-        </Form.Select>
       </div>
 
       <table className="table user-list-table">
         <thead>
           <tr>
             <th>Tên</th>
-            <th>Vai trò</th>
             <th>Số điện thoại</th>
+            <th>Tuổi</th>
+            <th>Email</th>
+            <th>Giới tính</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -79,13 +67,15 @@ const UserList = () => {
           {filteredUsers.map((user) => (
             <tr key={user.id}>
               <td>{user.name}</td>
-              <td>{user.role === 'admin' ? 'Quản trị viên' : 'Nhân viên'}</td>
               <td>{user.phone}</td>
+              <td>{user.age}</td>
+              <td>{user.email}</td>
+              <td>{user.gender === "male" ? "Nam" : user.gender === "female" ? "Nữ" : "Khác"}</td>
               <td className="user-actions">
                 <button
                   className="edit-btn"
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigate(`/users/edit/${user.id}`)}
+                  onClick={() => navigate(`/admin/employees/edit/${user.id}`)}
                 >
                   Sửa
                 </button>
@@ -105,4 +95,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default EmployeeList;
