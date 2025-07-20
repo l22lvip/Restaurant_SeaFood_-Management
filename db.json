@@ -266,6 +266,24 @@
       "total": 1855000,
       "status": "Completed",
       "timestamp": "2025-07-19T12:07:50.142Z"
+    },
+    {
+      "id": "d15d",
+      "tableId": "8",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        }
+      ],
+      "total": 55000,
+      "status": "In Progress",
+      "timestamp": "2025-07-20T07:25:10.685Z"
     }
   ],
   "bills": [
@@ -419,9 +437,9 @@
     {
       "id": "8",
       "name": "Table 8",
-      "status": "empty",
+      "status": "available",
       "capacity": 4,
-      "currentOrderId": "aec9"
+      "currentOrderId": "d15d"
     },
     {
       "id": "9",
@@ -454,12 +472,16 @@
     {
       "id": "1",
       "name": "Nhân Viên",
-      "role": "waiter"
+      "role": "waiter",
+      "phone": "0912345678",
+      "password": "123456"
     },
     {
       "id": "2",
       "name": "Admin",
-      "role": "admin"
+      "role": "admin",
+      "phone": "0987654321",
+      "password": "admin123"
     }
   ],
   "earnings": {
