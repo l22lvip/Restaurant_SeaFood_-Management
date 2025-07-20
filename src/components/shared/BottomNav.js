@@ -1,6 +1,6 @@
 import React from 'react'
 import { CiCircleMore } from 'react-icons/ci'
-import { FaHome } from 'react-icons/fa'
+import { FaHome, FaUser } from 'react-icons/fa'
 import { MdOutlineReorder, MdTableBar } from 'react-icons/md'
 import '../../css/BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -35,13 +35,21 @@ const BottomNav = () => {
         <MdTableBar className="icon" size={20} />
         <p>Tables</p>
       </button>
+
       <button
+        className={`nav-button ${isActive('/users') ? 'active' : ''}`}
+        onClick={() => navigate('/users')}
+      >
+        <FaUser className="icon" size={20} />
+        <p>Users</p>
+      </button>
+      {/* <button
         className={`nav-button ${isActive('/more') ? 'active' : ''}`}
         onClick={() => navigate('/more')}
       >
         <CiCircleMore className="icon" size={20} />
         <p>More</p>
-      </button>
+      </button> */}
     </div>
   )
 }
