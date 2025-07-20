@@ -30,25 +30,25 @@ const Header = () => {
         );
     }
     return (
-        <div className='header-container'>
+        <div className='header-container' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             {/* Logo  */}
-            <div className='logo-section'>
+            <div className='logo-section' style={{marginTop: '2px', marginBottom: '2px'}}>
                 <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
                 <h1 className='header-title'>Harbor Fresh</h1>
             </div>
 
             {/* Search */}
-            <div className='search-section'>
+            {/* <div className='search-section'>
                 <FaSearch className='search-icon' />
                 <input 
                     type='text'
                     className='search-input'
                     placeholder='Search...'
                 />
-            </div>
+            </div> */}
 
             {/* LOGGED USER DETAIL */}
-            <div className='user-section'>
+            {/* <div className='user-section'>
                 <div className='notification-section'>
                     <FaBell className='notification-icon' />
                 </div>
@@ -59,7 +59,7 @@ const Header = () => {
                         <p>User</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

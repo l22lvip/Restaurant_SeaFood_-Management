@@ -29,7 +29,7 @@ const Auth = () => {
       localStorage.setItem('role', user.role);
       localStorage.setItem('user', JSON.stringify(user));
       setError('');
-      navigate("/users")
+      navigate("/admin/employees")
     } catch (err) {
       setError('Lỗi kết nối máy chủ!');
     }

@@ -446,5 +446,26 @@
   "earnings": {
     "today": 2500000,
     "yesterday": 1850000
-  }
+  },
+  "employees": [
+    {
+      "id": "1",
+      "name": "Nhân Viên 1",
+      "phone": "0912345678",
+      "age": 20,
+      "address": "Hà Nộii",
+      "email": "nhanvien1@gmail.com",
+      "gender": "male"
+    },
+    {
+      "id": "2",
+      "name": "Nhân Viên 2",
+      "phone": "0987654321",
+      "age": 20,
+      "address": "Hà Nội",
+      "email": "nhanvien2@gmail.com",
+      "gender": "female",
+      "image_url": "https://placehold.jp/150x150.png"
+    }
+  ]
 }
