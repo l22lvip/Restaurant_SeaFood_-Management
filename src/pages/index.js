@@ -5,4 +5,5 @@ export { default as Tables } from './Tables.js';
 export { default as CreateUser } from './CreateUser.js';
 export { default as EditUser } from './EditUser.js';
 export { default as UserList } from './UserList.js';
+export { default as Admin } from './Admin.js';
 
