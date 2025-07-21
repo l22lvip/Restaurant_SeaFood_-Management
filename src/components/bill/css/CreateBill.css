@@ -1,111 +1,152 @@
-/* Tổng thể */
+
+/* Container chính */
 .bill-manager-container {
-  background-color: #121212;
+  background-color: #0e0e0e;
   color: #ffffff;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Card */
-.bill-form-card {
-  background-color: #1e1e1e;
-  border: none;
+/* ===== CARD CHUNG ===== */
+.bill-form-card,
+.bill-card {
+  background-color: #1a1a1a;
   border-radius: 16px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  border: 1px solid #00e5ff33;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.1);
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
-/* Tiêu đề */
-.form-title, .bill-form-card h4, .bill-card h5 {
-  color: #ffffff;
+/* ===== TIÊU ĐỀ ===== */
+.form-title,
+.bill-form-card h4,
+.bill-card h5,
+h2, h4, h5 {
+  color: #00e5ff;
   font-weight: 700;
   margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
-/* Label */
+/* ===== LABEL ===== */
 .form-label {
-  color: #cccccc;
+  color: #dddddd;
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
-/* Input/Select */
+/* ===== INPUT & SELECT ===== */
 .form-control,
 .form-select {
-  background-color: #2a2a2a;
+  background-color: #262626;
   color: #ffffff;
-  border: 1px solid #444;
+  border: 1px solid #00e5ff33;
   border-radius: 12px;
   padding: 0.6rem 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+  margin-left: 2rem;
 }
+
+
 
 .form-control:focus,
 .form-select:focus {
-  background-color: #333;
-  border-color: #00bcd4;
-  box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
-  color: #ffffff;
+  background-color: #2d2d2d;
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 229, 255, 0.3);
 }
 
-/* Nút tròn */
+/* ===== BUTTON ===== */
 button,
 .btn {
   border-radius: 999px !important;
   padding: 0.6rem 1.4rem;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.3s ease-in-out;
   margin-top: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-primary {
-  background-color: #00bcd4;
-  border: none;
+  background-color: #cdd8da;
   color: #121212;
+  border: none;
 }
 
 .btn-primary:hover {
-  background-color: #0097a7;
-  color: #ffffff;
+  background-color: #00bcd4;
+  cursor: pointer;
+}
+
+.btn-success {
+  background-color: #cdd8da;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #43a047;
+  cursor: pointer;
 }
 
 .btn-outline-primary {
-  border-color: #00bcd4;
-  color: #00bcd4;
+  color: #00e5ff;
+  border: 1px solid #00e5ff;
   background-color: transparent;
+  cursor: pointer;
 }
 
+
 .btn-outline-primary:hover {
-  background-color: #00bcd4;
+  background-color: #00e5ff;
   color: #121212;
 }
 
-/* Bảng */
+/* ===== TABLE ===== */
 .table {
-  background-color: #1a1a1a;
+  background-color: #181818;
   color: #ffffff;
-  margin-top: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 1rem;
   overflow: hidden;
 }
 
 .table thead {
-  background-color: #2b2b2b;
-  color: #00bcd4;
-}
-
-.table tbody tr:hover {
-  background-color: #2e2e2e;
+  background-color: #222;
+  color: #00e5ff;
+  text-transform: uppercase;
+  font-size: 1rem;
 }
 
 .table td,
 .table th {
+  padding: 1rem 1.2rem;
   vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
 }
 
-/* Badge trạng thái */
+.table tbody tr:hover {
+  background-color: #292929;
+}
+
+.table td:first-child,
+.table th:first-child {
+  text-align: left;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  border-radius: 999px !important;
+  padding: 0.4rem 1rem !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 .badge.bg-success {
   background-color: #4caf50 !important;
 }
@@ -115,15 +156,7 @@ button,
   color: #121212;
 }
 
-/* Bo tròn cho badge trạng thái */
-.badge {
-  border-radius: 999px !important; /* Làm cho nó tròn viên */
-  padding: 0.5em 1em !important;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-/* QR section */
+/* ===== QR CODE ===== */
 .qr-section {
   text-align: center;
   margin-top: 1rem;
@@ -131,9 +164,8 @@ button,
 
 .qr-image {
   width: 160px;
-  height: auto;
   border-radius: 12px;
-  border: 1px solid #666;
+  border: 1px solid #00e5ff33;
 }
 
 .qr-note {
@@ -142,28 +174,18 @@ button,
   margin-top: 0.5rem;
 }
 
-/* Thông tin khách hàng */
-.customer-info-box {
-  background-color: #2e2e2e;
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  border: 1px solid #444;
-  color: #eeeeee;
-  margin-bottom: 1.5rem;
-}
-
-/* Tổng cộng */
+/* ===== TỔNG TIỀN ===== */
 .text-primary.fw-bold {
   color: #00e5ff !important;
 }
 
-/* Phụ */
+/* ===== TEXT MỜ ===== */
 .text-muted {
-  color: #888888 !important;
+  color: #aaaaaa !important;
   margin-top: 0.5rem;
 }
 
-/* Phân trang */
+/* ===== PHÂN TRANG ===== */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -172,44 +194,29 @@ button,
   margin-top: 1.5rem;
 }
 
-/* Bảng sản phẩm & hóa đơn */
-.table {
-  width: 100%;
-  max-width: 100%;
-  background-color: #1a1a1a;
-  color: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  font-size: 1rem;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 576px) {
+  .form-title {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .table td,
+  .table th {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .qr-image {
+    width: 120px;
+  }
 }
 
-.table td, .table th {
-  padding: 1rem 1.2rem;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
+h5.text-end {
+  text-align: right !important;
 }
 
-.table thead {
-  background-color: #2c2c2c;
-  color: #00e5ff;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-/* Đặt container bảng cho layout rộng ra */
-.bill-form-card table,
-.bill-card table {
-  width: 100%;
-}
-
-/* Bổ sung scroll ngang nếu vượt chiều ngang màn */
-.table-responsive {
-  overflow-x: auto;
-}
-
-/* Căn trái tên sản phẩm */
-.table td:first-child,
-.table th:first-child {
-  text-align: left;
-}

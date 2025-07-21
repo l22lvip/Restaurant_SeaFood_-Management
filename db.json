@@ -237,81 +237,75 @@
           "price": 40000
         }
       ],
-      "total": 80000,
-      "status": "In Progress",
-      "timestamp": "2025-07-19T08:00:00.000Z"
+
+      "total": 1855000,
+      "status": "Completed",
+      "timestamp": "2025-07-19T12:07:50.142Z"
     },
     {
-      "id": "8221",
+      "id": "8806",
       "tableId": "2",
       "userId": 1,
       "customerId": null,
       "name": "Unknown",
       "items": [
         {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000,
-          "name": "Cua sốt me"
+          "menuItemId": "3",
+          "quantity": 4,
+          "price": 750000,
+          "name": "Tôm hùm nướng phô mai"
         }
       ],
-      "total": 505000,
-      "status": "In Progress",
-      "timestamp": "2025-07-21T03:55:19.298Z"
-    },
-    {
-      "id": "3730",
-      "tableId": "3",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 1,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
-      "total": 505000,
+      "total": 3000000,
       "status": "Completed",
-      "timestamp": "2025-07-21T04:05:29.822Z"
+      "timestamp": "2025-07-19T12:34:15.572Z"
     },
     {
-      "id": "b8af",
-      "tableId": "3",
+      "id": "6734",
+      "tableId": "1",
       "userId": 1,
       "customerId": null,
       "name": "Unknown",
       "items": [
         {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 2,
-          "price": 450000,
-          "name": "Cua sốt me"
+          "menuItemId": "3",
+          "quantity": 4,
+          "price": 750000,
+          "name": "Tôm hùm nướng phô mai"
         }
       ],
-      "total": 955000,
+      "total": 3000000,
+      "status": "Completed",
+      "timestamp": "2025-07-19T12:51:51.340Z"
+    },
+    {
+      "id": "0f2f",
+      "tableId": "2",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "6",
+          "quantity": 1,
+          "price": 25000,
+          "name": "Nước Chanh"
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 2,
+          "price": 350000,
+          "name": "Lẩu Thái hải sản"
+        },
+        {
+          "menuItemId": "5",
+          "quantity": 2,
+          "price": 35000,
+          "name": "Chè khúc bạch"
+        }
+      ],
+      "total": 795000,
       "status": "In Progress",
-      "timestamp": "2025-07-21T04:08:51.235Z"
     }
   ],
   "bills": [
@@ -338,7 +332,6 @@
       "status": "Paid",
       "timestamp": "2025-07-17T04:32:06.195Z",
       "customerName": "Nguyễn Văn A",
-      "customerEmail": "nguyenvana@example.com",
       "customerPhone": "0987654321"
     },
     {
@@ -351,7 +344,6 @@
       "status": "Paid",
       "timestamp": "2025-07-17T05:00:00Z",
       "customerName": "Trần B",
-      "customerEmail": "tranb@example.com",
       "customerPhone": "0912345678"
     },
     {
@@ -364,7 +356,6 @@
       "status": "Pending",
       "timestamp": "2025-07-17T04:17:52.232Z",
       "customerName": "Nguyen Huu Bao Khanh",
-      "customerEmail": "nguyenhuubaokhanh2005@gmail.com",
       "customerPhone": "01912391293"
     },
     {
@@ -379,30 +370,6 @@
       "customerName": "Phạm Quốc",
       "customerEmail": "phamquoc@example.com",
       "customerPhone": "0911888999"
-    },
-    {
-      "id": "6",
-      "orderId": "6",
-      "tableId": "7",
-      "userId": 3,
-      "total": 285000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "timestamp": "2025-07-20T09:00:00.000Z",
-      "customerName": "Vũ Thảo",
-      "customerEmail": "vuthao@example.com",
-      "customerPhone": "0977555333"
-    },
-    {
-      "id": "7",
-      "orderId": "3730",
-      "tableId": "3",
-      "total": 505000,
-      "paymentMethod": "Cash",
-      "status": "Pending",
-      "timestamp": "2025-07-21T04:05:50.128Z",
-      "customerName": "alsdj",
-      "customerPhone": "laksdj"
     }
   ],
   "tables": [
@@ -411,7 +378,9 @@
       "name": "Table 1",
       "status": "available",
       "capacity": 4,
-      "currentOrderId": "3596"
+
+      "currentOrderId": "6734"
+
     },
     {
       "id": "2",

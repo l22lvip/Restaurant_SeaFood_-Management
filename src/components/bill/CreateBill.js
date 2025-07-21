@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Container, Form, Button, Table, Row, Col, Card, Badge } from 'react-bootstrap';
+import { Container, Form, Button, Table, Row, Col, Card, Badge, FormGroup, CardBody } from 'react-bootstrap';
 import './css/CreateBill.css';
 import axios from 'axios';
+
 
 const CreateBill = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const [tables, setTables] = useState([]);
   const [amount, setAmount] = useState('');
   const [orders, setOrders] = useState([]);
@@ -14,19 +16,14 @@ const CreateBill = () => {
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [maxId, setId] = useState(0);
   const [update, setUpdate] = useState(false);
-  // Nhận thông tin order từ location.state nếu có
-  const orderInfo = location.state?.order;
-  // State cho phân trang hóa đơn
   const [currentPage, setCurrentPage] = useState(1);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [bills, setBills] = useState([]);
-
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
-
+  const orderInfo = location.state?.order;
   const billsPerPage = 5;
-
 
   useEffect(() => {
     fetch('http://localhost:9999/tables')
@@ -36,7 +33,6 @@ const CreateBill = () => {
     fetch('http://localhost:9999/bills')
       .then((res) => res.json())
       .then((data) => setBills(data));
-
 
     fetch('http://localhost:9999/orders')
       .then((res) => res.json())
@@ -54,7 +50,9 @@ const CreateBill = () => {
   }, [maxId, update]);
 
   useEffect(() => {
-    const selected = orderInfo ? orderInfo : orders.find(o => String(o.tableId) === String(tableId));
+    const selected = orderInfo
+      ? orderInfo
+      : orders.find((o) => String(o.tableId) === String(tableId));
     if (selected && selected.items?.length) {
       setIsPaymentSuccessful(true);
     }
@@ -66,25 +64,41 @@ const CreateBill = () => {
         event.preventDefault();
         event.returnValue = '';
       }
-    }
+    };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [isPaymentSuccessful]);
-
+  const validateCustomerInfo = () => {
+    if (!customerName.trim() || customerName.trim().length < 2 || !/^[\p{L}\s]+$/u.test(customerName.trim())) {
+      alert('Vui lòng nhập tên khách hàng hợp lệ (chỉ chữ, tối thiểu 2 ký tự).');
+      return false;
+    }
+    if (
+      customerPhone.trim() &&
+      !/^0\d{8,10}$/.test(customerPhone.trim())
+    ) {
+      alert('Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng 0, 9-11 số).');
+      return false;
+    }
+    return true;
+  };
   const handleCreateBill = async () => {
-    console.log("tableId đang chọn:", tableId);
-    console.log("bills hiện tại:", bills);
-    // Ghép thông tin order
-    const selectedOrder = orderInfo ? orderInfo : orders.find(o => String(o.tableId) === String(tableId));
+    console.log('tableId đang chọn:', tableId);
+    console.log('bills hiện tại:', bills);
+
+    const selectedOrder = orderInfo
+      ? orderInfo
+      : orders.find((o) => String(o.tableId) === String(tableId));
     if (!selectedOrder || !selectedOrder.items?.length) {
       alert('Không có sản phẩm nào cho bàn này!');
       return;
     }
 
+    if (!validateCustomerInfo()) return;
     const newBill = {
-      id: String(maxId + 1),
+      id: String(Number(maxId) + 1),
       orderId: selectedOrder.id,
       tableId: selectedOrder.tableId,
       total: selectedOrder.total,
@@ -92,7 +106,7 @@ const CreateBill = () => {
       status: 'Pending',
       timestamp: new Date().toISOString(),
       customerName,
-      customerPhone
+      customerPhone,
     };
 
     try {
@@ -113,7 +127,6 @@ const CreateBill = () => {
     }
 
     console.log('Tạo hóa đơn:', newBill);
-
   };
 
   const getTableName = (id) => {
@@ -127,28 +140,40 @@ const CreateBill = () => {
         return <Badge bg="success">Đã thanh toán</Badge>;
       case 'Pending':
         return <Badge bg="warning">Đang xử lý</Badge>;
-
+      default:
+        return null;
     }
   };
 
   const handleMarkAsPaid = async () => {
-    const selectedOrder = orderInfo || orders.find(o => String(o.tableId) === String(tableId));
-    if (!selectedOrder?.items?.length) return alert('Không có sản phẩm nào cho bàn này!');
+    const selectedOrder =
+      orderInfo || orders.find((o) => String(o.tableId) === String(tableId));
+    if (!selectedOrder?.items?.length)
+      return alert('Không có sản phẩm nào cho bàn này!');
 
     const updatedOrder = { ...selectedOrder, status: 'Completed' };
-    const billToUpdate = bills.find(b => String(b.orderId) === String(selectedOrder.id));
+    const billToUpdate = bills.find(
+      (b) => String(b.orderId) === String(selectedOrder.id)
+    );
     if (!billToUpdate) return alert('Không tìm thấy hóa đơn!');
 
     const updatedBill = { ...billToUpdate, status: 'Paid' };
-    console.log('selectedOrder:', selectedOrder);
-    console.log('billToUpdate:', billToUpdate);
     try {
-      await axios.put(`http://localhost:9999/orders/${selectedOrder.id}`, updatedOrder);
-      await axios.put(`http://localhost:9999/bills/${String(billToUpdate.id)}`, updatedBill);
-      await axios.put(`http://localhost:9999/tables/${selectedOrder.tableId}`, {
-        ...tables.find(t => t.id === selectedOrder.tableId),
-        status: 'empty'
-      });
+      await axios.put(
+        `http://localhost:9999/orders/${selectedOrder.id}`,
+        updatedOrder
+      );
+      await axios.put(
+        `http://localhost:9999/bills/${String(billToUpdate.id)}`,
+        updatedBill
+      );
+      await axios.put(
+        `http://localhost:9999/tables/${selectedOrder.tableId}`,
+        {
+          ...tables.find((t) => t.id === selectedOrder.tableId),
+          status: 'empty',
+        }
+      );
       alert('Thanh toán thành công!');
       navigate('/tables');
     } catch {
@@ -166,101 +191,84 @@ const CreateBill = () => {
     }
   };
 
-
-
   return (
-    <Container className="bill-manager-container">
+    <Container fluid className='bill-manager-container'>
       <Card className="bill-form-card">
-        <Card.Body>
+        <Row>
+          {/* Cột bên trái: Thông tin hóa đơn */}
+          <Col md={6}>
+            <h4 className="form-title text-info">Thông tin hóa đơn</h4>
+            <div>Khách hàng</div>
+            <FormGroup>
+              Tên khách hàng:
+              <Form.Control
+                type="text"
+                placeholder="Tên khách hàng"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                className="mb-2"
+              />
+            </FormGroup>
+            <FormGroup>
+              Số điện thoại:
+              <Form.Control
+                type="tel"
+                placeholder="Số điện thoại (nếu có)"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+              />
+            </FormGroup>
+            <Form.Group>
+              <Form.Label>Bàn:</Form.Label>
+              {orderInfo ? orderInfo.tableId : tableId}
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Phương thức thanh toán</Form.Label>
+              <Form.Select
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              >
+                <option value="Cash">Tiền mặt</option>
+                <option value="QR">QR Code</option>
+                <option value="Card">Thẻ</option>
+              </Form.Select>
+            </Form.Group>
 
-          <Row>
-            <h4 className="form-title">Thông tin hóa đơn</h4>
-            <Col md={12}>
-              <Form.Group>
-                <Form.Label>Khách hàng</Form.Label>
-                <Row className="mb-5 mt-2">
-                  <Col>
-                    Tên khách hàng:
-                    <Form.Control
-                      type="text"
-                      placeholder="Tên khách hàng"
-                      value={customerName}
-                      onChange={(e) => setCustomerName(e.target.value)}
-                      className="mb-2"
-                    />
-                  </Col>
-                </Row>
-
-                <Row className='mb-3'>
-                  <Col>
-                    Số điện thoại:
-                    <Form.Control
-                      type="tel"
-                      placeholder="Số điện thoại (nếu có)"
-                      value={customerPhone}
-                      onChange={(e) => setCustomerPhone(e.target.value)}
-                    />
-                  </Col>
-                </Row>
-              </Form.Group>
-
-            </Col>
-
-
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Bàn: </Form.Label>
-                {orderInfo ? orderInfo.tableId : tableId}
-
-
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group>
-                <Form.Label>Phương thức thanh toán</Form.Label>
-                <Form.Select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
-                  <option value="Cash">Tiền mặt</option>
-                  <option value="QR">QR Code</option>
-                  <option value="Card">Thẻ</option>
-                </Form.Select>
-              </Form.Group>
-
-              {paymentMethod === 'QR' && (
-                <div className="qr-section">
-                  <img
+            {paymentMethod === 'QR' && (
+              <Card className="mt-3 text-center">
+                <Card.Body>
+                  <Card.Img
+                    variant="top"
                     src={require('../../assets/images/qr.png')}
                     alt="QR code demo"
-                    className="qr-image"
+                    style={{ maxWidth: '150px', margin: '0 auto' }}
                   />
-                  <div className="qr-note">Quét mã QR để thanh toán</div>
-                </div>
-              )}
-            </Col>
+                  <Form.Text className="text-muted d-block mt-2">
+                    Quét mã QR để thanh toán
+                  </Form.Text>
+                </Card.Body>
+              </Card>
+            )}
 
             <Button variant="primary" className="mt-4 w-100" onClick={handleCreateBill}>
               Tạo hóa đơn
             </Button>
-
-            <Button
-              variant="success"
-              className="mt-4 w-100"
-              onClick={handleMarkAsPaid}
-            >
+            <Button variant="success" className="mt-3 w-100" onClick={handleMarkAsPaid}>
               Thanh toán thành công
             </Button>
+          </Col>
 
-          </Row>
-
-          <Row>
-            <h4 className="mb-3 text-secondary">Danh sách sản phẩm đã đặt</h4>
+          {/* Cột bên phải: Danh sách sản phẩm */}
+          <Col md={6}>
+            <h4 className="mb-3 text-info">Danh sách sản phẩm đã đặt</h4>
             {(orderInfo ? orderInfo.tableId : tableId) ? (
               (() => {
-                const selectedOrder = orderInfo ? orderInfo : orders.find(o => String(o.tableId) === String(tableId));
+                const selectedOrder = orderInfo
+                  ? orderInfo
+                  : orders.find((o) => String(o.tableId) === String(tableId));
                 if (!selectedOrder || !selectedOrder.items?.length) {
                   return <div className="text-muted">Không có sản phẩm nào.</div>;
                 }
-
                 return (
                   <>
                     <Table striped bordered hover>
@@ -297,16 +305,17 @@ const CreateBill = () => {
             ) : (
               <div className="text-muted">Vui lòng chọn bàn để xem đơn hàng.</div>
             )}
-          </Row>
-        </Card.Body>
+          </Col>
+        </Row>
       </Card>
 
+
       {/* Danh sách hóa đơn với phân trang */}
-      <Card className="shadow-sm mt-4 bill-card">
+      <Card className="bill-form-card shadow-sm mt-4 bill-card ">
         <Card.Body>
           <Row>
             <Col>
-              <h5 className="mb-3">Danh sách hóa đơn</h5>
+              <h2 className="mb-3">Danh sách hóa đơn</h2>
               {orders.length ? (
                 <>
                   <Table striped bordered hover>
@@ -322,24 +331,56 @@ const CreateBill = () => {
                     </thead>
                     <tbody>
                       {bills
-                        .slice((currentPage - 1) * billsPerPage, currentPage * billsPerPage)
+                        .slice(
+                          (currentPage - 1) * billsPerPage,
+                          currentPage * billsPerPage
+                        )
                         .map((bill, index) => {
                           // Lấy thông tin đơn hàng
-                          const order = orders.find(o => o.id === bill.orderId);
+                          const order = orders.find(
+                            (o) => o.id === bill.orderId
+                          );
                           return (
                             <tr key={bill.id}>
-                              <td>{(currentPage - 1) * billsPerPage + index + 1}</td>
+                              <td>
+                                {(currentPage - 1) * billsPerPage +
+                                  index +
+                                  1}
+                              </td>
                               <td>{getTableName(bill.tableId)}</td>
                               <td>
-                                <div><strong>{bill.customerName || '---'}</strong></div>
-                                <div className="text-muted" style={{ fontSize: '0.9em' }}>
+                                <div>
+                                  <strong>
+                                    {bill.customerName || '---'}
+                                  </strong>
+                                </div>
+                                <div
+                                  className="text-muted"
+                                  style={{ fontSize: '0.9em' }}
+                                >
                                   {bill.customerPhone || '---'}
                                 </div>
                               </td>
-                              <td>{bill.total?.toLocaleString() || '---'} đ</td>
+                              <td>
+                                {bill.total?.toLocaleString() || '---'} đ
+                              </td>
                               <td>{renderStatus(bill.status)}</td>
-                              <td>{new Date(bill.timestamp).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + new Date(bill.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</td>
-
+                              <td>
+                                {new Date(
+                                  bill.timestamp
+                                ).toLocaleDateString('vi-VN', {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  year: 'numeric',
+                                }) +
+                                  ' ' +
+                                  new Date(
+                                    bill.timestamp
+                                  ).toLocaleTimeString('vi-VN', {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                  })}
+                              </td>
                             </tr>
                           );
                         })}
@@ -356,12 +397,19 @@ const CreateBill = () => {
                     >
                       Trang trước
                     </Button>
-                    <span>Trang {currentPage} / {Math.ceil(bills.length / billsPerPage)}</span>
+                    <span>
+                      Trang {currentPage} /{' '}
+                      {Math.ceil(bills.length / billsPerPage)}
+                    </span>
                     <Button
                       variant="outline-primary"
                       size="sm"
                       className="ms-2"
-                      disabled={currentPage === Math.ceil(bills.length / billsPerPage) || bills.length === 0}
+                      disabled={
+                        currentPage ===
+                        Math.ceil(bills.length / billsPerPage) ||
+                        bills.length === 0
+                      }
                       onClick={() => setCurrentPage(currentPage + 1)}
                     >
                       Trang sau
