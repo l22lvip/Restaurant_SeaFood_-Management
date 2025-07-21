@@ -19,6 +19,7 @@ export default function Orders() {
     const [dayOption, setDayOption] = useState("");
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
+    const [isExporting, setIsExporting] = useState(false);
 
     useEffect(() => {
         axios.get("http://localhost:9999/orders")
@@ -161,7 +162,6 @@ export default function Orders() {
             );
         }
 
-
         // Sort
         result.sort((a, b) => {
             const timeA = new Date(a.timestamp);
@@ -179,8 +179,13 @@ export default function Orders() {
     };
 
     const handleExport = () => {
-        const element = document.querySelector('#invoice');
-        html2pdf(element);
+        setIsExporting(true);
+        setTimeout(() => {
+            const element = document.querySelector('#invoice');
+            html2pdf(element);
+
+            setIsExporting(false);
+        }, 100); // Delay 100ms
     }
 
     return (
@@ -191,7 +196,7 @@ export default function Orders() {
                         <h2 className="completed-order-title">🧾 Đơn Đã Hoàn Thành</h2>
                     </div>
 
-                    <div className="flex-fill d-flex justify-content-end">
+                    <div className="flex-fill d-flex justify-content-end export-button">
                         <Button variant='dark' onClick={handleExport}>
                             Xuất file PDF
                         </Button>
@@ -202,296 +207,308 @@ export default function Orders() {
 
                     {/* Filter */}
                     <aside className="completed-order-sidebar">
-                        <Col sm={2} md={2} lg={2}>
-                            <Card
-                                style={{
-                                    position: "sticky",
-                                    top: 80,
-                                    zIndex: 10,
-                                    // backgroundColor: "#f8f9fa",
-                                    // boxShadow: "0 0 10px rgba(0,0,0,0.05)",
-                                    border: "none",
-                                }}
-                            >
-                                <div className="filter-card-body">
-                                    <h5 className="filter-title">Bộ lọc tìm kiếm</h5>
+                        <Row>
+                            <Col sm={2} md={2} lg={2}>
+                                <Card
+                                    style={{
+                                        position: "sticky",
+                                        top: 80,
+                                        zIndex: 10,
+                                        // backgroundColor: "#f8f9fa",
+                                        // boxShadow: "0 0 10px rgba(0,0,0,0.05)",
+                                        border: "none",
+                                    }}
+                                >
+                                    <div className="filter-card-body">
+                                        <h5 className="filter-title">Bộ lọc tìm kiếm</h5>
 
-                                    <div className="filter-group">
-                                        {/* Day Option */}
-                                        <label className="filter-label">Lọc theo thời gian</label>
-                                        <select
-                                            className="filter-select"
-                                            value={dayOption}
-                                            onChange={(e) => handleDayOption(e.target.value)}
-                                        >
-                                            <option value="">Tất cả</option>
-                                            <option value="today">Hôm nay</option>
-                                            <option value="yesterday">Hôm qua</option>
-                                            <option value="thisWeek">Tuần này</option>
-                                            <option value="thisMonth">Tháng này</option>
-                                            <option value="singleDay">Ngày cụ thể</option>
-                                            <option value="range">Khoảng thời gian</option>
-                                        </select>
+                                        <div className="filter-group">
+                                            {/* Day Option */}
+                                            <label className="filter-label">Lọc theo thời gian</label>
+                                            <select
+                                                className="filter-select"
+                                                value={dayOption}
+                                                onChange={(e) => handleDayOption(e.target.value)}
+                                            >
+                                                <option value="">Tất cả</option>
+                                                <option value="today">Hôm nay</option>
+                                                <option value="yesterday">Hôm qua</option>
+                                                <option value="thisWeek">Tuần này</option>
+                                                <option value="thisMonth">Tháng này</option>
+                                                <option value="singleDay">Ngày cụ thể</option>
+                                                <option value="range">Khoảng thời gian</option>
+                                            </select>
 
-                                        {/* Input day */}
-                                        <div className="mt-2">
-                                            {dayOption === "singleDay" && (
-                                                <Form.Control
-                                                    type="date"
-                                                    size="sm"
-                                                    className="filter-select"
-                                                    value={fromDate}
-                                                    onChange={(e) => setFromDate(e.target.value)}
-                                                />
-                                            )}
-
-                                            {dayOption === "range" && (
-                                                <div className="d-flex flex-column gap-2 filter-select-1">
-                                                    <Form.Control
-                                                        type="date"
-                                                        size="sm"
-                                                        className="filter-select filter-select-2"
-                                                        value={fromDate}
-                                                        onChange={(e) => setFromDate(e.target.value)}
-                                                    />
+                                            {/* Input day */}
+                                            <div className="mt-2">
+                                                {dayOption === "singleDay" && (
                                                     <Form.Control
                                                         type="date"
                                                         size="sm"
                                                         className="filter-select"
-                                                        value={toDate}
-                                                        onChange={(e) => setToDate(e.target.value)}
+                                                        value={fromDate}
+                                                        onChange={(e) => setFromDate(e.target.value)}
                                                     />
-                                                </div>
-                                            )}
+                                                )}
+
+                                                {dayOption === "range" && (
+                                                    <div className="d-flex flex-column gap-2 filter-select-1">
+                                                        <Form.Control
+                                                            type="date"
+                                                            size="sm"
+                                                            className="filter-select filter-select-2"
+                                                            value={fromDate}
+                                                            onChange={(e) => setFromDate(e.target.value)}
+                                                        />
+                                                        <Form.Control
+                                                            type="date"
+                                                            size="sm"
+                                                            className="filter-select"
+                                                            value={toDate}
+                                                            onChange={(e) => setToDate(e.target.value)}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
+
+                                        <div className="filter-group">
+                                            {/* Payment Method */}
+                                            <label className="filter-label">Phương thức thanh toán</label>
+                                            <select
+                                                className="filter-select"
+                                                value={selectedPaymentMethod}
+                                                onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                                            >
+                                                <option value="">Tất cả</option>
+                                                <option value="Card">Thẻ</option>
+                                                <option value="Cash">Tiền mặt</option>
+                                                <option value="Banking">Chuyển khoản ngân hàng</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="filter-group">
+                                            {/* Staff */}
+                                            <label className="filter-label">Nhân viên</label>
+                                            <select
+                                                className="filter-select"
+                                                value={selectedStaff}
+                                                onChange={(e) => setSelectedStaff(e.target.value)}
+                                            >
+                                                <option value="">Tất cả</option>
+
+                                                {users.filter(user => user.role === 'staff')
+                                                    .map((user) => (
+                                                        <option key={user.id} value={user.id}>{user.name}</option>
+                                                    ))}
+                                            </select>
+
+                                        </div>
+
                                     </div>
-
-                                    <div className="filter-group">
-                                        {/* Payment Method */}
-                                        <label className="filter-label">Phương thức thanh toán</label>
-                                        <select
-                                            className="filter-select"
-                                            value={selectedPaymentMethod}
-                                            onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                                        >
-                                            <option value="">Tất cả</option>
-                                            <option value="Card">Thẻ</option>
-                                            <option value="Cash">Tiền mặt</option>
-                                            <option value="Banking">Chuyển khoản ngân hàng</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="filter-group">
-                                        {/* Staff */}
-                                        <label className="filter-label">Nhân viên</label>
-                                        <select
-                                            className="filter-select"
-                                            value={selectedStaff}
-                                            onChange={(e) => setSelectedStaff(e.target.value)}
-                                        >
-                                            <option value="">Tất cả</option>
-
-                                            {users.filter(user => user.role === 'waiter')
-                                                .map((user) => (
-                                                    <option key={user.id} value={user.id}>{user.name}</option>
-                                                ))}
-                                        </select>
-
-                                    </div>
-
-                                </div>
-                            </Card>
-                        </Col>
+                                </Card>
+                            </Col>
+                        </Row>
                     </aside>
 
                     <main className="completed-order-main">
                         {/* Sort + Table */}
-                        <Col sm={10} md={10} lg={10}>
+                        <Row>
+                            <Col sm={10} md={10} lg={10}>
 
-                            {/* Sort + Seach Option */}
-                            <div className='sort-option'>
-                                <Row className="mb-3">
-                                    <Col sm={12}>
-                                        <Card className="search-sort-card">
-                                            <Form.Select
-                                                className='filter-select'
-                                                value={sortOrder}
-                                                onChange={(e) => setSortOrder(e.target.value)}
-                                            >
-                                                <option value="newest">Mới nhất</option>
-                                                <option value="oldest">Cũ nhất</option>
-                                            </Form.Select>
+                                {/* Sort + Seach Option */}
+                                <div className='sort-option'>
+                                    <Row className="mb-3">
+                                        <Col sm={12}>
+                                            <Card className="search-sort-card">
+                                                <Form.Select
+                                                    className='filter-select'
+                                                    value={sortOrder}
+                                                    onChange={(e) => setSortOrder(e.target.value)}
+                                                >
+                                                    <option value="newest">Mới nhất</option>
+                                                    <option value="oldest">Cũ nhất</option>
+                                                </Form.Select>
 
-                                            <Form.Control
-                                                className='sort-searchbar'
-                                                placeholder="Tìm kiếm..."
-                                                value={searchText}
-                                                onChange={(e) => setSearchText(e.target.value)}
-                                            />
+                                                <Form.Control
+                                                    className='sort-searchbar'
+                                                    placeholder="Tìm kiếm..."
+                                                    value={searchText}
+                                                    onChange={(e) => setSearchText(e.target.value)}
+                                                />
 
-                                            <div className="completed-total-order">
-                                                Tổng số đơn: {filteredAndSortedBills().length}
-                                            </div>
-                                        </Card>
+                                                <div className="completed-total-order">
+                                                    Tổng số đơn: {filteredAndSortedBills().length}
+                                                </div>
+                                            </Card>
 
-                                    </Col>
-                                </Row>
-                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
 
-                            {/* Table */}
-                            <Row id="invoice" className='completed-order-table'>
-                                <Col sm={12} md={12} lg={12}>
-                                    <Card className="completed-order-card shadow-sm">
-                                        <Card.Body className="p-0">
-                                            <Table responsive hover className="mb-0 completed-order-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th data-html2canvas-ignore>#</th>
-                                                        <th>Thời gian</th>
-                                                        <th>Bàn</th>
-                                                        <th>Nhân viên gọi món</th>
-                                                        <th>Chi tiết món</th>
-                                                        <th className='text-center'>Tổng tiền</th>
-                                                        <th className='text-center'>Thanh toán</th>
-                                                        <th className='text-center' data-html2canvas-ignore>Xem chi tiết</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {filteredAndSortedBills().map((bill) => {
-                                                        const order = orders.find(o => o.id == bill.orderId);
-
-                                                        return (
-                                                            <tr key={bill.id}>
-                                                                <td data-html2canvas-ignore>{bill.id}</td>
-                                                                <td>
-                                                                    {new Date(bill.timestamp).toLocaleString("vi-VN", {
-                                                                        day: '2-digit',
-                                                                        month: '2-digit',
-                                                                        hour: '2-digit',
-                                                                        minute: '2-digit',
-                                                                    })}
-                                                                </td>
-                                                                <td><span className="table-pill">#{bill.tableId}</span></td>
-                                                                <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td>
-                                                                <td>
-                                                                    <div className="completed-order-details">
-                                                                        {order?.items.map((item, idx) => (
-                                                                            <div className="detail-item" key={idx}>
-                                                                                <div className="item-name">
-                                                                                    {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
-                                                                                </div>
-                                                                                <div className="item-info">
-                                                                                    SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
-                                                                                </div>
-                                                                            </div>
-                                                                        ))}
-                                                                    </div>
-                                                                </td>
-
-                                                                <td className='text-center'><strong>{bill.total.toLocaleString("vi-VN")}đ</strong></td>
-
-                                                                <td className="text-center">{paymentMethodMap[bill.paymentMethod]}</td>
-
-                                                                <td className="text-center" data-html2canvas-ignore>
-                                                                    <div className="d-flex justify-content-center">
-                                                                        <Button
-                                                                            variant="outline-info"
-                                                                            onClick={() => handleView(bill)}
-                                                                            className="d-flex justify-content-center align-items-center p-0"
-                                                                            style={{ width: '36px', height: '36px' }}
-                                                                        >
-                                                                            <i className="fa-solid fa-eye"></i>
-                                                                        </Button>
-                                                                    </div>
-                                                                </td>
+                                {/* Table */}
+                                <div style={{ overflowX: 'auto' }}>
+                                    <Row className='completed-order-table'>
+                                        <Col sm={12} md={12} lg={12}>
+                                            <Card className="completed-order-card shadow-sm">
+                                                <Card.Body className="p-0">
+                                                    <Table responsive hover className={`mb-0 completed-order-table ${isExporting ? 'fixed-layout' : ''}`} id="invoice">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-html2canvas-ignore>#</th>
+                                                                <th>Thời gian</th>
+                                                                <th data-html2canvas-ignore>Bàn</th>
+                                                                <th>Nhân viên</th>
+                                                                <th>Chi tiết món</th>
+                                                                <th className='text-center'>Tổng tiền</th>
+                                                                <th className='text-center'>Thanh toán</th>
+                                                                <th className='text-center' data-html2canvas-ignore>Xem chi tiết</th>
                                                             </tr>
-                                                        );
-                                                    })}
-                                                </tbody>
-                                            </Table>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            </Row>
-                        </Col>
+                                                        </thead>
+                                                        <tbody>
+                                                            {filteredAndSortedBills().map((bill) => {
+                                                                const order = orders.find(o => o.id == bill.orderId);
+
+                                                                return (
+                                                                    <tr key={bill.id}>
+                                                                        <td data-html2canvas-ignore>{bill.id}</td>
+                                                                        <td>
+                                                                            {new Date(bill.timestamp).toLocaleString("vi-VN", {
+                                                                                day: '2-digit',
+                                                                                month: '2-digit',
+                                                                                hour: '2-digit',
+                                                                                minute: '2-digit',
+                                                                            })}
+                                                                        </td>
+                                                                        <td data-html2canvas-ignore><span className="table-pill">#{bill.tableId}</span></td>
+                                                                        <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td>
+                                                                        <td>
+                                                                            <div className="completed-order-details">
+                                                                                {order?.items.map((item, idx) => (
+                                                                                    <div className="detail-item" key={idx}>
+                                                                                        <div className="item-name">
+                                                                                            {menu.find(i => i.id == item.menuItemId)?.name || `Món #${item.menuItemId}`}
+                                                                                        </div>
+                                                                                        <div className="item-info">
+                                                                                            SL: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ))}
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td className='text-center'><strong>{bill.total.toLocaleString("vi-VN")}đ</strong></td>
+
+                                                                        <td className="text-center">{paymentMethodMap[bill.paymentMethod]}</td>
+
+                                                                        <td className="text-center" data-html2canvas-ignore>
+                                                                            <div className="d-flex justify-content-center">
+                                                                                <button
+                                                                                    variant="outline-info"
+                                                                                    onClick={() => handleView(bill)}
+                                                                                    className="d-flex justify-content-center align-items-center p-0 eye-button"
+                                                                                    style={{ width: '36px', height: '36px' }}
+                                                                                >
+                                                                                    <i className="fa-solid fa-eye"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                );
+                                                            })}
+                                                        </tbody>
+                                                    </Table>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Col>
+                        </Row>
                     </main>
                 </div>
 
                 {/* Modal view order details */}
-                <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>📝 Chi tiết đơn #{selectedOrder?.id}</Modal.Title>
-                    </Modal.Header>
+                {showModal && (
+                    <>
+                        <div className="completed-modal-backdrop" onClick={() => setShowModal(false)} size="lg" centered></div>
+                        <div className="completed-modal">
+                            <div className="completed-modal-header">
+                                <span className="completed-modal-title">📝 Chi tiết đơn #{selectedOrder?.id}</span>
+                                <button className="completed-close-button" onClick={() => setShowModal(false)}>×</button>
+                            </div>
 
-                    <Modal.Body>
-                        {selectedOrder && (
-                            <>
-                                <Row>
-                                    <Col>
-                                        <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
-                                        <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
-                                        <p><strong>Nhân viên gọi món: </strong>
-                                            {
-                                                users.find(u => u.id == selectedOrder.userId)?.name || "?"
-                                            }
-                                        </p>
-                                        <p><strong>Phương thức thanh toán: </strong> {paymentMethodMap[selectedOrder.paymentMethod]}</p>
-                                    </Col>
+                            <div className="completed-modal-body">
+                                {selectedOrder && (
+                                    <>
+                                        <div className="completed-row">
+                                            <div className="completed-col">
+                                                <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
+                                                <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
+                                                <p><strong>Nhân viên gọi món: </strong>
+                                                    {
+                                                        users.find(u => u.id == selectedOrder.userId)?.name || "?"
+                                                    }
+                                                </p>
+                                                <p><strong>Phương thức thanh toán: </strong> {paymentMethodMap[selectedOrder.paymentMethod]}</p>
+                                            </div>
 
-                                    <Col>
-                                        <p><strong>Tên khách hàng: </strong> {selectedOrder.customerName}</p>
-                                        <p><strong>Email: </strong> {selectedOrder.customerEmail}</p>
-                                        <p><strong>Số điện thoại: </strong> {selectedOrder.customerPhone}</p>
-                                    </Col>
-                                </Row>
+                                            <div className="completed-col">
+                                                <p><strong>Tên khách hàng: </strong> {selectedOrder.customerName}</p>
+                                                <p><strong>Email: </strong> {selectedOrder.customerEmail}</p>
+                                                <p><strong>Số điện thoại: </strong> {selectedOrder.customerPhone}</p>
+                                            </div>
+                                        </div>
 
-                                <hr />
+                                        <hr />
 
-                                <Table striped bordered hover size="sm">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Tên món</th>
-                                            <th>Số lượng</th>
-                                            <th>Đơn giá</th>
-                                            <th>Tổng</th>
-                                        </tr>
-                                    </thead>
+                                        <Table striped bordered hover size="sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên món</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Đơn giá</th>
+                                                    <th>Tổng</th>
+                                                </tr>
+                                            </thead>
 
-                                    <tbody>
-                                        {(() => {
-                                            const order = orders.find(o => o.id == selectedOrder.orderId);
-                                            if (!order) return (
-                                                <tr><td colSpan={5}>Không tìm thấy đơn hàng</td></tr>
-                                            );
+                                            <tbody>
+                                                {(() => {
+                                                    const order = orders.find(o => o.id == selectedOrder.orderId);
+                                                    if (!order) return (
+                                                        <tr><td colSpan={5}>Không tìm thấy đơn hàng</td></tr>
+                                                    );
 
-                                            return order.items.map((item, index) => {
-                                                const menuItem = menu.find(i => String(i.id) === String(item.menuItemId));
-                                                const totalItemPrice = item.quantity * item.price;
+                                                    return order.items.map((item, index) => {
+                                                        const menuItem = menu.find(i => String(i.id) === String(item.menuItemId));
+                                                        const totalItemPrice = item.quantity * item.price;
 
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{index + 1}</td>
-                                                        <td>{menuItem?.name || `[Món #${item.menuItemId} không tồn tại]`}</td>
-                                                        <td>{item.quantity}</td>
-                                                        <td>{item.price.toLocaleString("vi-VN")}đ</td>
-                                                        <td>{totalItemPrice.toLocaleString("vi-VN")}đ</td>
-                                                    </tr>
-                                                );
-                                            });
-                                        })()}
-                                    </tbody>
-                                </Table>
-                                <p className="mt-3"><strong>Tổng tiền: </strong> {selectedOrder.total.toLocaleString("vi-VN")}đ</p>
-                            </>
-                        )}
-                    </Modal.Body>
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{index + 1}</td>
+                                                                <td>{menuItem?.name || `[Món #${item.menuItemId} không tồn tại]`}</td>
+                                                                <td>{item.quantity}</td>
+                                                                <td>{item.price.toLocaleString("vi-VN")}đ</td>
+                                                                <td>{totalItemPrice.toLocaleString("vi-VN")}đ</td>
+                                                            </tr>
+                                                        );
+                                                    });
+                                                })()}
+                                            </tbody>
+                                        </Table>
+                                        <p className="mt-3"><strong>Tổng tiền: {selectedOrder.total.toLocaleString("vi-VN")}đ</strong></p>
+                                    </>
+                                )}
+                            </div>
 
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setShowModal(false)}>Đóng</Button>
-                    </Modal.Footer>
-                </Modal>
-
+                            <div className="completed-modal-footer">
+                                {/* <Button variant="secondary" onClick={() => setShowModal(false)}>Đóng</Button> */}
+                                <button className="completed-btn" onClick={() => setShowModal(false)}>Đóng</button>
+                            </div>
+                        </div>
+                    </>
+                )}
             </Container >
         </>
     )
