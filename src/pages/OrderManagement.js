@@ -455,7 +455,7 @@ export default function Orders() {
 
                                             <div className="completed-col">
                                                 <p><strong>Tên khách hàng: </strong> {selectedOrder.customerName}</p>
-                                                <p><strong>Email: </strong> {selectedOrder.customerEmail}</p>
+                                                {/* <p><strong>Email: </strong> {selectedOrder.customerEmail}</p> */}
                                                 <p><strong>Số điện thoại: </strong> {selectedOrder.customerPhone}</p>
                                             </div>
                                         </div>

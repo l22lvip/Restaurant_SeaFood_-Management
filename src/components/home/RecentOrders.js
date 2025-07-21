@@ -23,7 +23,7 @@ const RecentOrders = () => {
           />
         </Row> */}
 
-        <Row className='order-list-section'>
+        {/* <Row className='order-list-section'>
           <OrderList />
           <OrderList />
           <OrderList />
@@ -31,7 +31,7 @@ const RecentOrders = () => {
           <OrderList />
           <OrderList />
           <OrderList />
-        </Row>
+        </Row> */}
 
       </Row>
     </Row>
