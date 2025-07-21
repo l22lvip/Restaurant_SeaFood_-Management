@@ -36,22 +36,22 @@ const BottomNav = () => {
           <MdOutlineReorder className="icon" size={20} />
           <p>Đơn đã hoàn thành</p>
         </button>
-        <button
+        {/* <button
           className={`nav-button ${isActive('/orders') ? 'active' : ''}`}
           onClick={() => navigate('/orders')}
         >
           <MdOutlineReorder className="icon" size={20} />
           <p>Đơn hàng</p>
-        </button>
+        </button> */}
 
-        
+{/*         
         <button
           className={`nav-button ${isActive('/create-bill') ? 'active' : ''}`}
           onClick={() => navigate('/create-bill')}
         >
           <MdMoney className="icon" size={20} />
           <p>Thanh toán</p>
-        </button>
+        </button> */}
 
 
         <button

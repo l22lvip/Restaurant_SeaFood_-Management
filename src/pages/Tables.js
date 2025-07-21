@@ -59,16 +59,16 @@ const Tables = () => {
   return (
     <Row style={{ backgroundColor: '#1f1f1f', height: 'calc(100vh - 5rem)', overflow: 'hidden' }} >
       <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 20px 10px 20px' }}>
-        <h1 style={{ color: '#f5f5f5', fontSize: '1.5rem', fontWeight: '500', letterSpacing: '0.025em' }}>Tables</h1>
+        <h1 style={{ color: '#f5f5f5', fontSize: '1.5rem', fontWeight: '500', letterSpacing: '0.025em' }}>Bàn</h1>
         <div style={{ gap: '1rem', justifyContent: 'flex-end' }}>
-          <button onClick={() => setActiveFilter('all')} className={getButtonClass('all')}>All</button>
-          <button onClick={() => setActiveFilter('booked')} className={getButtonClass('booked')}>In Progress</button>
+          <button onClick={() => setActiveFilter('all')} className={getButtonClass('all')}>Tất cả</button>
+          <button onClick={() => setActiveFilter('booked')} className={getButtonClass('booked')}>Đã đặt</button>
         </div>
       </Row>
       <Row style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', padding: '2.5rem', overflowY: 'scroll', maxHeight: '80vh', scrollbarWidth: 'none', justifyContent: 'center' }}>
         {
           tables.map((table) => (
-            <TablesCard key={table.id} name={table.name} status={table.status} capacity={table.capacity} onClick={() => handleTableClick(table)} />
+            <TablesCard key={table.id} name={table.name} status={table.status === 'available' ? 'Đã đặt' : 'Trống'} capacity={table.capacity} onClick={() => handleTableClick(table)} />
           ))
         }
       </Row>
