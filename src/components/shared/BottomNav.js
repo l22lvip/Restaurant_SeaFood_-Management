@@ -1,5 +1,6 @@
 import React from 'react'
-import { FaHome, FaUser, FaSignOutAlt, FaChartLine } from 'react-icons/fa'
+import { FaHome, FaUser, FaSignOutAlt, FaChartLine} from 'react-icons/fa'
+import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { MdOutlineReorder, MdTableBar } from 'react-icons/md'
 import '../../css/BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -63,6 +64,13 @@ const BottomNav = () => {
         >
           <FaChartLine className="icon" size={20} />
           <p>Finance</p>
+        </button>
+        <button
+          className={`nav-button ${isActive('/admin/menu-management') ? 'active' : ''}`}
+          onClick={() => navigate('/admin/menu-management')}
+        >
+          <MdOutlineRestaurantMenu className='icon' size={20} />
+          <p>Menu</p>
         </button>
         <button
           className="nav-button"
