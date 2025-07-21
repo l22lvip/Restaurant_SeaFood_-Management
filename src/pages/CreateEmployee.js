@@ -16,7 +16,8 @@ const CreateEmployee = () => {
     email: "",
     gender: "",
     role: "staff",
-    password: ""
+    // password: "",
+    salary: ""
   });
 
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const CreateEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, phone, age, address, email, gender, role, password } = formData;
+    const { name, phone, age, address, email, gender, role, password, salary } = formData;
 
     if (!name.trim()) {
       alert("Tên không được để trống");
@@ -39,7 +40,7 @@ const CreateEmployee = () => {
       alert("Số điện thoại phải đủ 10 chữ số");
       return;
     }
-    if (age < 18 || age > 60) {
+    if (Number(age) < 18 || Number(age) > 60) {
       alert("Tuổi làm việc phải từ 18 đến 60");
       return;
     }
@@ -54,10 +55,14 @@ const CreateEmployee = () => {
       return;
     }
 
-    if (!password.trim()) {
-      alert("Mật khẩu không được để trống");
-      return;
-    }
+      // if (!password.trim()) {
+      //   alert("Mật khẩu không được để trống");
+      //   return;
+      // }
+      if (Number(salary) < 0) {
+        alert("Lương không được để trống");
+        return;
+      }
 
     try {
       await axios.post(API_URL, { 

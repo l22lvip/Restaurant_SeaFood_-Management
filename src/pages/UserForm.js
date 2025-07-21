@@ -91,7 +91,7 @@ const UserForm = ({ formData, handleChange }) => {
         </Form.Select>
       </Form.Group>
 
-      <Form.Group className="mb-3">
+      {/* <Form.Group className="mb-3">
         <Form.Label>Mật khẩu: </Form.Label>
         <Form.Control
           type="password"
@@ -100,6 +100,17 @@ const UserForm = ({ formData, handleChange }) => {
           value={formData.password}
           onChange={handleChange}
           required
+        />
+      </Form.Group> */}
+
+      <Form.Group className="mb-3">
+        <Form.Label>Lương: </Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="Nhập lương"
+          name="salary"
+          value={formData.salary}
+          onChange={handleChange}
         />
       </Form.Group>
     </>

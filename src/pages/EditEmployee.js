@@ -16,7 +16,7 @@ const EditEmployee = () => {
         email: "",
         gender: "",
         role: "staff",
-        password: ""
+        // password: ""
     });
     const { id } = useParams();
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const EditEmployee = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { name, phone, age, address, email, password } = formData;
+        const { name, phone, age, address, email, salary } = formData;
 
         if (!name.trim()) {
             alert("Tên không được để trống");
@@ -64,10 +64,12 @@ const EditEmployee = () => {
             return;
         }
 
-        if (!password.trim()) {
-            alert("Mật khẩu không được để trống");
+        if (Number(salary) < 0) {
+            alert("Lương không được để trống");
             return;
         }
+
+
 
         try {
             await axios.put(`${API_URL}/${id}`, {

@@ -62,6 +62,7 @@ const EmployeeList = () => {
             <th>Email</th>
             <th>Giới tính</th>
             <th>Vai trò</th>
+            <th>Lương</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -75,6 +76,7 @@ const EmployeeList = () => {
               <td>{employee.email}</td>
               <td>{employee.gender === "male" ? "Nam" : employee.gender === "female" ? "Nữ" : "Khác"}</td>
               <td>{employee.role === "admin" ? "Quản lý" : "Nhân viên"}</td>
+              <td>{employee.salary}</td>
               <td className="user-actions">
                 <button
                   className="edit-btn"

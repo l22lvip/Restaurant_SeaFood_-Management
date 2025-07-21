@@ -8,9 +8,12 @@ import logo2 from '../../assets/images/logo-Trongsuot.png'
 import logo3 from '../../assets/images/logo-Photoroom.jpg'
 import logo4 from '../../assets/images/logo4-done.png'
 import '../../css/Header.css'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
     const role = localStorage.getItem('role');
+    const navigate = useNavigate();
+
     const user = JSON.parse(localStorage.getItem('user'));
     if (role === 'admin') {
         return (
@@ -30,11 +33,11 @@ const Header = () => {
         );
     }
     return (
-        <div className='header-container' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div className='header-container' style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             {/* Logo  */}
             <div className='logo-section' style={{marginTop: '2px', marginBottom: '2px'}}>
                 <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
-                <h1 className='header-title'>Harbor Fresh</h1>
+                <h1 className='header-title'>Restaurant Management</h1>
             </div>
 
             {/* Search */}
@@ -48,18 +51,14 @@ const Header = () => {
             </div> */}
 
             {/* LOGGED USER DETAIL */}
-            {/* <div className='user-section'>
-                <div className='notification-section'>
-                    <FaBell className='notification-icon' />
-                </div>
-                <div className='user-profile-section'>
+            <div className='user-section'>
+                <div className='user-profile-section' onClick={() => navigate('/auth')}>
                     <FaUserCircle className='user-icon' />
                     <div className='user-details'>
-                        <h1>Nhan Vien 1</h1>
-                        <p>User</p>
+                        Login
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

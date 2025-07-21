@@ -16,9 +16,9 @@ function AppContent() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/tables" element={<Tables />} />
         <Route path="/create-bill" element={<CreateBill />} />
-        <Route path="/users" element={<EmployeeList />} />
+        {/* <Route path="/users" element={<EmployeeList />} />
         <Route path="/users/create" element={<CreateEmployee />} />
-        <Route path="/users/edit/:id" element={<EditEmployee />} />
+        <Route path="/users/edit/:id" element={<EditEmployee />} /> */}
         <Route path="/admin/employees" element={<EmployeeList />} />
         <Route path="/admin/employees/create" element={<CreateEmployee />} />
         <Route path="/admin/employees/edit/:id" element={<EditEmployee />} />
@@ -26,6 +26,7 @@ function AppContent() {
         <Route path="/admin/add-food-import" element={<AddFoodImport />} />
         <Route path="/admin/orders" element={<OrderManagement />} />
       </Routes>
+      <div style={{ margin: '15rem' }}></div>
       {!hideNav && <BottomNav />}
     </>
   );

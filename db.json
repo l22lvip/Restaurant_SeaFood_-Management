@@ -453,7 +453,7 @@
       "email": "nhanvien1@gmail.com",
       "gender": "male",
       "role": "staff",
-      "password": "admin"
+      "salary": 5000000
     },
     {
       "id": "2",
@@ -464,7 +464,7 @@
       "email": "nhanvien2@gmail.com",
       "gender": "female",
       "role": "staff",
-      "password": "admin"
+      "salary": 5000000
     },
     {
       "id": "3",
@@ -475,7 +475,7 @@
       "email": "nhanvien3@gmail.com",
       "gender": "male",
       "role": "staff",
-      "password": "123"
+      "salary": 5000000
     },
     {
       "id": "4",
@@ -486,7 +486,7 @@
       "email": "quanly1@gmail.com",
       "gender": "male",
       "role": "admin",
-      "password": "Vangiap1"
+      "salary": 5000000
     },
     {
       "id": "5",
@@ -497,7 +497,7 @@
       "email": "nhanvien4@gmail.com",
       "gender": "female",
       "role": "staff",
-      "password": "123456"
+      "salary": 5000000
     }
   ],
   "earnings": {
