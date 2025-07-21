@@ -8,5 +8,5 @@ export { default as EmployeeList } from './EmployeeList.js';
 export { default as FinancialDashboard } from './FinancialDashboard.js';
 export { default as AddFoodImport } from './AddFoodImport.js';
 export { default as OrderManagement } from './OrderManagement.js';
-
-
+export { default as Menu } from './Menu.js';
+export { default as MenuManagementCreate } from './MenuManagementCreate';
