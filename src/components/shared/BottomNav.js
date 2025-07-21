@@ -1,6 +1,6 @@
 import React from 'react'
-import { FaHome, FaUser, FaSignOutAlt, FaChartLine} from 'react-icons/fa'
-import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { FaHome, FaUser, FaSignOutAlt, FaChartLine } from 'react-icons/fa'
+import { MdMoney, MdOutlineRestaurantMenu } from "react-icons/md";
 import { MdOutlineReorder, MdTableBar } from 'react-icons/md'
 import '../../css/BottomNav.css'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -27,22 +27,42 @@ const BottomNav = () => {
           onClick={() => navigate('/')}
         >
           <FaHome className="icon" size={20} />
-          <p>Home</p>
+          <p>Trang chủ</p>
+        </button>
+        <button
+          className={`nav-button ${isActive('/completed-orders') ? 'active' : ''}`}
+          onClick={() => navigate('/completed-orders')}
+        >
+          <MdOutlineReorder className="icon" size={20} />
+          <p>Đơn đã hoàn thành</p>
         </button>
         <button
           className={`nav-button ${isActive('/orders') ? 'active' : ''}`}
           onClick={() => navigate('/orders')}
         >
           <MdOutlineReorder className="icon" size={20} />
-          <p>Orders</p>
+          <p>Đơn hàng</p>
         </button>
+
+        
+        <button
+          className={`nav-button ${isActive('/create-bill') ? 'active' : ''}`}
+          onClick={() => navigate('/create-bill')}
+        >
+          <MdMoney className="icon" size={20} />
+          <p>Thanh toán</p>
+        </button>
+
+
         <button
           className={`nav-button ${isActive('/tables') ? 'active' : ''}`}
           onClick={() => navigate('/tables')}
         >
+
           <MdTableBar className="icon" size={20} />
-          <p>Tables</p>
+          <p>Bàn</p>
         </button>
+
       </div>
     );
   }
@@ -56,21 +76,21 @@ const BottomNav = () => {
           onClick={() => navigate('/admin/employees')}
         >
           <FaUser className="icon" size={20} />
-          <p>Employees</p>
+          <p>Nhân viên</p>
         </button>
         <button
           className={`nav-button ${isActive('/admin/financial') ? 'active' : ''}`}
           onClick={() => navigate('/admin/financial')}
         >
           <FaChartLine className="icon" size={20} />
-          <p>Finance</p>
+          <p>Thu nhập</p>
         </button>
         <button
           className={`nav-button ${isActive('/admin/menu-management') ? 'active' : ''}`}
           onClick={() => navigate('/admin/menu-management')}
         >
           <MdOutlineRestaurantMenu className='icon' size={20} />
-          <p>Menu</p>
+          <p>Thực đơn</p>
         </button>
         <button
           className="nav-button"

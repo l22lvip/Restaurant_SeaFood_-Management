@@ -9,8 +9,8 @@ const RecentOrders = () => {
     <Row className='recent-orders-section'>
       <Row className='recent-orders-header'>
         <Row className='recent-orders-title'>
-          <h1>Recent Orders</h1>
-          <a href='/' className='view-all'>View All</a>
+          <h1>Đơn hàng gần đây</h1>
+          {/* <a href='/' className='view-all'>Xem tất cả</a> */}
         </Row>
 
 

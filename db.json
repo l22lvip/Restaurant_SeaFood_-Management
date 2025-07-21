@@ -240,6 +240,30 @@
       "total": 80000,
       "status": "In Progress",
       "timestamp": "2025-07-19T08:00:00.000Z"
+    },
+    {
+      "id": "8221",
+      "tableId": "2",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
+      "status": "In Progress",
+      "timestamp": "2025-07-21T03:55:19.298Z"
     }
   ],
   "bills": [
@@ -333,9 +357,9 @@
     {
       "id": "2",
       "name": "Table 2",
-      "status": "empty",
+      "status": "available",
       "capacity": 4,
-      "currentOrderId": "a177"
+      "currentOrderId": "8221"
     },
     {
       "id": "3",

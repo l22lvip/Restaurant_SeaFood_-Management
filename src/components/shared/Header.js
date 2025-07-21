@@ -20,7 +20,7 @@ const Header = () => {
             <div className='header-container'>
                 <div className='logo-section'>
                     <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
-                    <h1 className='header-title'>Harbor Fresh</h1>
+                    <h1 className='header-title'>Quản lý nhà hàng</h1>
                 </div>
                 <div className='user-section' style={{marginLeft: 'auto', display: 'flex', alignItems: 'center'}}>
                     <FaUserCircle className='user-icon' />
