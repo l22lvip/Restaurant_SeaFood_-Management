@@ -44,7 +44,7 @@ const Orders = () => {
   };
 
   return (
-    <Container className='orders'>
+    <Container className='orders' style={{ paddingBottom: '100px' }}>
       <Row className='orders-header'>
         <h1 className='orders-title'>Orders</h1>
         <Row className='orders-filter'>

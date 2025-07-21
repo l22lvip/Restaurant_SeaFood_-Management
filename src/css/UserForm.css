@@ -1,0 +1,110 @@
+.user-page {
+    background-color: #1f1f1f;
+    min-height: 100vh;
+    padding: 2rem;
+    color: #f5f5f5;
+}
+
+.bg-dark {
+    background-color: #1f1f1f !important;
+}
+.bg-dark-2 {
+    background-color: #262626 !important;
+}
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+.user-list-table {
+    background-color: #262626;
+    border-radius: 0.5rem;
+    color: #f5f5f5;
+    overflow: hidden;
+}
+
+.user-list-table th,
+.user-list-table td {
+    background-color: #262626;
+    border-color: #383838;
+    color: #ababab;
+    vertical-align: middle;
+}
+
+.user-form-container {
+    background-color: #262626;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    color: #f5f5f5;
+    margin: 2rem auto;
+}
+
+.user-form-container h4 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.user-form-container .form-control,
+.user-form-container .form-select {
+    background-color: #1f1f1f;
+    border: 1px solid #383838;
+    color: #f5f5f5;
+}
+
+.user-form-container .form-control:focus,
+.user-form-container .form-select:focus {
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+    box-shadow: 0 0 0 0.2rem rgba(246, 177, 0, 0.25);
+    border-color: #f6b100;
+}
+
+.user-form-container button {
+    background-color: #f6b100;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    color: #1f1f1f;
+    margin-top: 1rem;
+}
+
+.user-form-container button:hover {
+    background-color: #e5a800;
+}
+
+.user-actions button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.user-actions .edit-btn {
+    background-color: #f6b100;
+    color: #1f1f1f;
+}
+
+.user-actions .delete-btn {
+    background-color: #ff4d4f;
+    color: #fff;
+}
+
+.user-actions .delete-btn:hover {
+    background-color: #ff7173;
+}
+
+.user-actions .edit-btn:hover {
+    background-color: #ffd151;
+}

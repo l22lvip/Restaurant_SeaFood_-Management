@@ -107,7 +107,7 @@
     {
       "id": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -123,7 +123,7 @@
     {
       "id": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "customerId": null,
       "items": [
         {
@@ -144,7 +144,7 @@
     {
       "id": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -165,7 +165,7 @@
     {
       "id": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "customerId": null,
       "items": [
         {
@@ -184,85 +184,60 @@
       "timestamp": "2025-07-17T04:00:22.862Z"
     },
     {
-      "id": "a177",
-      "tableId": "2",
-      "userId": 1,
+      "id": "5",
+      "tableId": "5",
+      "userId": 2,
       "customerId": null,
-      "name": "Unknown",
       "items": [
+        {
+          "menuItemId": "9",
+          "quantity": 2,
+          "price": 120000
+        },
+        {
+          "menuItemId": "6",
+          "quantity": 2,
+          "price": 25000
+        }
+      ],
+      "total": 290000,
+      "status": "Completed",
+      "timestamp": "2025-07-18T12:15:45.000Z"
+    },
+    {
+      "id": "6",
+      "tableId": "7",
+      "userId": 3,
+      "customerId": null,
+      "items": [
+        {
+          "menuItemId": "7",
+          "quantity": 1,
+          "price": 180000
+        },
         {
           "menuItemId": "5",
-          "quantity": 4,
-          "price": 35000,
-          "name": "Chè khúc bạch"
+          "quantity": 3,
+          "price": 35000
         }
       ],
-      "total": 140000,
+      "total": 285000,
       "status": "Completed",
-      "timestamp": "2025-07-19T11:18:58.293Z"
+      "timestamp": "2025-07-18T14:40:10.000Z"
     },
     {
-      "id": "20cf",
-      "tableId": "1",
-      "userId": 1,
+      "id": "7",
+      "tableId": "6",
+      "userId": 2,
       "customerId": null,
-      "name": "Unknown",
       "items": [
         {
-          "menuItemId": "3",
-          "quantity": 5,
-          "price": 750000,
-          "name": "Tôm hùm nướng phô mai"
+          "menuItemId": "10",
+          "quantity": 2,
+          "price": 40000
         }
       ],
-      "total": 3750000,
-      "status": "Completed",
-      "timestamp": "2025-07-19T11:21:10.901Z"
-    },
-    {
-      "tableId": "1",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 4,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
-      "total": 1855000,
-      "status": "Completed",
-      "timestamp": "2025-07-19T11:54:12.671Z",
-      "id": "980d"
-    },
-    {
-      "id": "7c8a",
-      "tableId": "1",
-      "userId": 1,
-      "customerId": null,
-      "name": "Unknown",
-      "items": [
-        {
-          "menuItemId": "1",
-          "quantity": 1,
-          "price": 55000,
-          "name": "Gỏi cuốn tôm thịt"
-        },
-        {
-          "menuItemId": "2",
-          "quantity": 4,
-          "price": 450000,
-          "name": "Cua sốt me"
-        }
-      ],
+
       "total": 1855000,
       "status": "Completed",
       "timestamp": "2025-07-19T12:07:50.142Z"
@@ -339,7 +314,7 @@
       "id": "1",
       "orderId": "1",
       "tableId": "8",
-      "userId": 1,
+      "userId": 2,
       "total": 25000,
       "paymentMethod": "Cash",
       "status": "Paid",
@@ -352,11 +327,11 @@
       "id": "2",
       "orderId": "2",
       "tableId": "1",
-      "userId": 1,
+      "userId": 2,
       "total": 2305000,
       "paymentMethod": "Cash",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:28:06.195Z",
+      "timestamp": "2025-07-17T04:32:06.195Z",
       "customerName": "Nguyễn Văn A",
       "customerPhone": "0987654321"
     },
@@ -364,11 +339,11 @@
       "id": "3",
       "orderId": "3",
       "tableId": "3",
-      "userId": 1,
+      "userId": 3,
       "total": 3450000,
-      "paymentMethod": "Cash",
+      "paymentMethod": "Card",
       "status": "Paid",
-      "timestamp": "2025-07-17T04:00:00Z",
+      "timestamp": "2025-07-17T05:00:00Z",
       "customerName": "Trần B",
       "customerPhone": "0912345678"
     },
@@ -376,9 +351,9 @@
       "id": "4",
       "orderId": "4",
       "tableId": "2",
-      "userId": 1,
+      "userId": 3,
       "total": 4100000,
-      "paymentMethod": "Cash",
+      "paymentMethod": "Banking",
       "status": "Pending",
       "timestamp": "2025-07-17T04:17:52.232Z",
       "customerName": "Nguyen Huu Bao Khanh",
@@ -386,22 +361,26 @@
     },
     {
       "id": "5",
-      "orderId": "980d",
-      "tableId": "1",
-      "total": 1855000,
-      "paymentMethod": "Cash",
+      "orderId": "5",
+      "tableId": "5",
+      "userId": 2,
+      "total": 290000,
+      "paymentMethod": "Banking",
       "status": "Paid",
-      "timestamp": "2025-07-19T12:05:23.588Z",
-      "customerName": "asdasd",
-      "customerPhone": "asdasdasd"
+      "timestamp": "2025-07-19T12:30:00.000Z",
+      "customerName": "Phạm Quốc",
+      "customerEmail": "phamquoc@example.com",
+      "customerPhone": "0911888999"
     },
     {
       "id": "6",
-      "orderId": "7c8a",
-      "tableId": "1",
-      "total": 1855000,
+      "orderId": "6",
+      "tableId": "7",
+      "userId": 3,
+      "total": 285000,
       "paymentMethod": "Cash",
       "status": "Paid",
+
       "timestamp": "2025-07-19T12:08:12.444Z",
       "customerName": "Nguyen Minh",
       "customerPhone": "123123123"
@@ -455,9 +434,11 @@
     {
       "id": "1",
       "name": "Table 1",
-      "status": "empty",
+      "status": "available",
       "capacity": 4,
+
       "currentOrderId": "6734"
+
     },
     {
       "id": "2",
@@ -504,9 +485,9 @@
     {
       "id": "8",
       "name": "Table 8",
-      "status": "empty",
+      "status": "available",
       "capacity": 4,
-      "currentOrderId": "aec9"
+      "currentOrderId": "d15d"
     },
     {
       "id": "9",
@@ -538,17 +519,141 @@
   "users": [
     {
       "id": "1",
-      "name": "Nhân Viên",
-      "role": "waiter"
+      "name": "Admin",
+      "role": "admin",
+      "phone": "0912345678",
+      "password": "admin"
     },
     {
       "id": "2",
-      "name": "Admin",
-      "role": "admin"
+      "name": "Nhân Viên 1",
+      "role": "staff",
+      "phone": "0987654322",
+      "password": "admin"
+    },
+    {
+      "id": "3",
+      "name": "Nhân Viên 2",
+      "role": "staff",
+      "phone": "0987654320",
+      "password": "123"
+    },
+    {
+      "id": "1753029147701",
+      "name": "Phan Van Giap",
+      "role": "admin",
+      "phone": "0947135098",
+      "password": "Vangiap1"
+    },
+    {
+      "id": "1753029169189",
+      "name": "Ha Hung Hai",
+      "role": "staff",
+      "phone": "0912567991",
+      "password": ""
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "name": "Nhân Viên 1",
+      "phone": "0912345678",
+      "age": 20,
+      "address": "Hà Nội",
+      "email": "nhanvien1@gmail.com",
+      "gender": "male",
+      "role": "staff",
+      "salary": 5000000
+    },
+    {
+      "id": "2",
+      "name": "Nhân Viên 2",
+      "phone": "0987654322",
+      "age": 25,
+      "address": "Hồ Chí Minh",
+      "email": "nhanvien2@gmail.com",
+      "gender": "female",
+      "role": "staff",
+      "salary": 5000000
+    },
+    {
+      "id": "3",
+      "name": "Nhân Viên 3",
+      "phone": "0987654320",
+      "age": 30,
+      "address": "Đà Nẵng",
+      "email": "nhanvien3@gmail.com",
+      "gender": "male",
+      "role": "staff",
+      "salary": 5000000
+    },
+    {
+      "id": "4",
+      "name": "Quản Lý 1",
+      "phone": "0947135098",
+      "age": 35,
+      "address": "Hà Nội",
+      "email": "quanly1@gmail.com",
+      "gender": "male",
+      "role": "admin",
+      "salary": 5000000
+    },
+    {
+      "id": "5",
+      "name": "Nhân Viên 4",
+      "phone": "0912567991",
+      "age": 22,
+      "address": "Cần Thơ",
+      "email": "nhanvien4@gmail.com",
+      "gender": "female",
+      "role": "staff",
+      "salary": 5000000
     }
   ],
   "earnings": {
     "today": 2500000,
     "yesterday": 1850000
-  }
+  },
+  "foodImports": [
+    {
+      "id": "1",
+      "date": "2025-07-21",
+      "amount": 2500000,
+      "description": "Nhập hải sản tươi sống",
+      "supplier": "Công ty Hải Sản Biển Đông",
+      "timestamp": "2025-07-21T08:30:00Z"
+    },
+    {
+      "id": "2",
+      "date": "2025-07-20",
+      "amount": 1800000,
+      "description": "Nhập rau củ quả tươi",
+      "supplier": "Công ty Nông Sản Sạch",
+      "timestamp": "2025-07-20T07:45:00Z"
+    },
+    {
+      "id": "3",
+      "date": "2025-07-19",
+      "amount": 3200000,
+      "description": "Nhập thịt heo, thịt bò",
+      "supplier": "Công ty Chăn Nuôi An Toàn",
+      "timestamp": "2025-07-19T09:15:00Z"
+    },
+    {
+      "id": "1753043766997",
+      "date": "2025-07-20",
+      "amount": 1000000,
+      "description": "Cá",
+      "supplier": "ANB",
+      "timestamp": "2025-07-20T20:36:06.997Z"
+    },
+    {
+      "id": "1753045597528",
+      "date": "2025-07-20",
+      "amount": 1230000,
+      "description": "ABC",
+      "supplier": "ABC",
+      "timestamp": "2025-07-20T21:06:37.528Z"
+    }
+  ]
 }
