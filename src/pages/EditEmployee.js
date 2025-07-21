@@ -15,6 +15,8 @@ const EditEmployee = () => {
         address: "",
         email: "",
         gender: "",
+        role: "staff",
+        // password: ""
     });
     const { id } = useParams();
     const navigate = useNavigate();
@@ -22,11 +24,11 @@ const EditEmployee = () => {
 
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchEmployee = async () => {
             const res = await axios.get(`${API_URL}/${id}`);
             setFormData(res.data);
         };
-        fetchUser();
+        fetchEmployee();
     }, [id]);
 
     const handleChange = (e) => {
@@ -36,7 +38,7 @@ const EditEmployee = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { name, phone } = formData;
+        const { name, phone, age, address, email, salary } = formData;
 
         if (!name.trim()) {
             alert("Tên không được để trống");
@@ -47,16 +49,37 @@ const EditEmployee = () => {
             alert("Số điện thoại phải đủ 10 chữ số");
             return;
         }
-        if (formData.age < 18 || formData.age > 60) {
+        if (age < 18 || age > 60) {
             alert("Tuổi làm việc phải từ 18 đến 60");
             return;
         }
 
+        if (!address.trim()) {
+            alert("Địa chỉ không được để trống");
+            return;
+        }
+
+        if (!email.trim()) {
+            alert("Email không được để trống");
+            return;
+        }
+
+        if (Number(salary) < 0) {
+            alert("Lương không được để trống");
+            return;
+        }
+
+
+
         try {
-            await axios.put(`${API_URL}/${id}`, formData);
+            await axios.put(`${API_URL}/${id}`, {
+                ...formData,
+                age: Number(age)
+            });
+            alert("Cập nhật nhân viên thành công!");
             navigate("/admin/employees");
         } catch (error) {
-            console.error("Lỗi khi cập nhật người dùng:", error);
+            console.error("Lỗi khi cập nhật nhân viên:", error);
             alert("Cập nhật thất bại");
         }
     };
