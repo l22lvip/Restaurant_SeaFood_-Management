@@ -55,7 +55,7 @@ const BottomNav = () => {
           onClick={() => navigate('/admin/employees')}
         >
           <FaUser className="icon" size={20} />
-          <p>Users</p>
+          <p>Employees</p>
         </button>
         <button
           className={`nav-button ${isActive('/admin/financial') ? 'active' : ''}`}

@@ -411,36 +411,8 @@
       "id": "1",
       "name": "Admin",
       "role": "admin",
-      "phone": "0912345678",
-      "password": "admin"
-    },
-    {
-      "id": "2",
-      "name": "Nhân Viên 1",
-      "role": "staff",
       "phone": "0987654322",
       "password": "admin"
-    },
-    {
-      "id": "3",
-      "name": "Nhân Viên 2",
-      "role": "staff",
-      "phone": "0987654320",
-      "password": "123"
-    },
-    {
-      "id": "1753029147701",
-      "name": "Phan Van Giap",
-      "role": "admin",
-      "phone": "0947135098",
-      "password": "Vangiap1"
-    },
-    {
-      "id": "1753029169189",
-      "name": "Ha Hung Hai",
-      "role": "staff",
-      "phone": "0912567991",
-      "password": ""
     }
   ],
   "employees": [

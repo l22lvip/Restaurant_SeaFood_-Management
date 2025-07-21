@@ -14,14 +14,14 @@ const RecentOrders = () => {
         </Row>
 
 
-        <Row className='search-rencent-section'>
+        {/* <Row className='search-rencent-section'>
           <FaSearch className='search-rencent-icon' />
           <input
             type='text'
             className='search-rencent-input'
             placeholder='Rencent Orders Search...'
           />
-        </Row>
+        </Row> */}
 
         <Row className='order-list-section'>
           <OrderList />
