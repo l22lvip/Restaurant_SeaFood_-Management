@@ -19,6 +19,7 @@ function AppContent() {
         <Route path="/admin/employees" element={<EmployeeList />} />
         <Route path="/admin/employees/create" element={<CreateEmployee />} />
         <Route path="/admin/employees/edit/:id" element={<EditEmployee />} />
+        
       </Routes>
       {!hideNav && <BottomNav />}
     </>
