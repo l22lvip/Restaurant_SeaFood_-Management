@@ -537,3 +537,32 @@ main {
 .eye-button:hover i {
     color: #ffffff !important;
 }
+
+.eye-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.eye-button i {
+    color: #00c3ff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.eye-button:hover {
+    background-color: #00c3ff;
+    box-shadow: 0 4px 8px rgba(0, 195, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.eye-button:hover i {
+    color: white;
+}
