@@ -351,8 +351,32 @@
         }
       ],
       "total": 505000,
-      "status": "In Progress",
+      "status": "Completed",
       "timestamp": "2025-07-21T04:19:00.169Z"
+    },
+    {
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 10,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 4555000,
+      "status": "Completed",
+      "timestamp": "2025-07-21T04:32:12.973Z",
+      "id": "37bc"
     }
   ],
   "bills": [
@@ -428,15 +452,37 @@
       "timestamp": "2025-07-21T04:18:51.738Z",
       "customerName": "jAKSJDH",
       "customerPhone": ""
+    },
+    {
+      "id": "7",
+      "orderId": "9727",
+      "tableId": "1",
+      "total": 505000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-21T04:31:08.513Z",
+      "customerName": "laksjd",
+      "customerPhone": ""
+    },
+    {
+      "id": "8",
+      "orderId": "37bc",
+      "tableId": "1",
+      "total": 4555000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-21T04:32:17.987Z",
+      "customerName": "aaa",
+      "customerPhone": ""
     }
   ],
   "tables": [
     {
       "id": "1",
       "name": "Table 1",
-      "status": "available",
+      "status": "empty",
       "capacity": 4,
-      "currentOrderId": "9727"
+      "currentOrderId": "37bc"
     },
     {
       "id": "2",

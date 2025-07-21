@@ -194,11 +194,11 @@ const CreateBill = () => {
   return (
     <Container fluid className='bill-manager-container'>
       <Card className="bill-form-card">
-        <Row>
+        <Row style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
           {/* Cột bên trái: Thông tin hóa đơn */}
           <Col md={6}>
             <h4 className="form-title text-info">Thông tin hóa đơn</h4>
-            <div>Khách hàng</div>
+            {/* <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>Khách hàng</div> */}
             <FormGroup>
               Tên khách hàng:
               <Form.Control
@@ -219,8 +219,10 @@ const CreateBill = () => {
               />
             </FormGroup>
             <Form.Group>
-              <Form.Label>Bàn:</Form.Label>
-              {orderInfo ? orderInfo.tableId : tableId}
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <Form.Label>Bàn:</Form.Label>
+                {orderInfo ? orderInfo.tableId : tableId}
+              </div>
             </Form.Group>
             <Form.Group>
               <Form.Label>Phương thức thanh toán</Form.Label>

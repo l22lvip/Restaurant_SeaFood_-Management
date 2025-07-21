@@ -16,6 +16,8 @@ const Home = () => {
           {/* Greetings Section */}
           <Greetings />
         </Row>
+        <PopularDishes /> 
+
 
         {/* Mini Card */}
         {/* <Row className="mini-card">
@@ -24,15 +26,15 @@ const Home = () => {
         </Row> */}
 
         {/* Recent Orders Section */}
-        <Row className="recent-orders">
+        {/* <Row className="recent-orders">
           <RecentOrders/>
-        </Row>
+        </Row> */}
         
       </Col>
 
-      <Col className="home-right">
+      {/* <Col className="home-right">
         <PopularDishes /> 
-      </Col>
+      </Col> */}
     </Container>
   );
 }

@@ -55,7 +55,7 @@ const Header = () => {
                 <div className='user-profile-section' onClick={() => navigate('/auth')}>
                     <FaUserCircle className='user-icon' />
                     <div className='user-details'>
-                        Login
+                        Admin Login
                     </div>
                 </div>
             </div>
