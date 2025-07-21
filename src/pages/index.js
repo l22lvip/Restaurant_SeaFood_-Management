@@ -10,3 +10,4 @@ export { default as AddFoodImport } from './AddFoodImport.js';
 export { default as OrderManagement } from './OrderManagement.js';
 export { default as Menu } from './Menu.js';
 export { default as MenuManagementCreate } from './MenuManagementCreate';
+export { default as MenuManagementEdit } from './MenuManagementEdit.js';
