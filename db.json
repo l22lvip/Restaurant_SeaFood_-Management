@@ -237,7 +237,6 @@
           "price": 40000
         }
       ],
-
       "total": 1855000,
       "status": "Completed",
       "timestamp": "2025-07-19T12:07:50.142Z"
@@ -305,7 +304,55 @@
         }
       ],
       "total": 795000,
+      "status": "In Progress"
+    },
+    {
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
+      "status": "Completed",
+      "timestamp": "2025-07-21T04:18:20.815Z",
+      "id": "27b4"
+    },
+    {
+      "id": "9727",
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
       "status": "In Progress",
+      "timestamp": "2025-07-21T04:19:00.169Z"
     }
   ],
   "bills": [
@@ -370,6 +417,17 @@
       "customerName": "Phạm Quốc",
       "customerEmail": "phamquoc@example.com",
       "customerPhone": "0911888999"
+    },
+    {
+      "id": "6",
+      "orderId": "27b4",
+      "tableId": "1",
+      "total": 505000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-21T04:18:51.738Z",
+      "customerName": "jAKSJDH",
+      "customerPhone": ""
     }
   ],
   "tables": [
@@ -378,21 +436,19 @@
       "name": "Table 1",
       "status": "available",
       "capacity": 4,
-
-      "currentOrderId": "6734"
-
+      "currentOrderId": "9727"
     },
     {
       "id": "2",
       "name": "Table 2",
-      "status": "available",
+      "status": "empty",
       "capacity": 4,
       "currentOrderId": "8221"
     },
     {
       "id": "3",
       "name": "Table 3",
-      "status": "available",
+      "status": "empty",
       "capacity": 4,
       "currentOrderId": "b8af"
     },
