@@ -33,6 +33,18 @@ export default function Menu() {
         .catch(err => console.log(err));
     };
 
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Bạn có chắc chắn muốn xoá món này không?");
+        if (!confirmDelete) return;
+        try {
+            await axios.delete(`http://localhost:9999/menuItems/${id}`);
+            setMenuItems(menuItems.filter(item => item.id !== id));
+        } catch (err) {
+            console.log(err);
+            alert("Xoá món thất bại!");
+        }
+    };
+
     return (
         <div style={{ padding: '2rem' }}>
             <h1 style={{ color: '#f5f5f5', marginBottom: '2rem' }}>Menu</h1>
@@ -49,6 +61,22 @@ export default function Menu() {
                                 <Card.Text style={{ fontSize: '1.1rem', color: '#f6b100', fontWeight: 500 }}>
                                     {item.price ? `${item.price.toLocaleString('vi-VN')} đ` : ''}
                                 </Card.Text>
+                                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                    <Button
+                                        variant="outline-info"
+                                        size="sm"
+                                        onClick={() => navigate(`/admin/menu-management/edit/${item.id}`)}
+                                    >
+                                        Sửa
+                                    </Button>
+                                    <Button
+                                        variant="outline-danger"
+                                        size="sm"
+                                        onClick={() => handleDelete(item.id)}
+                                    >
+                                        Xoá
+                                    </Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>
