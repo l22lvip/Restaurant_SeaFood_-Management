@@ -27,9 +27,10 @@ const PopularDishes = () => {
                             return (
                                 <Row className='popular-dishes-item'>
                                     <h1 className='popular-dishes-item-id'>{dish.id < 10 ? `0${dish.id}` : dish.id}</h1>
-                                    <img src={dish.imageUrl} alt={dish.name} className='popular-dishes-item-image' />
-                                    <Row>
+                                    <img src={dish.imageUrl} alt={dish.name} className='popular-dishes-item-image' style={{width: '100px', height: '100px', borderRadius: '10px'}}/>
+                                    <Row style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
                                         <h1 className='popular-dishes-item-name'>{dish.name}</h1>
+                                        <h1 className='popular-dishes-item-price' style={{color: 'gold'}}>{dish.price} đ</h1>
                                     </Row>
                                 </Row>
                             )
