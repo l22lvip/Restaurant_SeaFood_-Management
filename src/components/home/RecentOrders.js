@@ -9,19 +9,19 @@ const RecentOrders = () => {
     <Row className='recent-orders-section'>
       <Row className='recent-orders-header'>
         <Row className='recent-orders-title'>
-          <h1>Recent Orders</h1>
-          <a href='/' className='view-all'>View All</a>
+          <h1>Đơn hàng gần đây</h1>
+          {/* <a href='/' className='view-all'>Xem tất cả</a> */}
         </Row>
 
 
-        <Row className='search-rencent-section'>
+        {/* <Row className='search-rencent-section'>
           <FaSearch className='search-rencent-icon' />
           <input
             type='text'
             className='search-rencent-input'
             placeholder='Rencent Orders Search...'
           />
-        </Row>
+        </Row> */}
 
         <Row className='order-list-section'>
           <OrderList />

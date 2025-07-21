@@ -12,7 +12,7 @@ export default function MenuManagementEdit() {
     const { id } = useParams();
 
     useEffect(() => {
-        // Lấy danh sách category từ API
+        // Lấy danh sách category từ API    
         axios.get('http://localhost:9999/categories')
             .then(res => setCategories(res.data))
             .catch(() => setCategories([]));

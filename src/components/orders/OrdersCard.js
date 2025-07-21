@@ -35,7 +35,7 @@ const OrdersCard = ({ order, userId }) => {
             minute: '2-digit',
             hour12: true,
         };
-        return date.toLocaleString('en-US', options).replace(',', '');
+        return date.toLocaleString('vi-VN', options).replace(',', '');
     };
 
     // Lấy chữ cái đầu của tên người dùng
@@ -55,22 +55,22 @@ const OrdersCard = ({ order, userId }) => {
                 <Row className='order-card-content'>
                     <Row className='order-card-content-1'>
                         {/* Hiển thị tên người dùng hoặc chữ 'Loading...' nếu chưa có */}
-                        <h1>{user ? user.name : 'Loading...'}</h1>
-                        <p>#{order.id}/Dine in</p>
+                        <h1>{user ? user.name : 'Đang tải...'}</h1>
+                        <p>#{order.id}</p>
                     </Row>
                     <Row className='order-card-content-2'>
                         <p className='order-card-ready'><FaCheckDouble className='order-card-ready-icon' /> {order.status}</p>
-                        <p className='order-card-serve'><FaCircle className='order-card-serve-icon' />Ready to serve</p>
+                        <p className='order-card-serve'><FaCircle className='order-card-serve-icon' />Sẵn sàng phục vụ</p>
                     </Row>
                 </Row>
             </Row>
             <Row className='order-card-2' >
                 <p>{formatDateTime(order.timestamp)}</p>
-                <p>{totalItems} Items</p>
+                <p>{totalItems} Món</p>
             </Row>
             <hr className='order-card-hr' />
             <Row style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 className='order-card-total' style={{ color: '#f5f5f5' }}>Total: </h3>
+                <h3 className='order-card-total' style={{ color: '#f5f5f5' }}>Tổng cộng: </h3>
                 {/* Chuyển đổi định dạng tiền tệ cho dễ đọc hơn */}
                 <p className='order-card-price' style={{ color: '#f5f5f5' }}>
                     {new Intl.NumberFormat('vi-VN').format(order.total)}₫

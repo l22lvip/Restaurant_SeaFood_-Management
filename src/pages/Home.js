@@ -18,10 +18,10 @@ const Home = () => {
         </Row>
 
         {/* Mini Card */}
-        <Row className="mini-card">
+        {/* <Row className="mini-card">
             <MiniCard className="mini-card-total" title="Total Earnings" icon={<BsCashCoin/>} number={1200} footerNum={1.6}/>
             <MiniCard title="In Progress" icon={<GrInProgress/>} number={16} footerNum={3.6}/>
-        </Row>
+        </Row> */}
 
         {/* Recent Orders Section */}
         <Row className="recent-orders">

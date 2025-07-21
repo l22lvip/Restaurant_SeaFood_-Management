@@ -24,7 +24,7 @@ function AppContent() {
         <Route path="/admin/employees/edit/:id" element={<EditEmployee />} />
         <Route path="/admin/financial" element={<FinancialDashboard />} />
         <Route path="/admin/add-food-import" element={<AddFoodImport />} />
-        <Route path="/admin/orders" element={<OrderManagement />} />
+        <Route path="/completed-orders" element={<OrderManagement />} />
         <Route path="/admin/menu-management" element={<Menu />} />
         <Route path="/admin/menu-management/create" element={<MenuManagementCreate />} />
         <Route path="/admin/menu-management/edit/:id" element={<MenuManagementEdit />} />

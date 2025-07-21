@@ -44,7 +44,7 @@ export default function MenuManagementCreate() {
     };
 
     return (
-        <Container style={{ maxWidth: 500, marginTop: 40, background: '#222', padding: 32, borderRadius: 16 }}>
+        <Container style={{ maxWidth: 500, margin: 'auto', marginTop: 40, background: '#222', padding: 32, borderRadius: 16 }}>
             <h2 style={{ color: '#f5f5f5', marginBottom: 24 }}>Thêm món mới</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">Thêm món thành công!</Alert>}
@@ -74,8 +74,8 @@ export default function MenuManagementCreate() {
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Button variant="warning" type="submit">Thêm món</Button>
-                <Button variant="secondary" style={{ marginLeft: 12 }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
+                <Button variant="warning" type="submit" style={{cursor: 'pointer'}}>Thêm món</Button>
+                <Button variant="secondary"  style={{ marginLeft: 12, cursor: 'pointer' }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
             </Form>
         </Container>
     );

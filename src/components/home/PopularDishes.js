@@ -17,8 +17,8 @@ const PopularDishes = () => {
         <Row className='popular-dishes'>
             <Row className='popular-dishes-content'>
                 <Row className='popular-dishes-header'>
-                    <h1>Popular Dishes</h1>
-                    <a href='/' className='view-all'>View All</a>
+                    <h1>Món ăn</h1>
+                    {/* <a href='/' className='view-all'>View All</a> */}
                 </Row>
 
                 <Row className='popular-dishes-list'>

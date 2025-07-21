@@ -306,7 +306,6 @@
       ],
       "total": 795000,
       "status": "In Progress",
-      "timestamp": "2025-07-20T15:42:26.736Z"
     }
   ],
   "bills": [
@@ -371,63 +370,6 @@
       "customerName": "Phạm Quốc",
       "customerEmail": "phamquoc@example.com",
       "customerPhone": "0911888999"
-    },
-    {
-      "id": "6",
-      "orderId": "6",
-      "tableId": "7",
-      "userId": 3,
-      "total": 285000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-
-      "timestamp": "2025-07-19T12:08:12.444Z",
-      "customerName": "Nguyen Minh",
-      "customerPhone": "123123123"
-    },
-    {
-      "id": "7",
-      "orderId": "7c8a",
-      "tableId": "1",
-      "total": 1855000,
-      "paymentMethod": "Cash",
-      "status": "Pending",
-      "timestamp": "2025-07-19T12:09:10.732Z",
-      "customerName": "asdasdasdasd",
-      "customerPhone": "asdasdasdasdasd"
-    },
-    {
-      "id": "8",
-      "orderId": "a177",
-      "tableId": "2",
-      "total": 140000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "timestamp": "2025-07-19T12:09:42.845Z",
-      "customerName": "asdasd",
-      "customerPhone": "asdasdasd"
-    },
-    {
-      "id": "9",
-      "orderId": "8806",
-      "tableId": "2",
-      "total": 3000000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "timestamp": "2025-07-20T15:38:18.856Z",
-      "customerName": "aádasdasd",
-      "customerPhone": "ádasdasdasd"
-    },
-    {
-      "id": "10",
-      "orderId": "6734",
-      "tableId": "1",
-      "total": 3000000,
-      "paymentMethod": "Cash",
-      "status": "Paid",
-      "timestamp": "2025-07-20T15:42:08.864Z",
-      "customerName": "hello",
-      "customerPhone": "0961423422"
     }
   ],
   "tables": [
@@ -445,14 +387,14 @@
       "name": "Table 2",
       "status": "available",
       "capacity": 4,
-      "currentOrderId": "0f2f"
+      "currentOrderId": "8221"
     },
     {
       "id": "3",
       "name": "Table 3",
-      "status": "empty",
+      "status": "available",
       "capacity": 4,
-      "currentOrderId": "b2db"
+      "currentOrderId": "b8af"
     },
     {
       "id": "4",
@@ -521,36 +463,8 @@
       "id": "1",
       "name": "Admin",
       "role": "admin",
-      "phone": "0912345678",
-      "password": "admin"
-    },
-    {
-      "id": "2",
-      "name": "Nhân Viên 1",
-      "role": "staff",
       "phone": "0987654322",
       "password": "admin"
-    },
-    {
-      "id": "3",
-      "name": "Nhân Viên 2",
-      "role": "staff",
-      "phone": "0987654320",
-      "password": "123"
-    },
-    {
-      "id": "1753029147701",
-      "name": "Phan Van Giap",
-      "role": "admin",
-      "phone": "0947135098",
-      "password": "Vangiap1"
-    },
-    {
-      "id": "1753029169189",
-      "name": "Ha Hung Hai",
-      "role": "staff",
-      "phone": "0912567991",
-      "password": ""
     }
   ],
   "employees": [
