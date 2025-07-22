@@ -4,14 +4,14 @@ import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 export default function MenuManagementCreate() {
-    const [form, setForm] = useState({ name: '', price: '', imageUrl: '', description: '', categoryId: '' });
+    const [form, setForm] = useState({ name: '', price: '', description: '', categoryId: '' });
+    const [imageFile, setImageFile] = useState(null);
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Lấy danh sách category từ API
         axios.get('http://localhost:9999/categories')
             .then(res => setCategories(res.data))
             .catch(() => setCategories([]));
@@ -22,22 +22,56 @@ export default function MenuManagementCreate() {
         setForm({ ...form, [name]: value });
     };
 
+    const uploadImageToImgbb = async (file) => {
+        const reader = new FileReader();
+        return new Promise((resolve, reject) => {
+            reader.onloadend = async () => {
+                const base64 = reader.result.split(',')[1];
+                try {
+                    const formData = new URLSearchParams();
+                    formData.append('key', 'YOUR_IMGBB_API_KEY'); // 🔁 Thay bằng API key thực tế
+                    formData.append('image', base64);
+
+                    const res = await axios.post(
+                        'https://api.imgbb.com/1/upload',
+                        formData.toString(),
+                        {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                        }
+                    );
+                    resolve(res.data.data.url);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess(false);
-        if (!form.name || !form.price || !form.imageUrl || !form.description || !form.categoryId) {
-            setError('Vui lòng nhập đầy đủ thông tin.');
+
+        if (!form.name || !form.price || !form.description || !form.categoryId || !imageFile) {
+            setError('Vui lòng nhập đầy đủ thông tin và chọn ảnh.');
             return;
         }
+
         try {
+            const imageUrl = await uploadImageToImgbb(imageFile);
+
             await axios.post('http://localhost:9999/menuItems', {
                 ...form,
+                imageUrl,
                 price: Number(form.price),
                 categoryId: Number(form.categoryId)
             });
+
             setSuccess(true);
-            setTimeout(() => navigate('/menu'), 1000);
+            setTimeout(() => navigate('/admin/menu-management'), 1000);
         } catch (err) {
             setError('Có lỗi xảy ra khi thêm món.');
         }
@@ -58,8 +92,8 @@ export default function MenuManagementCreate() {
                     <Form.Control name="price" value={form.price} onChange={handleChange} placeholder="Nhập giá" type="number" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label style={{ color: '#f5f5f5' }}>Link ảnh</Form.Label>
-                    <Form.Control name="imageUrl" value={form.imageUrl} onChange={handleChange} placeholder="Nhập link ảnh" />
+                    <Form.Label style={{ color: '#f5f5f5' }}>Chọn ảnh</Form.Label>
+                    <Form.Control type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label style={{ color: '#f5f5f5' }}>Mô tả</Form.Label>
@@ -74,9 +108,9 @@ export default function MenuManagementCreate() {
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Button variant="warning" type="submit" style={{cursor: 'pointer'}}>Thêm món</Button>
-                <Button variant="secondary"  style={{ marginLeft: 12, cursor: 'pointer' }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
+                <Button variant="warning" type="submit" style={{ cursor: 'pointer' }}>Thêm món</Button>
+                <Button variant="secondary" style={{ marginLeft: 12, cursor: 'pointer' }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
             </Form>
         </Container>
     );
-} 
+}

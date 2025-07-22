@@ -11,6 +11,9 @@ const BottomNav = () => {
 
   const isActive = (path) => location.pathname === path;
   const role = localStorage.getItem('role');
+  const data = localStorage.getItem('user');
+  const user = JSON.parse(data);
+
 
   const handleLogout = () => {
     localStorage.removeItem('role');
@@ -19,24 +22,25 @@ const BottomNav = () => {
   };
 
   // Nếu chưa đăng nhập hoặc là staff, hiển thị giao diện staff
-  if (!role || role === 'staff') {
-    return (
-      <div className="bottom-nav">
-        <button
-          className={`nav-button ${isActive('/') ? 'active' : ''}`}
-          onClick={() => navigate('/')}
-        >
-          <FaHome className="icon" size={20} />
-          <p>Menu</p>
-        </button>
-        <button
-          className={`nav-button ${isActive('/completed-orders') ? 'active' : ''}`}
-          onClick={() => navigate('/completed-orders')}
-        >
-          <MdOutlineReorder className="icon" size={20} />
-          <p>Đơn đã hoàn thành</p>
-        </button>
-        {/* <button
+  // if (true|| !role || user?.role === 'staff') {
+  return (
+    <div className="bottom-nav">
+      <button
+        className={`nav-button ${isActive('/') ? 'active' : ''}`}
+        onClick={() => navigate('/')}
+      >
+        <FaHome className="icon" size={20} />
+        <p>Menu</p>
+      </button>
+      <button
+        className={`nav-button ${isActive('/completed-orders') ? 'active' : ''}`}
+        onClick={() => navigate('/completed-orders')}
+        style={{ height: '100%' }}
+      >
+        <MdOutlineReorder className="icon" size={20} />
+        <p style={{ margin: '0' }}>Đơn đã hoàn thành</p>
+      </button>
+      {/* <button
           className={`nav-button ${isActive('/orders') ? 'active' : ''}`}
           onClick={() => navigate('/orders')}
         >
@@ -44,7 +48,7 @@ const BottomNav = () => {
           <p>Đơn hàng</p>
         </button> */}
 
-{/*         
+      {/*         
         <button
           className={`nav-button ${isActive('/create-bill') ? 'active' : ''}`}
           onClick={() => navigate('/create-bill')}
@@ -54,18 +58,29 @@ const BottomNav = () => {
         </button> */}
 
 
-        <button
-          className={`nav-button ${isActive('/tables') ? 'active' : ''}`}
-          onClick={() => navigate('/tables')}
-        >
+      <button
+        className={`nav-button ${isActive('/tables') ? 'active' : ''}`}
+        onClick={() => navigate('/tables')}
+      >
 
-          <MdTableBar className="icon" size={20} />
-          <p>Bàn</p>
-        </button>
+        <MdTableBar className="icon" size={20} />
+        <p>Bàn</p>
+      </button>
 
-      </div>
-    );
-  }
+      {
+        user?.role && (
+          <button
+            className="nav-button"
+            onClick={handleLogout}
+          >
+            <FaSignOutAlt className="icon" size={20} />
+            <p>Đăng xuất</p>
+          </button>
+        )
+      }
+    </div>
+  );
+  // }
 
   // Nếu là admin, chỉ hiện Users và nút Đăng xuất
   if (role === 'admin') {

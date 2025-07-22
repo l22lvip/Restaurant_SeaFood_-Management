@@ -26,7 +26,7 @@ const Auth = () => {
         setError('Số điện thoại hoặc mật khẩu không đúng!');
         return;
       }
-      localStorage.setItem('role', user.role);
+      localStorage.setItem('role', user?.role);
       localStorage.setItem('user', JSON.stringify(user));
       setError('');
       navigate("/admin/employees")
@@ -36,7 +36,7 @@ const Auth = () => {
   };
 
   return (
-      <div style={{
+    <div style={{
       minHeight: '100vh',
       display: 'flex',
       justifyContent: 'center',

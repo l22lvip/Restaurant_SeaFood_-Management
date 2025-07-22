@@ -287,9 +287,9 @@ export default function Orders() {
                                             </select>
                                         </div>
 
-                                        {/* <div className="filter-group"> */}
+                                        <div className="filter-group">
                                             {/* Staff */}
-                                            {/* <label className="filter-label">Nhân viên</label>
+                                            <label className="filter-label">Nhân viên</label>
                                             <select
                                                 className="filter-select"
                                                 value={selectedStaff}
@@ -297,13 +297,13 @@ export default function Orders() {
                                             >
                                                 <option value="">Tất cả</option>
 
-                                                {users.filter(user => user.role === 'staff')
+                                                {users.filter(user => user?.role === 'staff')
                                                     .map((user) => (
                                                         <option key={user.id} value={user.id}>{user.name}</option>
                                                     ))}
                                             </select>
 
-                                        </div> */}
+                                        </div>
 
                                     </div>
                                 </Card>
@@ -358,7 +358,7 @@ export default function Orders() {
                                                                 <th data-html2canvas-ignore>#</th>
                                                                 <th>Thời gian</th>
                                                                 <th data-html2canvas-ignore>Bàn</th>
-                                                                {/* <th>Nhân viên</th> */}
+                                                                <th>Nhân viên</th>
                                                                 <th>Chi tiết món</th>
                                                                 <th className='text-center'>Tổng tiền</th>
                                                                 <th className='text-center'>Thanh toán</th>
@@ -381,7 +381,7 @@ export default function Orders() {
                                                                             })}
                                                                         </td>
                                                                         <td data-html2canvas-ignore><span className="table-pill">#{bill.tableId}</span></td>
-                                                                        {/* <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td> */}
+                                                                        <td>{users.find((u) => u.id == bill.userId)?.name || "?"}</td>
                                                                         <td>
                                                                             <div className="completed-order-details">
                                                                                 {order?.items.map((item, idx) => (
@@ -445,11 +445,11 @@ export default function Orders() {
                                             <div className="completed-col">
                                                 <p><strong>Thời gian: </strong>{new Date(selectedOrder.timestamp).toLocaleString("vi-VN")}</p>
                                                 <p><strong>Bàn số: </strong> #{selectedOrder.tableId}</p>
-                                                {/* <p><strong>Nhân viên gọi món: </strong>
+                                                <p><strong>Nhân viên gọi món: </strong>
                                                     {
                                                         users.find(u => u.id == selectedOrder.userId)?.name || "?"
                                                     }
-                                                </p> */}
+                                                </p>
                                                 <p><strong>Phương thức thanh toán: </strong> {paymentMethodMap[selectedOrder.paymentMethod]}</p>
                                             </div>
 

@@ -9,6 +9,8 @@ const OrderModal = ({ show, handleClose, table, onOrderUpdate }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [currentOrder, setCurrentOrder] = useState({ items: [], total: 0 });
   const [isLoading, setIsLoading] = useState(false);
+  const data = localStorage.getItem('user');
+  const user = JSON.parse(data);
 
   useEffect(() => {
     axios.get('http://localhost:9999/menuItems')
@@ -35,6 +37,12 @@ const OrderModal = ({ show, handleClose, table, onOrderUpdate }) => {
   }, [table, menuItems]);
 
   const handleAddItem = (item) => {
+    // console.log(user)
+
+    if (user?.role !== 'staff') {
+      alert('Bạn không có quyền thêm món');
+      return;
+    }
     const existingItem = currentOrder.items.find(i => i.menuItemId === item.id);
     let newItems;
     if (existingItem) {
@@ -49,6 +57,11 @@ const OrderModal = ({ show, handleClose, table, onOrderUpdate }) => {
   };
 
   const handleRemoveItem = (itemToRemove) => {
+    console.log(user?.role)
+    if (user?.role !== 'staff') {
+      alert('Bạn không có quyền xóa món');
+      return;
+    }
     const existingItem = currentOrder.items.find(i => i.menuItemId === itemToRemove.menuItemId);
     let newItems;
     if (existingItem.quantity > 1) {
@@ -63,12 +76,16 @@ const OrderModal = ({ show, handleClose, table, onOrderUpdate }) => {
   };
 
   const handleSubmitOrder = async () => {
+    if (user?.role !== 'staff') {
+      alert('Bạn không có quyền tạo đơn hàng');
+      return;
+    }
     const itemsToSubmit = currentOrder.items.map(({ menuItemId, quantity, price, name }) => ({ menuItemId, quantity, price, name }));
     try {
       if (table.status === 'empty') {
         const newOrder = {
           tableId: table.id,
-          userId: 1,
+          userId: user.id,
           customerId: null,
           name: menuItems.find(item => item.id === table.currentOrderId)?.name || 'Unknown',
           items: itemsToSubmit,

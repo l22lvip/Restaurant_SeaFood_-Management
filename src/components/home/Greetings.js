@@ -33,13 +33,13 @@ const Greetings = () => {
 
     return (
         <Row className='greetings'>
-            <Col md={7} className='greetings-header'>
-                <h1>Chúng tôi rất vui được phục vụ bạn!</h1>
-                <p>Hãy tận hưởng những món ăn ngon nhất từ biển cả.</p>
+            <Col md={7} className='greetings-header' style={{marginBottom: '0'}}>
+                <h1>Hãy tận hưởng những món ăn ngon nhất từ biển cả.</h1>
+                {/* <p style={{marginBottom: '0'}}></p> */}
             </Col>
-            <Col md={5} className='greetings-time'>
+            <Col md={5} className='greetings-time' style={{margin: '0'}}>
                 <h1>{formatTime(dateTime)}</h1>
-                <p>{formatDate(dateTime)}</p>
+                <p style={{marginBottom: '0'}}>{formatDate(dateTime)}</p>
             </Col>
         </Row>
     )

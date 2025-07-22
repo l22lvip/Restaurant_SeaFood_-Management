@@ -5,7 +5,7 @@ import axios from "axios";
 import UserForm from "./UserForm";
 import "../css/UserForm.css";
 
-const API_URL = "http://localhost:9999/employees";
+const API_URL = "http://localhost:9999/users";
 
 const EditEmployee = () => {
     const [formData, setFormData] = useState({

@@ -28,6 +28,19 @@ const UserForm = ({ formData, handleChange }) => {
         />
       </Form.Group>
 
+      {/* pass */}
+      <Form.Group className="mb-3">
+        <Form.Label>Mật khẩu: </Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Nhập mật khẩu"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+
       <Form.Group className="mb-3">
         <Form.Label>Tuổi: </Form.Label>
         <Form.Control
@@ -54,16 +67,6 @@ const UserForm = ({ formData, handleChange }) => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Email: </Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Nhập email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Giới tính: </Form.Label>
@@ -79,17 +82,7 @@ const UserForm = ({ formData, handleChange }) => {
         </Form.Select>
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Vai trò: </Form.Label>
-        <Form.Select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-        >
-          <option value="staff">Nhân viên</option>
-          <option value="admin">Quản lý</option>
-        </Form.Select>
-      </Form.Group>
+
 
       {/* <Form.Group className="mb-3">
         <Form.Label>Mật khẩu: </Form.Label>
