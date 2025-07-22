@@ -21,7 +21,7 @@ const PopularDishes = () => {
                     {/* <a href='/' className='view-all'>View All</a> */}
                 </Row>
 
-                <Row className='popular-dishes-list' style={{}}>
+                <Row className='popular-dishes-list' style={{width: '700px', margin : 'auto'}}>
                     {
                         popularDishes.map((dish)=>{
                             return (

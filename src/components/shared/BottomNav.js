@@ -27,7 +27,7 @@ const BottomNav = () => {
           onClick={() => navigate('/')}
         >
           <FaHome className="icon" size={20} />
-          <p>Trang chủ</p>
+          <p>Menu</p>
         </button>
         <button
           className={`nav-button ${isActive('/completed-orders') ? 'active' : ''}`}
