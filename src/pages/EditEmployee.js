@@ -16,7 +16,7 @@ const EditEmployee = () => {
         email: "",
         gender: "",
         role: "staff",
-        // password: ""
+        password: ""
     });
     const { id } = useParams();
     const navigate = useNavigate();
@@ -38,8 +38,8 @@ const EditEmployee = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { name, phone, age, address, email, salary } = formData;
-
+        const { name, phone, age, address, gender, password, salary } = formData;
+        console.log(formData)
         if (!name.trim()) {
             alert("Tên không được để trống");
             return;
@@ -49,6 +49,11 @@ const EditEmployee = () => {
             alert("Số điện thoại phải đủ 10 chữ số");
             return;
         }
+        if (!password.trim() || password.length < 6) {
+            alert("Mật khẩu phải có ít nhất 6 ký tự");
+            return;
+        }
+
         if (age < 18 || age > 60) {
             alert("Tuổi làm việc phải từ 18 đến 60");
             return;
@@ -59,10 +64,7 @@ const EditEmployee = () => {
             return;
         }
 
-        if (!email.trim()) {
-            alert("Email không được để trống");
-            return;
-        }
+
 
         if (Number(salary) < 0) {
             alert("Lương không được để trống");

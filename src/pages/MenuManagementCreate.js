@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { FiLoader } from 'react-icons/fi';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 export default function MenuManagementCreate() {
     const [form, setForm] = useState({ name: '', price: '', description: '', categoryId: '' });
@@ -10,6 +12,7 @@ export default function MenuManagementCreate() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:9999/categories')
@@ -29,7 +32,7 @@ export default function MenuManagementCreate() {
                 const base64 = reader.result.split(',')[1];
                 try {
                     const formData = new URLSearchParams();
-                    formData.append('key', 'YOUR_IMGBB_API_KEY'); // 🔁 Thay bằng API key thực tế
+                    formData.append('key', 'f9ae9117ab595c982d21d625abd11582'); 
                     formData.append('image', base64);
 
                     const res = await axios.post(
@@ -54,6 +57,7 @@ export default function MenuManagementCreate() {
         e.preventDefault();
         setError('');
         setSuccess(false);
+        setLoading(true);
 
         if (!form.name || !form.price || !form.description || !form.categoryId || !imageFile) {
             setError('Vui lòng nhập đầy đủ thông tin và chọn ảnh.');
@@ -71,6 +75,7 @@ export default function MenuManagementCreate() {
             });
 
             setSuccess(true);
+            setLoading(false);
             setTimeout(() => navigate('/admin/menu-management'), 1000);
         } catch (err) {
             setError('Có lỗi xảy ra khi thêm món.');
@@ -80,8 +85,8 @@ export default function MenuManagementCreate() {
     return (
         <Container style={{ maxWidth: 500, margin: 'auto', marginTop: 40, background: '#222', padding: 32, borderRadius: 16 }}>
             <h2 style={{ color: '#f5f5f5', marginBottom: 24 }}>Thêm món mới</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {success && <Alert variant="success">Thêm món thành công!</Alert>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {success && <p style={{ color: 'green' }}>Thêm món thành công!</p>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label style={{ color: '#f5f5f5' }}>Tên món</Form.Label>
@@ -108,7 +113,7 @@ export default function MenuManagementCreate() {
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Button variant="warning" type="submit" style={{ cursor: 'pointer' }}>Thêm món</Button>
+                <Button variant="warning" type="submit" style={{ cursor: 'pointer' }}>Thêm món {loading && <BiLoaderAlt style={{ marginLeft: 10, width: 10, height: 10 }} className={'spinning'}></BiLoaderAlt>}</Button>
                 <Button variant="secondary" style={{ marginLeft: 12, cursor: 'pointer' }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
             </Form>
         </Container>

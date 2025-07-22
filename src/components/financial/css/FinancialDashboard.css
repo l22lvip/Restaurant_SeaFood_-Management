@@ -472,6 +472,20 @@
   font-family: 'Inter', sans-serif;
 }
 
+.expense-type {
+  color: #f5f5f5;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.expense-category {
+  color: #f5f5f5;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
 .no-imports {
   text-align: center;
   color: #ababab;

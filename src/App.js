@@ -3,7 +3,18 @@ import { Home, Auth, Orders, Tables, EmployeeList, CreateEmployee, EditEmployee,
 import Header from './components/shared/Header';
 import BottomNav from './components/shared/BottomNav';
 import CreateBill from './components/bill/CreateBill';
-
+const PrivateRoute = ({ children, role }) => {
+  const data = localStorage.getItem('user');
+  const user = JSON.parse(data);
+  console.log("user", user)
+  if (!user) {
+    return <Navigate to="/auth" />;
+  }
+  if (user?.role !== role) {
+    return <Navigate to="/auth" />;
+  }
+  return children;
+};
 function AppContent() {
   const location = useLocation();
   const hideNav = location.pathname === '/auth';
@@ -18,8 +29,7 @@ function AppContent() {
         <Route path="/create-bill" element={<CreateBill />} />
         <Route path="/completed-orders" element={<OrderManagement />} />
 
-        <Route path="/admin" element={<EmployeeList></EmployeeList>}>
-
+        <Route path="/admin">
           <Route path="employees" element={<PrivateRoute role="admin"><EmployeeList /></PrivateRoute>} />
           <Route path="employees/create" element={<PrivateRoute role="admin"><CreateEmployee /></PrivateRoute>} />
           <Route path="employees/edit/:id" element={<PrivateRoute role="admin"><EditEmployee /></PrivateRoute>} />
@@ -28,9 +38,10 @@ function AppContent() {
           <Route path="menu-management" element={<PrivateRoute role="admin"><Menu /></PrivateRoute>} />
           <Route path="menu-management/create" element={<PrivateRoute role="admin"><MenuManagementCreate /></PrivateRoute>} />
           <Route path="menu-management/edit/:id" element={<PrivateRoute role="admin"><MenuManagementEdit /></PrivateRoute>} />
+          <Route path="add-operational-expense" element={<PrivateRoute role="admin"><AddFoodImport /></PrivateRoute>} />
         </Route>
       </Routes>
-      <div style={{ margin: '15rem' }}></div>
+        <div style={{ margin: '15rem' }}></div>
       {!hideNav && <BottomNav />}
     </>
   );
@@ -44,15 +55,5 @@ function App() {
   );
 }
 
-const PrivateRoute = ({ children, role }) => {
-  const data = localStorage.getItem('user');
-  const user = JSON.parse(data);
-  if (!user) {
-    return <Navigate to="/auth" />;
-  }
-  if (user?.role !== role) {
-    return <Navigate to="/auth" />;
-  }
-  return children;
-};
+
 export default App; 

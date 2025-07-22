@@ -22,7 +22,7 @@ const BottomNav = () => {
   };
 
   // Nếu chưa đăng nhập hoặc là staff, hiển thị giao diện staff
-  // if (true|| !role || user?.role === 'staff') {
+  if (!role || user?.role === 'staff') {
   return (
     <div className="bottom-nav">
       <button
@@ -80,7 +80,7 @@ const BottomNav = () => {
       }
     </div>
   );
-  // }
+  }
 
   // Nếu là admin, chỉ hiện Users và nút Đăng xuất
   if (role === 'admin') {

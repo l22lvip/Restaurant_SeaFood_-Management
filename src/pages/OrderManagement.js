@@ -179,6 +179,13 @@ export default function Orders() {
     };
 
     const handleExport = () => {
+        const result = filteredAndSortedBills();
+
+        if (!result || result.length === 0) {
+            alert("Không có dữ liệu để xuất file PDF.");
+            return;
+        }
+
         setIsExporting(true);
         setTimeout(() => {
             const element = document.querySelector('#invoice');

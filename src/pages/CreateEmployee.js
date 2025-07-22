@@ -29,7 +29,7 @@ const CreateEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, phone, age, address, email, gender, password, salary } = formData;
+    const { name, phone, age, address,  gender, password, salary } = formData;
 
     if (!name.trim()) {
       alert("Tên không được để trống");
@@ -56,15 +56,6 @@ const CreateEmployee = () => {
       return;
     }
 
-    if (!email.trim()) {
-      alert("Email không được để trống");
-      return;
-    }
-
-    // if (!password.trim()) {
-    //   alert("Mật khẩu không được để trống");
-    //   return;
-    // }
     if (Number(salary) < 0) {
       alert("Lương không được để trống");
       return;

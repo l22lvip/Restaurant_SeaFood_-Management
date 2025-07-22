@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 export default function MenuManagementEdit() {
     const [form, setForm] = useState({ name: '', price: '', imageUrl: '', description: '', categoryId: '' });
@@ -11,6 +12,7 @@ export default function MenuManagementEdit() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [imageFile, setImageFile] = useState(null);
+    const [loading, setLoading] = useState(false);
     const uploadImageToImgbb = async (file) => {
         const reader = new FileReader();
         return new Promise((resolve, reject) => {
@@ -71,7 +73,7 @@ export default function MenuManagementEdit() {
         e.preventDefault();
         setError('');
         setSuccess(false);
-
+        setLoading(true);
         if (!form.name || !form.price || !form.description || !form.categoryId) {
             setError('Vui lòng nhập đầy đủ thông tin.');
             return;
@@ -94,6 +96,8 @@ export default function MenuManagementEdit() {
             setTimeout(() => navigate('/admin/menu-management   '), 1000);
         } catch (err) {
             setError('Có lỗi xảy ra khi cập nhật món.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -135,7 +139,7 @@ export default function MenuManagementEdit() {
                         ))}
                     </Form.Select>
                 </Form.Group>
-                <Button variant="warning" type="submit">Cập nhật</Button>
+                <Button variant="warning" type="submit">Cập nhật {loading && <BiLoaderAlt style={{ marginLeft: 10, width: 10, height: 10 }} className={'spinning'}></BiLoaderAlt>}</Button>
                 <Button variant="secondary" style={{ marginLeft: 12 }} onClick={() => navigate('/admin/menu-management')}>Hủy</Button>
             </Form>
         </Container>
