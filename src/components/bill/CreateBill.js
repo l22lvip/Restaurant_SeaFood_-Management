@@ -24,6 +24,8 @@ const CreateBill = () => {
 
   const orderInfo = location.state?.order;
   const billsPerPage = 5;
+  const data = localStorage.getItem('user');
+  const user = JSON.parse(data);
 
   useEffect(() => {
     fetch('http://localhost:9999/tables')
@@ -100,6 +102,7 @@ const CreateBill = () => {
     const newBill = {
       id: String(Number(maxId) + 1),
       orderId: selectedOrder.id,
+      userId: user.id,
       tableId: selectedOrder.tableId,
       total: selectedOrder.total,
       paymentMethod,
@@ -200,7 +203,7 @@ const CreateBill = () => {
             <h4 className="form-title text-info">Thông tin hóa đơn</h4>
             {/* <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>Khách hàng</div> */}
             <FormGroup>
-              Tên khách hàng:
+              <span style={{ marginRight: '10px' }}> Tên khách hàng:</span>
               <Form.Control
                 type="text"
                 placeholder="Tên khách hàng"
@@ -210,7 +213,7 @@ const CreateBill = () => {
               />
             </FormGroup>
             <FormGroup>
-              Số điện thoại:
+              <span style={{ marginRight: '10px' }}> Số điện thoại:</span>
               <Form.Control
                 type="tel"
                 placeholder="Số điện thoại (nếu có)"
@@ -225,7 +228,7 @@ const CreateBill = () => {
               </div>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Phương thức thanh toán</Form.Label>
+              <span style={{ marginRight: '10px' }}>Phương thức thanh toán:</span>
               <Form.Select
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
@@ -252,7 +255,7 @@ const CreateBill = () => {
               </Card>
             )}
 
-            <Button variant="primary" className="mt-4 w-100" onClick={handleCreateBill}>
+            <Button variant="primary" className="mt-4 w-100" style={{ marginRight: '10px' }} onClick={handleCreateBill}>
               Tạo hóa đơn
             </Button>
             <Button variant="success" className="mt-3 w-100" onClick={handleMarkAsPaid}>

@@ -542,7 +542,8 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 1rem;
+  /* padding: 1rem; */
+  padding: 1rem 0;
 }
 
 .modal-content {
@@ -550,7 +551,7 @@
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
   border: 1px solid rgba(148, 163, 184, 0.2);
@@ -597,7 +598,7 @@
 }
 
 .modal-body {
-  padding: 2rem;
+  /* padding: 2rem; */
 }
 
 .modal-actions {
@@ -638,7 +639,7 @@
   }
   
   .modal-body {
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
   }
   
   .modal-title {

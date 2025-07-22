@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:9999/employees";
+const API_URL = "http://localhost:9999/users";
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
@@ -30,7 +30,7 @@ const EmployeeList = () => {
   const [search, setSearch] = useState("");
 
   const filteredEmployees = employees.filter((employee) =>
-    employee.name.toLowerCase().includes(search.toLowerCase())
+    employee.name.toLowerCase().includes(search.toLowerCase()) && employee?.role === "staff"
   );
 
   return (
@@ -47,19 +47,19 @@ const EmployeeList = () => {
         <Form.Control
           type="text"
           placeholder="Tìm kiếm theo tên..."
+          style={{ width: "200px", marginLeft: "0" }}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
-      <table className="table user-list-table">
+      <table className="table user-list-table" style={{ width: "100%" }}>
         <thead>
           <tr>
             <th>Tên</th>
             <th>Số điện thoại</th>
             <th>Tuổi</th>
             <th>Địa chỉ</th>
-            <th>Email</th>
             <th>Giới tính</th>
             <th>Vai trò</th>
             <th>Lương</th>
@@ -73,9 +73,8 @@ const EmployeeList = () => {
               <td>{employee.phone}</td>
               <td>{employee.age}</td>
               <td>{employee.address}</td>
-              <td>{employee.email}</td>
               <td>{employee.gender === "male" ? "Nam" : employee.gender === "female" ? "Nữ" : "Khác"}</td>
-              <td>{employee.role === "admin" ? "Quản lý" : "Nhân viên"}</td>
+              <td>{employee?.role === "admin" ? "Quản lý" : "Nhân viên"}</td>
               <td>{employee.salary}</td>
               <td className="user-actions">
                 <button

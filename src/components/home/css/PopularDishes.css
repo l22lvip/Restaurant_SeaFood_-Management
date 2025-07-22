@@ -1,7 +1,7 @@
 .popular-dishes {
     /* mt-6 pr-6 */
-    margin-top: 1.5rem;
-    padding-right: 1.5rem;
+    /* margin-top: 1.5rem; */
+    /* padding-right: 1.5rem; */
 }
 
 .popular-dishes-content {
@@ -45,21 +45,26 @@
     display: flex;
     align-items: center;
     /* px-6 py-4 */
-    padding: 10px 20px 10px 20px;
+    padding: 15px 20px 15px 20px;
     /* Corresponds to px-6 py-4 */
     background-color: #1f1f1f;
     gap: 1rem;
     /* Corresponds to gap-4 */
     /* rounded-[15px]  mx-6*/
-    border-radius: 0.5rem; /* Corresponds to rounded-[15px] */
+    border-radius: 1rem; /* Corresponds to rounded-[15px] */
     margin: 0 20px; /* Corresponds to mx-6 */
     cursor: pointer;
     margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.popular-dishes-item:hover {
+    background-color: #222;
+    transform: scale(1.05);
 }
 
 .popular-dishes-item-image {
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     /* rounded-full */
     border-radius: 50%;
 }

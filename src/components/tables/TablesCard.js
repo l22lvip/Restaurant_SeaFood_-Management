@@ -7,7 +7,7 @@ const TablesCard = ({ name, status, capacity, onClick }) => {
 
   const getStatusClass = () => {
     // Sửa lại logic: 'available' là đã được đặt, 'empty' là còn trống
-    if (status === 'available') {
+    if (status === 'Đã đặt') {
       return 'status-booked'; // Màu xanh cho bàn đã đặt
     }
     return 'status-empty'; // Màu xám cho bàn trống

@@ -7,11 +7,16 @@ import { useNavigate } from 'react-router-dom';
 export default function Menu() {
     const [menuItems, setMenuItems] = useState([]);
     const [newItem, setNewItem] = useState({ name: '', price: '', imageUrl: '' });
+    const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:9999/menuItems')
             .then(res => setMenuItems(res.data))
+            .catch(err => console.log(err));
+
+        axios.get('http://localhost:9999/categories')
+            .then(res => setCategories(res.data))
             .catch(err => console.log(err));
     }, []);
 
@@ -49,38 +54,46 @@ export default function Menu() {
         <div style={{ padding: '2rem' }}>
             <h1 style={{ color: '#f5f5f5', marginBottom: '2rem' }}>Menu</h1>
             <Form style={{ marginBottom: '2rem', background: '#222', padding: '1rem', borderRadius: '1rem' }}>
-                <Button variant="warning" type="button" onClick={() => navigate('/admin/menu-management/create')}>Thêm món</Button>
+                <Button style={{ cursor: "pointer" }} variant="warning" type="button" onClick={() => navigate('/admin/menu-management/create')}>Thêm món</Button>
             </Form>
             <Row xs={2} className="g-4">
-                {menuItems.map((item) => (
-                    <Col key={item.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
-                        <Card style={{ display: 'flex', width: '50%', padding: '10px', background: '#1a1a1a', color: '#f5f5f5', border: 'none', borderRadius: '1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
-                            <Card.Img variant="top" src={item.imageUrl} alt={item.name} style={{ margin: '10px', height: '180px', objectFit: 'cover', borderRadius: '1rem', borderTopRightRadius: '1rem' }} />
-                            <Card.Body>
-                                <Card.Title style={{ fontWeight: 600,marginRight: '10px' }}>{item.name} </Card.Title>
-                                <Card.Text style={{ fontSize: '1.1rem', color: '#f6b100', fontWeight: 500 }}>
-                                    {item.price ? `${item.price.toLocaleString('vi-VN')} đ` : ''}
-                                </Card.Text>
-                                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                    <Button
-                                        variant="outline-info"
-                                        size="sm"
-                                        onClick={() => navigate(`/admin/menu-management/edit/${item.id}`)}
-                                    >
-                                        Sửa
-                                    </Button>
-                                    <Button
-                                        variant="outline-danger"
-                                        size="sm"
-                                        onClick={() => handleDelete(item.id)}
-                                    >
-                                        Xoá
-                                    </Button>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
+                {menuItems.map((item) => {
+                    const category = categories.find(c => c.id == item.categoryId);
+                    return (
+                        <Col key={item.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1rem' }}>
+                            <Card style={{ display: 'flex', width: '50%', padding: '10px', background: '#1a1a1a', color: '#f5f5f5', border: 'none', borderRadius: '1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
+                                <Card.Img variant="top" src={item.imageUrl} alt={item.name} style={{ margin: '10px', height: '180px', objectFit: 'cover', borderRadius: '1rem', borderTopRightRadius: '1rem' }} />
+                                <Card.Body style={{ display: 'flex', flex: 1, justifyContent: 'space-between', }}>
+                                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <Card.Title style={{ fontWeight: 600,fontSize: '1.2rem', marginRight: '10px' }}>{item.name} </Card.Title>
+                                            <Card.Subtitle  style={{color: 'gray',marginTop: '10px', fontWeight: 600, marginRight: '10px' }}>{category?.name} </Card.Subtitle>
+                                            <Card.Text style={{ fontSize: '1.1rem', color: '#f6b100', fontWeight: 500 }}>
+                                                {item.price ? `${item.price.toLocaleString('vi-VN')} đ` : ''}
+                                            </Card.Text>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                            <Button
+                                                variant="outline-info"
+                                                size="sm"
+                                                onClick={() => navigate(`/admin/menu-management/edit/${item.id}`)}
+                                            >
+                                                Sửa
+                                            </Button>
+                                            <Button
+                                                variant="outline-danger"
+                                                size="sm"
+                                                onClick={() => handleDelete(item.id)}
+                                            >
+                                                Xoá
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    )
+                })}
             </Row>
         </div>
     );

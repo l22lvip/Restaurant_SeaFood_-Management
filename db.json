@@ -23,12 +23,12 @@
   ],
   "menuItems": [
     {
-      "id": "1",
       "name": "Gỏi cuốn tôm thịt",
-      "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống.",
       "price": 55000,
-      "imageUrl": "/imageItem/goitom.png",
-      "categoryId": 1
+      "imageUrl": "https://i.ibb.co/G30D5KxH/9d6ffeb5a803.jpg",
+      "description": "Gỏi cuốn tươi mát với tôm, thịt, bún và rau sống.",
+      "categoryId": 1,
+      "id": "1"
     },
     {
       "id": "2",
@@ -377,6 +377,108 @@
       "status": "Completed",
       "timestamp": "2025-07-21T04:32:12.973Z",
       "id": "37bc"
+    },
+    {
+      "id": "24dc",
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
+      "status": "In Progress",
+      "timestamp": "2025-07-22T15:13:54.501Z"
+    },
+    {
+      "id": "d76a",
+      "tableId": "1",
+      "userId": 1,
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
+      "status": "In Progress",
+      "timestamp": "2025-07-22T15:14:11.220Z"
+    },
+    {
+      "id": "3702",
+      "tableId": "2",
+      "userId": "5",
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        },
+        {
+          "menuItemId": "4",
+          "quantity": 1,
+          "price": 350000,
+          "name": "Lẩu Thái hải sản"
+        }
+      ],
+      "total": 855000,
+      "status": "Completed",
+      "timestamp": "2025-07-22T17:13:22.248Z"
+    },
+    {
+      "id": "a8d6",
+      "tableId": "2",
+      "userId": "5",
+      "customerId": null,
+      "name": "Unknown",
+      "items": [
+        {
+          "menuItemId": "1",
+          "quantity": 1,
+          "price": 55000,
+          "name": "Gỏi cuốn tôm thịt"
+        },
+        {
+          "menuItemId": "2",
+          "quantity": 1,
+          "price": 450000,
+          "name": "Cua sốt me"
+        }
+      ],
+      "total": 505000,
+      "status": "Completed",
+      "timestamp": "2025-07-22T17:18:41.587Z"
     }
   ],
   "bills": [
@@ -474,88 +576,122 @@
       "timestamp": "2025-07-21T04:32:17.987Z",
       "customerName": "aaa",
       "customerPhone": ""
+    },
+    {
+      "id": "9",
+      "orderId": "3702",
+      "tableId": "2",
+      "total": 505000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-22T17:15:25.833Z",
+      "customerName": "ajskdh",
+      "customerPhone": ""
+    },
+    {
+      "id": "10",
+      "orderId": "3702",
+      "tableId": "2",
+      "total": 855000,
+      "paymentMethod": "Cash",
+      "status": "Pending",
+      "timestamp": "2025-07-22T17:15:53.899Z",
+      "customerName": "asd",
+      "customerPhone": ""
+    },
+    {
+      "id": "11",
+      "orderId": "a8d6",
+      "userId": "5",
+      "tableId": "2",
+      "total": 505000,
+      "paymentMethod": "Cash",
+      "status": "Paid",
+      "timestamp": "2025-07-22T17:20:25.153Z",
+      "customerName": "ajskhd",
+      "customerPhone": ""
     }
   ],
   "tables": [
     {
       "id": "1",
-      "name": "Table 1",
-      "status": "empty",
+      "name": "Bàn 1",
+      "status": "available",
       "capacity": 4,
-      "currentOrderId": "37bc"
+      "currentOrderId": "d76a"
     },
     {
       "id": "2",
-      "name": "Table 2",
+      "name": "Bàn 2",
       "status": "empty",
       "capacity": 4,
-      "currentOrderId": "8221"
+      "currentOrderId": "a8d6"
     },
     {
       "id": "3",
-      "name": "Table 3",
+      "name": "Bàn 3",
       "status": "empty",
       "capacity": 4,
       "currentOrderId": "b8af"
     },
     {
       "id": "4",
-      "name": "Table 4",
+      "name": "Bàn 4",
       "status": "empty",
       "capacity": 6,
       "currentOrderId": "d91a"
     },
     {
       "id": "5",
-      "name": "Table 5",
+      "name": "Bàn 5",
       "status": "empty",
       "capacity": 6,
       "currentOrderId": "c038"
     },
     {
       "id": "6",
-      "name": "Table 6",
+      "name": "Bàn 6",
       "status": "empty",
       "capacity": 6,
       "currentOrderId": "8877"
     },
     {
       "id": "7",
-      "name": "Table 7",
+      "name": "Bàn 7",
       "status": "empty",
       "capacity": 4,
       "currentOrderId": "6f24"
     },
     {
       "id": "8",
-      "name": "Table 8",
+      "name": "Bàn 8",
       "status": "available",
       "capacity": 4,
       "currentOrderId": "d15d"
     },
     {
       "id": "9",
-      "name": "Table 9",
+      "name": "Bàn 9",
       "status": "empty",
       "capacity": 6,
       "currentOrderId": null
     },
     {
       "id": "10",
-      "name": "Table 10",
+      "name": "Bàn 10",
       "status": "empty",
       "capacity": 4
     },
     {
       "id": "11",
-      "name": "Table 11",
+      "name": "Bàn 11",
       "status": "available",
       "capacity": 6,
       "currentOrderId": "f480"
     },
     {
       "id": "12",
-      "name": "Table 12",
+      "name": "Bàn 12",
       "status": "empty",
       "capacity": 6
     }
@@ -564,30 +700,21 @@
     {
       "id": "1",
       "name": "Admin",
-      "role": "admin",
-      "phone": "0987654322",
-      "password": "admin"
-    }
-  ],
-  "employees": [
-    {
-      "id": "1",
-      "name": "Nhân Viên 1",
-      "phone": "0912345678",
+      "phone": "0123456789",
       "age": 20,
+      "password": "admin",
       "address": "Hà Nội",
-      "email": "nhanvien1@gmail.com",
       "gender": "male",
-      "role": "staff",
-      "salary": 5000000
+      "role": "admin",
+      "salary": 0
     },
     {
       "id": "2",
       "name": "Nhân Viên 2",
       "phone": "0987654322",
       "age": 25,
+      "password": "123456",
       "address": "Hồ Chí Minh",
-      "email": "nhanvien2@gmail.com",
       "gender": "female",
       "role": "staff",
       "salary": 5000000
@@ -597,30 +724,30 @@
       "name": "Nhân Viên 3",
       "phone": "0987654320",
       "age": 30,
+      "password": "123456",
       "address": "Đà Nẵng",
-      "email": "nhanvien3@gmail.com",
       "gender": "male",
       "role": "staff",
       "salary": 5000000
     },
     {
       "id": "4",
-      "name": "Quản Lý 1",
-      "phone": "0947135098",
-      "age": 35,
-      "address": "Hà Nội",
-      "email": "quanly1@gmail.com",
-      "gender": "male",
-      "role": "admin",
+      "name": "Nhân Viên 4",
+      "phone": "0912567991",
+      "age": 22,
+      "password": "123456",
+      "address": "Cần Thơ",
+      "gender": "female",
+      "role": "staff",
       "salary": 5000000
     },
     {
       "id": "5",
-      "name": "Nhân Viên 4",
-      "phone": "0912567991",
+      "name": "Nhân Viên 5",
+      "phone": "0912567992",
       "age": 22,
+      "password": "123456",
       "address": "Cần Thơ",
-      "email": "nhanvien4@gmail.com",
       "gender": "female",
       "role": "staff",
       "salary": 5000000
@@ -642,7 +769,7 @@
       "timestamp": "2025-07-22T08:30:00Z"
     },
     {
-      "id": "2", 
+      "id": "2",
       "date": "2025-07-22",
       "amount": 850000,
       "expenseType": "maintenance_repair",
@@ -653,7 +780,7 @@
     },
     {
       "id": "3",
-      "date": "2025-07-21", 
+      "date": "2025-07-21",
       "amount": 1200000,
       "expenseType": "utilities",
       "category": "Điện nước",

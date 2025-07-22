@@ -22,20 +22,38 @@ const Header = () => {
                     <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
                     <h1 className='header-title'>Quản lý nhà hàng</h1>
                 </div>
-                <div className='user-section' style={{marginLeft: 'auto', display: 'flex', alignItems: 'center'}}>
+                <div className='user-section' style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
                     <FaUserCircle className='user-icon' />
                     <div className='user-details'>
-                        <h1 style={{fontSize: '1.1rem', margin: 0}}>{user?.name || 'Admin'}</h1>
-                        <p style={{fontSize: '0.9rem', margin: 0}}>Admin</p>
+                        <h1 style={{ fontSize: '1.1rem', margin: 0 }}>{user?.name || 'Admin'}</h1>
+                        <p style={{ fontSize: '0.9rem', margin: 0 }}>Admin</p>
                     </div>
                 </div>
             </div>
         );
     }
+    if (role === 'staff') {
+        return (
+            <div className='header-container'>
+                <div className='logo-section'>
+                    <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
+                    <h1 className='header-title'>Quản lý nhà hàng</h1>
+                </div>
+                <div className='user-section' style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+                    <FaUserCircle className='user-icon' />
+                    <div className='user-details'>
+                        <h1 style={{ fontSize: '1.1rem', margin: 0 }}>{user?.name || 'Staff'}</h1>
+                        <p style={{ fontSize: '0.9rem', margin: 0 }}>Nhân viên</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className='header-container' style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <div className='header-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             {/* Logo  */}
-            <div className='logo-section' style={{marginTop: '2px', marginBottom: '2px'}}>
+            <div className='logo-section' style={{ marginTop: '2px', marginBottom: '2px' }}>
                 <img src={logo4} className='logo-image' alt='restro logo' style={{ width: '50PX' }} />
                 <h1 className='header-title'>Restaurant Management</h1>
             </div>
@@ -55,7 +73,7 @@ const Header = () => {
                 <div className='user-profile-section' onClick={() => navigate('/auth')}>
                     <FaUserCircle className='user-icon' />
                     <div className='user-details'>
-                        Admin Login
+                        Login
                     </div>
                 </div>
             </div>

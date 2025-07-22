@@ -57,7 +57,7 @@ const Tables = () => {
   }
 
   return (
-    <Row style={{ backgroundColor: '#1f1f1f', height: 'calc(100vh - 5rem)', overflow: 'hidden' }} >
+    <Row style={{ backgroundColor: '#1f1f1f', height: 'calc(100vh - 5rem)' }} >
       <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 20px 10px 20px' }}>
         <h1 style={{ color: '#f5f5f5', fontSize: '1.5rem', fontWeight: '500', letterSpacing: '0.025em' }}>Bàn</h1>
         <div style={{ gap: '1rem', justifyContent: 'flex-end' }}>
