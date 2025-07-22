@@ -4,7 +4,7 @@ import '../components/financial/css/FinancialDashboard.css';
 
 const FinancialDashboard = () => {
   const navigate = useNavigate();
-  const [foodImports, setFoodImports] = useState([]);
+  const [operationalExpenses, setOperationalExpenses] = useState([]);
   const [bills, setBills] = useState([]);
   const [importTotal, setImportTotal] = useState(2500000);
   const [revenue, setRevenue] = useState(6355000);
@@ -15,10 +15,10 @@ const FinancialDashboard = () => {
   // Fetch data on component mount
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://localhost:9999/foodImports')
+      fetch('http://localhost:9999/operationalExpenses')
         .then(res => res.json())
-        .then(data => setFoodImports(data || []))
-        .catch(err => console.error('Error fetching food imports:', err));
+        .then(data => setOperationalExpenses(data || []))
+        .catch(err => console.error('Error fetching operational expenses:', err));
       
       fetch('http://localhost:9999/bills')
         .then(res => res.json())
@@ -51,8 +51,8 @@ const FinancialDashboard = () => {
       );
     });
     
-    const monthImports = foodImports.filter(imp => {
-      const date = new Date(imp.date);
+    const monthImports = operationalExpenses.filter(expense => {
+      const date = new Date(expense.date);
       return (
         date.getMonth() + 1 === Number(selectedMonth) &&
         date.getFullYear() === Number(selectedYear)
@@ -60,19 +60,33 @@ const FinancialDashboard = () => {
     });
     
     const totalRevenue = monthBills.reduce((sum, bill) => sum + Number(bill.total), 0);
-    const totalImport = monthImports.reduce((sum, imp) => sum + Number(imp.amount), 0);
+    const totalImport = monthImports.reduce((sum, expense) => sum + Number(expense.amount), 0);
     
     setRevenue(totalRevenue);
     setImportTotal(totalImport);
     setInterest(totalRevenue - totalImport);
-  }, [bills, foodImports, selectedMonth, selectedYear]);
+  }, [bills, operationalExpenses, selectedMonth, selectedYear]);
 
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('vi-VN').format(value);
   };
 
+  const getExpenseTypeLabel = (expenseType) => {
+    const expenseTypeLabels = {
+      'input_materials': 'Nguyên liệu đầu vào',
+      'conversion_costs': 'Chi phí chuyển đổi',
+      'maintenance_repair': 'Bảo trì và sửa chữa',
+      'equipment_purchase': 'Mua thiết bị',
+      'emergency_costs': 'Chi phí khẩn cấp',
+      'utilities': 'Tiện ích (điện, nước, gas)',
+      'transportation': 'Vận chuyển',
+      'other': 'Khác'
+    };
+    return expenseTypeLabels[expenseType] || expenseType;
+  };
+
   const handleAddImport = () => {
-    navigate('/admin/add-food-import');
+    navigate('/admin/add-operational-expense');
   };
 
   return (
@@ -139,11 +153,11 @@ const FinancialDashboard = () => {
         {/* Financial Summary Cards */}
         <div className="summary-cards-container">
           <div className="summary-cards-wrapper">
-            {/* Monthly Import */}
+            {/* Monthly Operational Expenses */}
             <div className="summary-card">
               <div className="summary-card-icon import-icon"></div>
               <div className="summary-card-body">
-                <div className="summary-card-title">Chi phí nhập hàng</div>
+                <div className="summary-card-title">Chi phí hoạt động</div>
                 <div className="summary-card-value negative">
                   {formatCurrency(importTotal)}
                   <span className="summary-card-unit">₫</span>
@@ -180,51 +194,61 @@ const FinancialDashboard = () => {
           </div>
         </div>
 
-        {/* Recent Food Imports List */}
+        {/* Recent Operational Expenses List */}
         <div className="row justify-content-center mt-4">
           <div className="col-lg-8 col-md-10">
             <div className="form-card">
               <div className="form-card-body">
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <h3 className="import-form-title mb-0">Lịch Sử Nhập Hàng Gần Đây</h3>
+                  <h3 className="import-form-title mb-0">Lịch Sử Chi Phí Hoạt Động</h3>
                   <button
                     type="button"
                     className="btn-add-import"
                     onClick={handleAddImport}
                   >
-                    Thêm Chi Phí Nhập Hàng
+                    Thêm Chi Phí Hoạt Động
                   </button>
                 </div>
                 <div className="recent-imports-list">
-                  {foodImports.length > 0 ? (
-                    [...foodImports]
+                  {operationalExpenses.length > 0 ? (
+                    [...operationalExpenses]
                       .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
                       .slice(0, 5)
-                      .map((importItem) => (
-                        <div key={importItem.id} className="import-item">
+                      .map((expense) => (
+                        <div key={expense.id} className="import-item">
                           <div className="import-item-header">
                             <span className="import-date">
-                              {new Date(importItem.date).toLocaleDateString('vi-VN')}
+                              {new Date(expense.date).toLocaleDateString('vi-VN')}
                             </span>
                             <span className="import-amount">
-                              {formatCurrency(importItem.amount)}₫
+                              {formatCurrency(expense.amount)}₫
                             </span>
                           </div>
-                          {importItem.description && (
+                          {expense.description && (
                             <div className="import-description">
-                              {importItem.description}
+                              {expense.description}
                             </div>
                           )}
-                          {importItem.supplier && (
+                          {expense.supplier && (
                             <div className="import-supplier">
-                              {importItem.supplier}
+                              {expense.supplier}
+                            </div>
+                          )}
+                          {expense.expenseType && (
+                            <div className="expense-type">
+                              Loại: {getExpenseTypeLabel(expense.expenseType)}
+                            </div>
+                          )}
+                          {expense.category && (
+                            <div className="expense-category">
+                              Danh mục: {expense.category}
                             </div>
                           )}
                         </div>
                       ))
                   ) : (
                     <div className="no-imports">
-                      <p>Chưa có dữ liệu nhập hàng nào.</p>
+                      <p>Chưa có dữ liệu chi phí hoạt động.</p>
                     </div>
                   )}
                 </div>

@@ -23,7 +23,7 @@ function AppContent() {
         <Route path="/admin/employees/create" element={<CreateEmployee />} />
         <Route path="/admin/employees/edit/:id" element={<EditEmployee />} />
         <Route path="/admin/financial" element={<FinancialDashboard />} />
-        <Route path="/admin/add-food-import" element={<AddFoodImport />} />
+        <Route path="/admin/add-operational-expense" element={<AddFoodImport />} />
         <Route path="/completed-orders" element={<OrderManagement />} />
         <Route path="/admin/menu-management" element={<Menu />} />
         <Route path="/admin/menu-management/create" element={<MenuManagementCreate />} />

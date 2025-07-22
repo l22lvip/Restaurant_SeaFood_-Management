@@ -630,43 +630,83 @@
     "today": 2500000,
     "yesterday": 1850000
   },
-  "foodImports": [
+  "operationalExpenses": [
     {
       "id": "1",
+      "date": "2025-07-22",
+      "amount": 2500000,
+      "expenseType": "input_materials",
+      "category": "Hải sản tươi sống",
+      "description": "Nhập nguyên liệu hải sản cho tuần",
+      "supplier": "Công ty Hải Sản Biển Đông",
+      "timestamp": "2025-07-22T08:30:00Z"
+    },
+    {
+      "id": "2", 
+      "date": "2025-07-22",
+      "amount": 850000,
+      "expenseType": "maintenance_repair",
+      "category": "Thiết bị bếp",
+      "description": "Sửa chữa lò nướng chính",
+      "supplier": "Công ty Sửa Chữa Thiết Bị",
+      "timestamp": "2025-07-22T10:15:00Z"
+    },
+    {
+      "id": "3",
+      "date": "2025-07-21", 
+      "amount": 1200000,
+      "expenseType": "utilities",
+      "category": "Điện nước",
+      "description": "Tiền điện tháng 7",
+      "supplier": "Điện lực TP.HCM",
+      "timestamp": "2025-07-21T14:20:00Z"
+    },
+    {
+      "id": "4",
       "date": "2025-07-21",
       "amount": 2500000,
+      "expenseType": "input_materials",
+      "category": "Hải sản tươi sống",
       "description": "Nhập hải sản tươi sống",
       "supplier": "Công ty Hải Sản Biển Đông",
       "timestamp": "2025-07-21T08:30:00Z"
     },
     {
-      "id": "2",
+      "id": "5",
       "date": "2025-07-20",
       "amount": 1800000,
+      "expenseType": "input_materials",
+      "category": "Rau củ quả",
       "description": "Nhập rau củ quả tươi",
       "supplier": "Công ty Nông Sản Sạch",
       "timestamp": "2025-07-20T07:45:00Z"
     },
     {
-      "id": "3",
+      "id": "6",
       "date": "2025-07-19",
       "amount": 3200000,
+      "expenseType": "input_materials",
+      "category": "Thịt heo, thịt bò",
       "description": "Nhập thịt heo, thịt bò",
       "supplier": "Công ty Chăn Nuôi An Toàn",
       "timestamp": "2025-07-19T09:15:00Z"
     },
     {
-      "id": "1753043766997",
+      "id": "7",
       "date": "2025-07-20",
       "amount": 1000000,
+      "expenseType": "input_materials",
+      "category": "Cá tươi",
       "description": "Cá",
       "supplier": "ANB",
       "timestamp": "2025-07-20T20:36:06.997Z"
     },
     {
-      "id": "1753045597528",
+      "id": "8",
       "date": "2025-07-20",
       "amount": 1230000,
+      "expenseType": "input_materials",
+      "category": "Nguyên liệu khác",
       "description": "ABC",
       "supplier": "ABC",
       "timestamp": "2025-07-20T21:06:37.528Z"
